@@ -1,23 +1,26 @@
 <?php ob_start(); ?>
-<p>Gallery :</p>
-<?php
-while ($data = $gallery->fetch())
-{
-?>
-    <div class="pictures">
-        <p>
+<h4>Gallery</h4>
+    <div class="product">
+        <div class="main-nav">
             <?php
-            $img = $data['content'];
-            echo '<img src="'.$img.'"/>';
+                while ($data = $gallery->fetch())
+                {
             ?>
-            <br />
-        </p>
+            <div id='full_product'>
+                <div id='single_product'>
+                    <a href=''>
+                    <?php
+                        $img = $data['content'];
+                        echo '<img src="'.$img.'"/>';
+                    ?>
+                    </a>
+                </div>
+            </div>
+            <?php
+                }
+                $gallery->closeCursor();
+            ?>
+        </div>
     </div>
-<?php
-}
-$gallery->closeCursor();
-?>
 <?php $content = ob_get_clean(); ?>
-
 <?php require('view/template.php'); ?>
-

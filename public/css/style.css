@@ -1,3 +1,9 @@
+.main_div {
+    margin-top: 0px;
+    height: 560px;
+    width: 100%;
+}
+
 .top_bar {
     display: inline;
     text-align: center;   
@@ -13,6 +19,17 @@
     display: inline;
 }
 
+
+label {
+    font-family: "Avenir",Arial,sans-serif;
+}
+h2 {
+    font-family: "Avenir",Arial,sans-serif;
+}
+h4 {
+    font-family: "Avenir",Arial,sans-serif;
+    font-size: 20px;
+}
 h1, h3
 {
     text-align:center;
@@ -42,10 +59,8 @@ a
 }
 
 footer {
+    font-family: "Avenir",Arial,sans-serif;
     text-align: center;
-    background: rgb(236, 235, 235);
-    filter: alpha(opacity=20);
-    opacity: 1;
 }
 
 li {
@@ -58,6 +73,60 @@ li {
 }
 .right {
     font-size: 20px;
-    margin: 0 10px 0 0;
+    margin: 0 25px 0 0;
     float: right;
 }
+
+.forms {
+    display:flex;
+    flex-direction:row;
+    padding-top: 50px;
+    width: 415px;
+    height: 300px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+.login_form {
+    margin: 30px;
+}
+.register_form {
+    margin: 30px;
+}
+
+.forms_account_view {
+    display:flex;
+    flex-direction:row;
+    padding-top: 50px;
+    width: 370px;
+    height: 300px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+.account_information {
+    padding: 30px;
+}
+.modify_form {
+    padding: 30px;
+}
+
+.main-nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 1px;
+    box-shadow: 1px 1px 5px #D3D3D3;
+  }
+#full_product {
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;
+  }
+  #single_product {
+    float: left;
+    padding: 20px;
+   }

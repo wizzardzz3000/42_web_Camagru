@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,15 +10,27 @@
         <div class="top_bar">
             <ul class="top_bar_elements">
                 <li class="logo" onclick="location.href='index.php';" style="cursor:pointer;">Camagru</li>
-                <li class="right">Login/Logout</li>
-                <li class="right">Account</li>
+                <?php
+                if(($_SESSION['loggued_on_user'] === ''))
+                {
+                    echo '<li class="right" onclick=location.href="index.php?action=user" style="cursor:pointer;">Login/Register</li>';
+                    echo '<li class="right" onclick=location.href="index.php?action=gallery" style="cursor:pointer;">Gallery</li>';
+                } else {
+                    echo '<li class="right" onclick=location.href="index.php?action=logout" style="cursor:pointer;">Logout</li>';
+                    echo '<li class="right" onclick=location.href="index.php?action=account" style="cursor:pointer;">Hello '.$_SESSION["loggued_on_user"].'</li>';
+                    echo '<li class="right" onclick=location.href="index.php?action=camera" style="cursor:pointer;">Take a picture</li>';
+                    echo '<li class="right" onclick=location.href="index.php?action=gallery" style="cursor:pointer;">Gallery</li>';
+                }
+                ?>
             </ul>
         </div>
     </head>
     <hr>
     <body>
-        <?= $content ?>
-        <?= $errorMsg ?>
+        <div class ="main_div">
+            <?= $content ?>
+            <?= $errorMsg ?>
+        </div>
     </body>
     <hr>
     <footer>

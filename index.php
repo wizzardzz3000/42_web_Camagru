@@ -1,9 +1,30 @@
 <?php
 require('controller/controller.php');
+require('controller/userController.php');
 
 try {
     if (isset($_GET['action'])) {
-        if ($_GET['action'] == 'listPosts') {
+        if ($_GET['action'] == 'user')
+        {
+            user();
+        }
+        if ($_GET['action'] == 'account')
+        {
+            account();
+        }
+        else if ($_GET['action'] == 'login')
+        {
+            login($_POST['login'], $_POST['passwd']);
+        }
+        else if ($_GET['action'] == 'logout')
+        {
+            logout($_POST['login'], $_POST['passwd']);
+        }
+        else if ($_GET['action'] == 'register')
+        {
+            register($_POST['login'], $_POST['email'], $_POST['passwd']);
+        }
+        else if ($_GET['action'] == 'listPosts') {
             listPosts();
         }
         else if ($_GET['action'] == 'post') {
@@ -48,10 +69,17 @@ try {
                 throw new Exception('Aucun identifiant de billet envoyé');
             }
         }
+        else if ($_GET['action'] == 'camera')
+        {
+            showMainView();
+        }
+        else if ($_GET['action'] == 'gallery')
+        {
+            showGallery();
+        }
     }
     else {
         showGallery();
-        // showMainView();
     }
 }
 catch(Exception $e) {

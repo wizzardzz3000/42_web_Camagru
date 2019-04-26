@@ -65,7 +65,7 @@ function modifyComment($commentId, $comment)
     $id = $postId->fetch();
 
     if ($affectedLines === false) {
-        throw new Exception('Impossible d\'ajouter le commentaire !');
+        throw new Exception('Impossible de modifier le commentaire !');
     }
     else {
         header('Location: index.php?action=post&id=' . $id['post_id']);

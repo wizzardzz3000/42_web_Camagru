@@ -1,4 +1,6 @@
-<?php ob_start(); ?>
+<?php
+    ob_start();
+?>
 
 <div class="main">
     <video id="video" autoplay></video>
@@ -12,5 +14,4 @@
 <script src="javascript/take_pic.js"></script>
 
 <?php $content = ob_get_clean(); ?>
-
 <?php require('view/template.php'); ?>

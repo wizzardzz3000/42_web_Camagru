@@ -5,7 +5,7 @@
       canvas       = document.querySelector('#canvas'),
       photo        = document.querySelector('#photo'),
       startbutton  = document.querySelector('#startbutton'),
-      width = 160,
+      width = 150,
       height = 0;
 
     if (navigator.mediaDevices.getUserMedia) {
