@@ -14,13 +14,15 @@ function authUser($login, $passwd)
 
     while ($user = $users->fetch())
     {
-        if($login === $user['user_name'] && /*hash('whirlpool', $passwd)*/ $passwd === $user['user_password'])
+        if($login === $user['user_name'])
         {
-            return(TRUE);
-        }
-        else
-        {
-            return(FALSE);
+            if(hash('whirlpool', $passwd) === $user['user_password'])
+            {
+                return(TRUE);
+            } else
+            {
+                return(FALSE);
+            }
         }
     }
 }
@@ -74,10 +76,17 @@ function account()
     }
 }
 
-function register($login, $email, $password)
+function register($name, $email, $passwd)
 {
-    if($login != '' && $email != '' && $passwd != '')
-    {
+    $userManager = new UserManager();
 
+    if($name != '' && $email != '' && $passwd != '')
+    {
+        $user = $userManager->saveUser($name, $email, $passwd);
+        if(!$user)
+        {
+            echo('FAIL');
+        }
     }
+    require('view/userView.php');
 }

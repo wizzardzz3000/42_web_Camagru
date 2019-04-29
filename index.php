@@ -22,7 +22,7 @@ try {
         }
         else if ($_GET['action'] == 'register')
         {
-            register($_POST['login'], $_POST['email'], $_POST['passwd']);
+            register($_POST['name'], $_POST['email'], $_POST['passwd']);
         }
         else if ($_GET['action'] == 'listPosts') {
             listPosts();

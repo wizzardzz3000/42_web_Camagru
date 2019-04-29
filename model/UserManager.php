@@ -11,29 +11,43 @@ class UserManager extends Manager
         return $req;
     }
 
-    public function saveUser()
+    public function saveUser($user_name, $user_email, $user_password)
     {
         session_start();
-        $db = $this->dbConnect($user_name, $user_email, $user_password);
+        $db = $this->dbConnect();
 
         if ($user_name !== '' && $user_email !== '' && $user_password !== '') {
             $user_pwd = hash('whirlpool', $user_password);
          
-            $query_check = "SELECT user_name FROM users WHERE user_name='$user_name'";
-            $run = mysqli_query($db, $query_check);
-            $check = mysqli_num_rows($run);
-         
-            if ($check) {
-              //$_SESSION["user"] = $user_login;
-              alert('This user already exists, please login or create an account with a different name.');
+            $query_check = "SELECT user_name FROM users WHERE user_name = '$user_name'";
+            $users = $db->query('SELECT user_id, user_name, user_email, user_password, account_valid FROM users ORDER BY user_id');
+            $exists = 0;
+
+            if($users)
+            {
+                while ($user = $users->fetch())
+                {
+                    if($user['user_name'] === $user_name)
+                    {
+                        $exists = 1;
+                    }
+                }
+            }
+
+            if ($exists === 1) 
+            {
+              echo('This user already exists, please login or create an account with a different name.');
             } else 
             {
                 $query = "INSERT INTO users
                         SET user_name = '$user_name', 
                         user_email = '$user_email',
                         user_password = '$user_pwd'";
-                 $run_pro = mysqli_query($db, $query);
-                if (!$run_pro) {
+                $user = $db->prepare($query);
+                $affectedLines = $user->execute(array($user_name, $user_email, $user_pwd));
+                return($affectedLines);
+                if (!$affectedLines)
+                {
                     die("ERROR: ". mysqli_error($db));
                 }
             }

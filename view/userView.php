@@ -20,7 +20,7 @@
         </div>
         <div class="register_form">
             <h2>Register</h2>
-            <form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post">
+            <form action="index.php?action=register" method="POST">
                 <div>
                     <label for="name">Name</label><br />
                     <input type="text" id="name" name="name" />
@@ -28,21 +28,29 @@
                 <br>
                 <div>
                     <label for="email">Email</label><br />
-                    <input type="text" id="email" name="email" />
+                    <input id="r_email" type="text" name="email" value="" onkeyup="checkEmail()"/>
                 </div>
+                <p id="email_message" class="email_message"></p>
                 <br>
                 <div>
                     <label for="password">Password</label><br />
-                    <input type="password" name="passwd" value="" />
+                    <input id="r_password" type="password" name="passwd" value="" onkeyup="checkPassword()"/>
                 </div>
+                <p id="password_len_message" class="password_len_message"></p>
+                <p id="password_up_message" class="password_up_message"></p>
+                <p id="password_num_message" class="password_num_message"></p>
+                <p id="password_spe_message" class="password_spe_message"></p>
                 <br>
                 <div>
-                    <input type="submit" value="Register" />
+                    <input type="submit" value="Register"/>
                 </div>
             </form>
         </div>
     </div>
-        
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="javascript/check_password.js"></script>
+<script src="javascript/check_email.js"></script>
 
 <?php $content = ob_get_clean(); ?>
 <?php require('view/template.php'); ?>
