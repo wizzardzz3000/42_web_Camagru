@@ -79,13 +79,19 @@ function account()
 function register($name, $email, $passwd)
 {
     $userManager = new UserManager();
+    $success = 0;
 
     if($name != '' && $email != '' && $passwd != '')
     {
-        $user = $userManager->saveUser($name, $email, $passwd);
-        if(!$user)
+        if ($userManager->saveUser($name, $email, $passwd) == 1)
         {
-            echo('FAIL');
+            $res = 1;
+        } 
+        else if ($userManager->saveUser($name, $email, $passwd) == 2)
+        {
+            $res = 2;
+        } else {
+            echo("FAIL");
         }
     }
     require('view/userView.php');

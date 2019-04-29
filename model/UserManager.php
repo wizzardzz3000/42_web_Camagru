@@ -36,19 +36,21 @@ class UserManager extends Manager
 
             if ($exists === 1) 
             {
-              echo('This user already exists, please login or create an account with a different name.');
+              return(2);
             } else 
             {
                 $query = "INSERT INTO users
                         SET user_name = '$user_name', 
                         user_email = '$user_email',
-                        user_password = '$user_pwd'";
+                        user_password = '$user_pwd',
+                        account_valid = 0";
                 $user = $db->prepare($query);
                 $affectedLines = $user->execute(array($user_name, $user_email, $user_pwd));
-                return($affectedLines);
                 if (!$affectedLines)
                 {
                     die("ERROR: ". mysqli_error($db));
+                } else {
+                    return(1);
                 }
             }
         }
