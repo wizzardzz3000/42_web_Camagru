@@ -10,5 +10,13 @@ if(isset($_POST['canvasData'])){
 function saveData($data)
 {
     $galleryManager = new GalleryManager();
-    $pic = $galleryManager->savePictures(($data));
+
+    // to disk
+    $input = $data;
+    $time = time();
+    $name = $time . '.png';
+    $output = 'pictures/' . $name;
+    file_put_contents($output, file_get_contents($input));
+
+    $pic = $galleryManager->savePictures(($name));
 }

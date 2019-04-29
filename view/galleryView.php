@@ -11,7 +11,7 @@
                     <a href=''>
                     <?php
                         $img = $data['content'];
-                        echo '<img src="'.$img.'"/>';
+                        echo '<img src="pictures/'.$img.'"/>';
                     ?>
                     </a>
                 </div>
