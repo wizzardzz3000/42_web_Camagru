@@ -14,7 +14,7 @@ function authUser($login, $passwd)
 
     while ($user = $users->fetch())
     {
-        if($login === $user['user_name'])
+        if($login === $user['user_name'] && $user['account_valid'] == 1)
         {
             if(hash('whirlpool', $passwd) === $user['user_password'])
             {
@@ -29,6 +29,8 @@ function authUser($login, $passwd)
 
 function login($login, $passwd)
 {
+    $wrong = 0;
+    
     if($login != '' && $passwd != '')
     {
         session_start();
@@ -37,12 +39,39 @@ function login($login, $passwd)
         {
             $_SESSION['loggued_on_user'] = $login;
             require('view/mainView.php');
-        } else {
+        } else if (authUser($login, $passwd) === FALSE) {
             $_SESSION['loggued_on_user'] = '';
-            echo("WRONG LOGIN");
+            $wrong = 1;
+            $wrong_password = "Wrong password :(";
             require('view/userView.php');
+        } else {
+            echo("AUTH FAIL");
         }
     }
+}
+
+function verify($email, $hash)
+{
+    $userManager = new UserManager();
+    $users = $userManager->getUsers();
+
+    while ($user = $users->fetch())
+    {
+        if($email === $user['user_email'])
+        {
+            if($hash === $user['hash'])
+            {
+                $verify = $userManager->activateAccount($email);
+                if ($verify == 1)
+                {
+                    $verifyMessage = "Account succesfully activated! You can now login :)";
+                } else {
+                    $verifyMessage = "Something went wrong :(";
+                }
+            } 
+        }
+    }
+    require('view/userView.php');
 }
 
 function logout()
@@ -69,30 +98,58 @@ function account()
             $user_email = $user['user_email'];
             require('view/userAccountView.php');
         }
-        else
-        {
-            echo('FUCK IT');
-        }
     }
 }
 
-function register($name, $email, $passwd)
+function register($name, $email, $passwd, $cPassword)
 {
     $userManager = new UserManager();
-    $success = 0;
+    $hash = hash("whirlpool", rand(0,1000));
+    $res = 0;
 
-    if($name != '' && $email != '' && $passwd != '')
+    if($name != '' && $email != '' && $passwd != '' && $cPassword != '')
     {
-        if ($userManager->saveUser($name, $email, $passwd) == 1)
+        if ($passwd == $cPassword)
         {
-            $res = 1;
-        } 
-        else if ($userManager->saveUser($name, $email, $passwd) == 2)
-        {
-            $res = 2;
+            if ($userManager->saveUser($name, $email, $passwd, $hash) == 1)
+            {
+                $res = 1;
+                sendEmail($name, $email, $hash);
+            } 
+            else if ($userManager->saveUser($name, $email, $passwd, $hash) == 2)
+            {
+                $res = 2;
+            } else {
+                echo("Cannot save user");
+            }
         } else {
-            echo("FAIL");
+            $res = 3;
         }
     }
     require('view/userView.php');
 }
+
+function sendEmail($name, $email, $hash)
+{
+    $to = $email;
+    $subject = 'Activate your Camagru account';
+    $message = '
+    
+    Hello '.$name.'!
+    Your Camagru account has been created. 
+    
+    Please click this link to activate your account:
+    http://localhost:8100/index.php?action=verify&email='.$email.'&hash='.$hash.'
+    
+    ';
+                        
+    $headers = 'From:noreply@camagru.com' . "\r\n";
+    mail($to, $subject, $message, $headers);
+}
+
+// function resend($name, $email, $hash)
+// {
+//     echo('RESEND' . $name);
+//     sendEmail($name, $email, $hash);
+//     require('view/userView.php');
+// }

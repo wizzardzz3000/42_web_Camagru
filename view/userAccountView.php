@@ -10,20 +10,26 @@
         </div>
         <div class="modify_form">
             <h2>Modify your informations</h2>
-            <form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post">
+            <form action="index.php?action= ?>" method="post">
                 <div>
-                    <label for="email">New email</label><br />
-                    <input type="text" id="email" name="email" />
+                    <label for="name">New name</label><br />
+                    <input class="input" type="text" id="name" name="name" />
                 </div>
                 <br>
                 <div>
-                    <label for="email">New password</label><br />
-                    <input type="password" name="passwd" value="" />
+                    <label for="email">New email</label><br />
+                    <input class="input" type="text" id="email" name="email" />
+                </div>
+                <br>
+                <div>
+                    <label for="password">New password</label><br />
+                    <input class="input" type="password" name="passwd" value="" />
                 </div>
                 <br>
                 <div>
                     <label for="password">Enter your current password to confirm</label><br />
-                    <input type="password" name="passwd" value="" />
+                    <input class="input" type="password" name="passwd" value="" />
+                    <a href="" >(Forgot your password ?)</a>
                 </div>
                 <br>
                 <div>

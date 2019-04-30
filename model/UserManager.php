@@ -6,12 +6,12 @@ class UserManager extends Manager
     public function getUsers()
     {
         $db = $this->dbConnect();
-        $req = $db->query('SELECT user_id, user_name, user_email, user_password, account_valid FROM users ORDER BY user_id');
+        $req = $db->query('SELECT user_id, user_name, user_email, user_password, hash, account_valid FROM users ORDER BY user_id');
 
         return $req;
     }
 
-    public function saveUser($user_name, $user_email, $user_password)
+    public function saveUser($user_name, $user_email, $user_password, $hash)
     {
         session_start();
         $db = $this->dbConnect();
@@ -20,7 +20,7 @@ class UserManager extends Manager
             $user_pwd = hash('whirlpool', $user_password);
          
             $query_check = "SELECT user_name FROM users WHERE user_name = '$user_name'";
-            $users = $db->query('SELECT user_id, user_name, user_email, user_password, account_valid FROM users ORDER BY user_id');
+            $users = $db->query('SELECT user_id, user_name FROM users ORDER BY user_id');
             $exists = 0;
 
             if($users)
@@ -43,13 +43,39 @@ class UserManager extends Manager
                         SET user_name = '$user_name', 
                         user_email = '$user_email',
                         user_password = '$user_pwd',
+                        hash = '$hash',
                         account_valid = 0";
                 $user = $db->prepare($query);
-                $affectedLines = $user->execute(array($user_name, $user_email, $user_pwd));
+                $affectedLines = $user->execute(array($user_name, $user_email, $user_pwd, $hash));
                 if (!$affectedLines)
                 {
                     die("ERROR: ". mysqli_error($db));
                 } else {
+                    return(1);
+                }
+            }
+        }
+    }
+
+    public function activateAccount($email)
+    {
+        $db = $this->dbConnect();
+        $users = $db->query('SELECT user_id, user_email FROM users ORDER BY user_id');
+
+        if($users)
+        {
+            while ($user = $users->fetch())
+            {
+                if($user['user_email'] === $email)
+                {
+                    $query = "UPDATE users SET account_valid = ? WHERE user_email = ?";
+                    $user = $db->prepare($query);
+                    $affectedLines = $user->execute(array(1, $email));
+                    if (!$affectedLines)
+                    {
+                        die("ERROR: ". mysqli_error($db));
+
+                    } 
                     return(1);
                 }
             }
