@@ -18,7 +18,11 @@
                     <input type="submit" value="Login"/>
                 </div>
                 <?
-                    if ($wrong == 1)
+                    if ($wrong_username)
+                    {
+                        echo    '<p>'.$wrong_username.'</p>';
+                    }
+                    if ($wrong_password)
                     {
                         echo    '<p>'.$wrong_password.'</p>';
                     }

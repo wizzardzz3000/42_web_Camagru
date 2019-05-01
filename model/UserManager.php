@@ -3,41 +3,47 @@ require_once('model/Manager.php');
 
 class UserManager extends Manager
 {
-    public function getUsers()
+    public function getUser($login)
     {
         $db = $this->dbConnect();
-        $req = $db->query('SELECT user_id, user_name, user_email, user_password, hash, account_valid FROM users ORDER BY user_id');
+        $req = $db->query("SELECT user_id, user_name, user_email, user_password, hash, account_valid FROM users WHERE user_name = '$login'");
 
         return $req;
     }
 
-    public function saveUser($user_name, $user_email, $user_password, $hash)
+    public function userExists($user_name)
     {
-        session_start();
         $db = $this->dbConnect();
+        $users_table = $db->query('SELECT user_id, user_name FROM users ORDER BY user_id');
 
-        if ($user_name !== '' && $user_email !== '' && $user_password !== '') {
-            $user_pwd = hash('whirlpool', $user_password);
-         
-            $query_check = "SELECT user_name FROM users WHERE user_name = '$user_name'";
-            $users = $db->query('SELECT user_id, user_name FROM users ORDER BY user_id');
-            $exists = 0;
-
-            if($users)
+        if ($users_table)
+        {
+            while ($user = $users_table->fetch())
             {
-                while ($user = $users->fetch())
+                if($user['user_name'] === $user_name)
                 {
-                    if($user['user_name'] === $user_name)
-                    {
-                        $exists = 1;
-                    }
+                    return(1);
                 }
             }
+            return(2);
+        } else {
+            return (0);
+        }
+    }
 
-            if ($exists === 1) 
+    public function saveUser($user_name, $user_email, $user_password, $hash)
+    {
+        $db = $this->dbConnect();
+
+        if ($user_name !== '' && $user_email !== '' && $user_password !== '')
+        {
+            $user_pwd = hash('whirlpool', $user_password);
+        
+            if ($this->userExists($user_name) == 1)
             {
-              return(2);
-            } else 
+                return(2);
+            } 
+            else if ($this->userExists($user_name) == 2)
             {
                 $query = "INSERT INTO users
                         SET user_name = '$user_name', 
@@ -53,6 +59,8 @@ class UserManager extends Manager
                 } else {
                     return(1);
                 }
+            } else {
+                return(0);
             }
         }
     }
@@ -82,43 +90,44 @@ class UserManager extends Manager
         }
     }
 
-    public function updateUser()
+    public function updateUser($current_user, $new_user_name, $new_user_email, $new_user_password)
     {
-        $account = "../private/passwd";
-        if ($_POST['login'] !== '' && $_POST['oldpw'] !== '' && $_POST['newpw'] !== '' && $_POST['submit'] === 'OK')
+        $db = $this->dbConnect();
+        $users = $db->query("SELECT user_name, user_email, user_password FROM users WHERE user_name = '$current_user'");
+
+        if($user = $users->fetch())
         {
-            if (file_exists($account))
+            if ($new_user_email)
             {
-                $data = unserialize(file_get_contents($account));
-                $user = [
-                    "login" => $_POST['login'],
-                    "oldpw" => $_POST['oldpw'],
-                    "newpw" => $_POST['newpw']
-                ];
-                foreach ($data as $key => $instance)
+                $query = "UPDATE users SET user_email = ? WHERE user_name = '$current_user'";
+                $user = $db->prepare($query);
+                $affectedLines = $user->execute(array($new_user_email));
+                if (!$affectedLines)
                 {
-                    if ($user['login'] === $instance['login'])
-                    {
-                        if (hash("whirlpool", $user['oldpw']) === $instance['passwd'])
-                        {
-                            $instance['passwd'] = hash("whirlpool", $user['newpw']);
-                            $data[$key] = $instance;
-                            file_put_contents($account, serialize($data));
-                            // header("Location: index.html");
-                            // echo ("OK\n");
-                            return ;
-                        }
-                    }
-                }
-                echo("ERROR\n");
-                return;
-            } else {
-                echo("ERROR\n");
-                return;
+                    die("ERROR: ". mysqli_error($db));
+                } 
             }
-        } else {
-            echo("ERROR\n");
-            return;
+            if ($new_user_password)
+            {
+                $query = "UPDATE users SET user_password = ? WHERE user_name = '$current_user'";
+                $user = $db->prepare($query);
+                $affectedLines = $user->execute(array(hash("whirlpool", $new_user_password)));
+                if (!$affectedLines)
+                {
+                    die("ERROR: ". mysqli_error($db));
+                } 
+            }
+            if ($new_user_name)
+            {
+                $query = "UPDATE users SET user_name = ? WHERE user_name = '$current_user'";
+                $user = $db->prepare($query);
+                $affectedLines = $user->execute(array($new_user_name));
+                if (!$affectedLines)
+                {
+                    die("ERROR: ". mysqli_error($db));
+                } 
+            }
+            return(1);
         }
     }
 }

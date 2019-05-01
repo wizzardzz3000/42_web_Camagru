@@ -3,14 +3,24 @@ require('controller/controller.php');
 require('controller/userController.php');
 
 try {
+    if (isset($_GET['view'])) {
+        if ($_GET['view'] == 'account')
+        {
+            account();
+        }
+        else if ($_GET['view'] == 'camera')
+        {
+            showMainView();
+        }
+        else if ($_GET['view'] == 'gallery')
+        {
+            showGallery();
+        }
+    }
     if (isset($_GET['action'])) {
         if ($_GET['action'] == 'user')
         {
             user();
-        }
-        if ($_GET['action'] == 'account')
-        {
-            account();
         }
         else if ($_GET['action'] == 'login')
         {
@@ -26,10 +36,18 @@ try {
         }
         else if ($_GET['action'] == 'verify')
         {
-            if(isset($_GET['email']) && isset($_GET['hash']))
+            if(isset($_GET['name']) && isset($_GET['email']) && isset($_GET['hash']))
             {
-                verify($_GET['email'], $_GET['hash']);
+                verify($_GET['name'], $_GET['email'], $_GET['hash']);
             }
+        }
+        else if ($_GET['action'] == 'modify')
+        {
+            if ($_POST['old_passwd'] )
+            {
+                modify($_POST['old_passwd'], $_POST['new_name'], $_POST['new_email'], $_POST['new_passwd']);
+            }
+            // && ($_POST['name'] || $_POST['email'] || $_POST['password'])
         }
         else if ($_GET['action'] == 'resend')
         {
@@ -62,7 +80,7 @@ try {
                 throw new Exception('Aucun identifiant de billet envoyé');
             }
         }
-        else if ($_GET['action'] == 'modify') {
+        else if ($_GET['action'] == 'modifyComment') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 if (!empty($_POST['comment'])) {
                     modifyComment($_GET['id'], $_POST['comment']);
@@ -83,16 +101,8 @@ try {
                 throw new Exception('Aucun identifiant de billet envoyé');
             }
         }
-        else if ($_GET['action'] == 'camera')
-        {
-            showMainView();
-        }
-        else if ($_GET['action'] == 'gallery')
-        {
-            showGallery();
-        }
     }
-    else {
+    if (!isset($_GET['view']) && !isset($_GET['action'])) {
         showGallery();
     }
 }
