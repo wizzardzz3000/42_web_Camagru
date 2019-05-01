@@ -11,7 +11,7 @@
                 <div>
                     <label for="password">Password</label><br />
                     <input class="input" type="password" name="passwd" value="" />
-                    <a href="" >(Forgot your password ?)</a>
+                    <a href="index.php?action=forgotPassword" >(Forgot your password ?)</a>
                 </div>
                 <br>
                 <div>

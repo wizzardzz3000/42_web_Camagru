@@ -1,5 +1,6 @@
 <?php
 require('controller/controller.php');
+require('controller/mailController.php');
 require('controller/userController.php');
 
 try {
@@ -100,6 +101,14 @@ try {
             else {
                 throw new Exception('Aucun identifiant de billet envoyé');
             }
+        }
+        else if ($_GET['action'] == 'forgotPassword')
+        {
+                forgotPassword();
+        }
+        else if ($_GET['action'] == 'resetPassword')
+        {
+                resetPassword();
         }
     }
     if (!isset($_GET['view']) && !isset($_GET['action'])) {
