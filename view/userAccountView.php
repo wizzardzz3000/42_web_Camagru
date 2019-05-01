@@ -38,7 +38,7 @@
                 <div>
                     <label for="password">Enter your current password to confirm</label><br />
                     <input class="input" type="password" name="old_passwd" value="" />
-                    <a href="index.php?action=forgotPassword" >(Forgot your password ?)</a>
+                    <a href="index.php?view=forgotPassword" >(Forgot your password ?)</a>
                 </div>
                 <br>
                 <div>

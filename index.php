@@ -17,6 +17,10 @@ try {
         {
             showGallery();
         }
+        else if ($_GET['view'] == 'forgotPassword')
+        {
+            require('view/forgotPasswordView.php');
+        }
     }
     if (isset($_GET['action'])) {
         if ($_GET['action'] == 'user')
@@ -102,13 +106,16 @@ try {
                 throw new Exception('Aucun identifiant de billet envoyé');
             }
         }
-        else if ($_GET['action'] == 'forgotPassword')
+        else if ($_GET['action'] == 'sendPasswordResetEmail')
         {
-                forgotPassword();
+            if (isset($_GET['email']))
+            {
+                sendPasswordResetEmail($_GET['email']);
+            }
         }
         else if ($_GET['action'] == 'resetPassword')
         {
-                resetPassword();
+            resetPassword();
         }
     }
     if (!isset($_GET['view']) && !isset($_GET['action'])) {

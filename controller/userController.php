@@ -210,15 +210,6 @@ function sendEmail($name, $email, $hash)
     mail($to, $subject, $message, $headers);
 }
 
-function forgotPassword()
-{
-
-}
-
-function resetPassword()
-{
-    
-}
 // function resend($name, $email, $hash)
 // {
 //     echo('RESEND' . $name);
