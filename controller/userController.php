@@ -122,25 +122,27 @@ function register($name, $email, $passwd, $cPassword)
 {
     $userManager = new UserManager();
     $hash = hash("whirlpool", rand(0,1000));
-    $res = 0;
 
     if($name != '' && $email != '' && $passwd != '' && $cPassword != '')
     {
         if ($passwd == $cPassword)
         {
-            if ($userManager->saveUser($name, $email, $passwd, $hash) == 1)
+            if ($userManager->saveUser($name, $email, $passwd, $hash) == 3)
             {
-                $res = 1;
+                $res = 3;
                 sendEmail($name, $email, $hash);
             } 
             else if ($userManager->saveUser($name, $email, $passwd, $hash) == 2)
             {
                 $res = 2;
+            } else if ($userManager->saveUser($name, $email, $passwd, $hash) == 1)
+            {
+                $res = 1;
             } else {
                 echo("Cannot save user");
             }
         } else {
-            $res = 3;
+            $res = 0;
         }
     }
     require('view/userView.php');
@@ -235,7 +237,7 @@ function resetPassword($email, $hash, $r_password, $c_password)
         {
             if ($r_password == $c_password)
             {
-                if ($userManager->updateUser($email, "", "", "", $new_user_password) == 1)
+                if ($userManager->updateUser($email, "", "", "", $r_password) == 1)
                 {
                     $msg = "Password successfully modified!";
                 }

@@ -30,10 +30,10 @@ class UserManager extends Manager
                 }
                 if($user['user_email'] === $user_email)
                 {
-                    return(1);
+                    return(2);
                 }
             }
-            return(2);
+            return(3);
         } else {
             return (0);
         }
@@ -49,9 +49,12 @@ class UserManager extends Manager
         
             if ($this->userExists($user_name, $user_email) == 1)
             {
+                return(1);
+            } else if ($this->userExists($user_name, $user_email) == 2)
+            {
                 return(2);
-            } 
-            else if ($this->userExists($user_name, $user_email) == 2)
+            }
+            else if ($this->userExists($user_name, $user_email) == 3)
             {
                 $query = "INSERT INTO users
                         SET user_name = '$user_name', 
@@ -65,7 +68,7 @@ class UserManager extends Manager
                 {
                     die("ERROR: ". mysqli_error($db));
                 } else {
-                    return(1);
+                    return(3);
                 }
             } else {
                 return(0);
@@ -118,7 +121,10 @@ class UserManager extends Manager
             }
             if ($new_user_password)
             {
-                $query = "UPDATE users SET user_password = ? WHERE user_name = '$current_user'";
+                if ($email)
+                    $query = "UPDATE users SET user_password = ? WHERE user_email = '$email'";
+                if ($current_user)
+                    $query = "UPDATE users SET user_password = ? WHERE user_name = '$current_user'";
                 $user = $db->prepare($query);
                 $affectedLines = $user->execute(array(hash("whirlpool", $new_user_password)));
                 if (!$affectedLines)
@@ -136,7 +142,8 @@ class UserManager extends Manager
                     die("ERROR: ". mysqli_error($db));
                 } 
             }
-            return(1);
+            if ($affectedLines)
+                return(1);
         }
     }
 }

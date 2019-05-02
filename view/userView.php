@@ -71,7 +71,9 @@
             }
         ?>
             <?
-                if ($res == 1)
+            if ($res)
+            {
+                if ($res == 3)
                 {
                     echo    '<p>Success!</p>';
                     echo    '<p>Please check your email to validate your account.</p>';
@@ -84,13 +86,19 @@
                 if ($res == 2)
                 {
                     echo '<p>Sorry!</p>';
+                    echo '<p>This email address is already linked to an account, please login or register with a different email</p>';
+                }
+                if ($res == 1)
+                {
+                    echo '<p>Sorry!</p>';
                     echo '<p>This user already exists, please login or register with a different name</p>';
                 }
-                if ($res == 3)
+                if ($res == 0)
                 {
                     echo '<p>Sorry!</p>';
                     echo '<p>Passwords don\'t match</p>';
                 }
+            }
             ?>
         </div>
     </div>
