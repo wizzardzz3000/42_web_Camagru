@@ -1,6 +1,7 @@
 <?php
-session_start();
+    session_start();
 ?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,10 +12,9 @@ session_start();
             <ul class="top_bar_elements">
                 <li class="logo" onclick="location.href='index.php';" style="cursor:pointer;">Camagru</li>
                 <?php
-                // echo('HELLO >'.$_SESSION['loggued_on_user']);
                 if(($_SESSION['loggued_on_user'] === ''))
                 {
-                    echo '<li class="right" onclick=location.href="index.php?action=user" style="cursor:pointer;">Login/Register</li>';
+                    echo '<li class="right" onclick=location.href="index.php?view=user" style="cursor:pointer;">Login/Register</li>';
                     echo '<li class="right" onclick=location.href="index.php?view=gallery" style="cursor:pointer;">Gallery</li>';
                 } else {
                     echo '<li class="right" onclick=location.href="index.php?action=logout" style="cursor:pointer;">Logout</li>';

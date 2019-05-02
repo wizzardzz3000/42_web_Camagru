@@ -1,13 +1,7 @@
 <?php
-
 require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
 require_once('model/GalleryManager.php');
-
-function showMainView()
-{
-    require('view/mainView.php');
-}
 
 function showGallery()
 {

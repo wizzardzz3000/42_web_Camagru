@@ -1,10 +1,6 @@
 <?
 require_once('model/UserManager.php');
-
-function user()
-{
-    require('view/userView.php');
-}
+require_once('controller/mailController.php');
 
 function authUser($login, $passwd)
 {
@@ -111,11 +107,6 @@ function getAccountData()
         }
     }
     return($user_data);
-}
-
-function account()
-{
-    require('view/userAccountView.php');
 }
 
 function register($name, $email, $passwd, $cPassword)
@@ -248,24 +239,6 @@ function resetPassword($email, $hash, $r_password, $c_password)
         }
     }
     require('view/resetPasswordView.php');
-}
-
-function sendEmail($name, $email, $hash)
-{
-    $to = $email;
-    $subject = 'Activate your Camagru account';
-    $message = '
-    
-    Hello '.$name.'!
-    Your Camagru account has been created. 
-    
-    Please click this link to activate your account:
-    http://localhost:8100/index.php?action=verify&email='.$email.'&hash='.$hash.'
-    
-    ';
-                        
-    $headers = 'From:noreply@camagru.com' . "\r\n";
-    mail($to, $subject, $message, $headers);
 }
 
 // function resend($name, $email, $hash)

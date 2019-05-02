@@ -4,14 +4,21 @@ require('controller/mailController.php');
 require('controller/userController.php');
 
 try {
-    if (isset($_GET['view'])) {
+    // VIEWS
+    // ---------------------------------------------------------------
+    if (isset($_GET['view']))
+    {
         if ($_GET['view'] == 'account')
         {
-            account();
+            require('view/userAccountView.php');
+        }
+        else if ($_GET['view'] == 'user')
+        {
+            require('view/userView.php');
         }
         else if ($_GET['view'] == 'camera')
         {
-            showMainView();
+            require('view/mainView.php');
         }
         else if ($_GET['view'] == 'gallery')
         {
@@ -22,12 +29,11 @@ try {
             require('view/forgotPasswordView.php');
         }
     }
-    if (isset($_GET['action'])) {
-        if ($_GET['action'] == 'user')
-        {
-            user();
-        }
-        else if ($_GET['action'] == 'login')
+    // ACTIONS
+    // ---------------------------------------------------------------
+    if (isset($_GET['action']))
+    {
+        if ($_GET['action'] == 'login')
         {
             login($_POST['login'], $_POST['passwd']);
         }
@@ -43,7 +49,7 @@ try {
         {
             if(isset($_GET['email']) && isset($_GET['hash']))
             {
-                verify($_GET['name'], $_GET['email'], $_GET['hash']);
+                verify($_GET['email'], $_GET['hash']);
             }
         }
         else if ($_GET['action'] == 'modify')
@@ -52,7 +58,6 @@ try {
             {
                 modify($_POST['old_passwd'], $_POST['new_name'], $_POST['new_email'], $_POST['new_passwd']);
             }
-            // && ($_POST['name'] || $_POST['email'] || $_POST['password'])
         }
         else if ($_GET['action'] == 'resend')
         {

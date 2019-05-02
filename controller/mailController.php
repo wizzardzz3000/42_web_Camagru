@@ -1,6 +1,24 @@
 <?
 require_once('model/UserManager.php');
 
+function sendEmail($name, $email, $hash)
+{
+    $to = $email;
+    $subject = 'Activate your Camagru account';
+    $message = '
+    
+    Hello '.$name.'!
+    Your Camagru account has been created. 
+    
+    Please click this link to activate your account:
+    http://localhost:8100/index.php?action=verify&email='.$email.'&hash='.$hash.'
+    
+    ';
+                        
+    $headers = 'From:noreply@camagru.com' . "\r\n";
+    mail($to, $subject, $message, $headers);
+}
+
 function sendPasswordResetEmail($email)
 {
     $userManager = new UserManager();
@@ -22,6 +40,7 @@ function sendPasswordResetEmail($email)
                         
     $headers = 'From:noreply@camagru.com' . "\r\n";
     mail($to, $subject, $message, $headers);
+    
     $msg = "A link to reset your password was sent to your email address!";
     require('view/forgotPasswordView.php');
 }

@@ -3,6 +3,8 @@ require_once('model/Manager.php');
 
 class UserManager extends Manager
 {
+    // GET USER DATA
+    // ---------------------------------------------------------------
     public function getUser($login, $email)
     {
         $db = $this->dbConnect();
@@ -15,6 +17,8 @@ class UserManager extends Manager
         return $req;
     }
 
+    // CHECK IF USER EXISTS
+    // ---------------------------------------------------------------
     public function userExists($user_name, $user_email)
     {
         $db = $this->dbConnect();
@@ -39,6 +43,8 @@ class UserManager extends Manager
         }
     }
 
+    // SAVE USER DATA
+    // ---------------------------------------------------------------
     public function saveUser($user_name, $user_email, $user_password, $hash)
     {
         $db = $this->dbConnect();
@@ -50,7 +56,8 @@ class UserManager extends Manager
             if ($this->userExists($user_name, $user_email) == 1)
             {
                 return(1);
-            } else if ($this->userExists($user_name, $user_email) == 2)
+            } 
+            else if ($this->userExists($user_name, $user_email) == 2)
             {
                 return(2);
             }
@@ -76,6 +83,8 @@ class UserManager extends Manager
         }
     }
 
+    // ACTIVATE USER ACCOUNT
+    // ---------------------------------------------------------------
     public function activateAccount($email)
     {
         $db = $this->dbConnect();
@@ -99,6 +108,8 @@ class UserManager extends Manager
         }
     }
 
+    // UPDATE USER DATA
+    // ---------------------------------------------------------------
     public function updateUser($email, $current_user, $new_user_name, $new_user_email, $new_user_password)
     {
         $db = $this->dbConnect();
