@@ -43,7 +43,7 @@
 
         $.ajax({
           method: "POST",
-          url: "controller/pictureController.php",
+          url: "pictureController.php",
           data: { canvasData }
             }).done(function(data){
               console.log("Success");

@@ -11,11 +11,11 @@ class GalleryManager extends Manager
         return $pictures;
     }
 
-    public function savePictures($content)
+    public function savePictures($user_id, $content)
     {
         $db = $this->dbConnect();
         $pictures = $db->prepare('INSERT INTO pictures(user_id, content) VALUES(?, ?)');
-        $affectedLines = $pictures->execute(array(1, $content));
+        $affectedLines = $pictures->execute(array($user_id, $content));
 
         return $affectedLines;
     }
