@@ -95,10 +95,10 @@
         </div>
     </div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="javascript/check_password.js"></script>
-<script src="javascript/check_email.js"></script>
-<script src="javascript/check_name.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="javascript/check_password.js"></script>
+    <script src="javascript/check_email.js"></script>
+    <script src="javascript/check_name.js"></script>
 
 <?php $content = ob_get_clean(); ?>
 <?php require('view/template.php'); ?>

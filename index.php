@@ -41,7 +41,7 @@ try {
         }
         else if ($_GET['action'] == 'verify')
         {
-            if(isset($_GET['name']) && isset($_GET['email']) && isset($_GET['hash']))
+            if(isset($_GET['email']) && isset($_GET['hash']))
             {
                 verify($_GET['name'], $_GET['email'], $_GET['hash']);
             }
@@ -108,14 +108,24 @@ try {
         }
         else if ($_GET['action'] == 'sendPasswordResetEmail')
         {
-            if (isset($_GET['email']))
+            if (!empty($_POST['email']))
             {
-                sendPasswordResetEmail($_GET['email']);
+                sendPasswordResetEmail($_POST['email']);
+            }
+        }
+        else if ($_GET['action'] == 'verifyAccountForReset')
+        {
+            if (isset($_GET['email']) && isset($_GET['hash']))
+            {
+                verifyAccountForReset();
+            }
+            else {
+                throw new Exception('Paramètres de reset incorrects');
             }
         }
         else if ($_GET['action'] == 'resetPassword')
         {
-            resetPassword();
+            
         }
     }
     if (!isset($_GET['view']) && !isset($_GET['action'])) {

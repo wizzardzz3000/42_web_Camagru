@@ -3,24 +3,32 @@ require_once('model/Manager.php');
 
 class UserManager extends Manager
 {
-    public function getUser($login)
+    public function getUser($login, $email)
     {
         $db = $this->dbConnect();
-        $req = $db->query("SELECT user_id, user_name, user_email, user_password, hash, account_valid FROM users WHERE user_name = '$login'");
+        if ($login) {
+            $req = $db->query("SELECT user_id, user_name, user_email, user_password, hash, account_valid FROM users WHERE user_name = '$login'");
+        } else if ($email) {
+            $req = $db->query("SELECT user_id, user_name, user_email, user_password, hash, account_valid FROM users WHERE user_email = '$email'");
+        }
 
         return $req;
     }
 
-    public function userExists($user_name)
+    public function userExists($user_name, $user_email)
     {
         $db = $this->dbConnect();
-        $users_table = $db->query('SELECT user_id, user_name FROM users ORDER BY user_id');
+        $users_table = $db->query('SELECT user_id, user_name, user_email FROM users ORDER BY user_id');
 
         if ($users_table)
         {
             while ($user = $users_table->fetch())
             {
                 if($user['user_name'] === $user_name)
+                {
+                    return(1);
+                }
+                if($user['user_email'] === $user_email)
                 {
                     return(1);
                 }
@@ -39,11 +47,11 @@ class UserManager extends Manager
         {
             $user_pwd = hash('whirlpool', $user_password);
         
-            if ($this->userExists($user_name) == 1)
+            if ($this->userExists($user_name, $user_email) == 1)
             {
                 return(2);
             } 
-            else if ($this->userExists($user_name) == 2)
+            else if ($this->userExists($user_name, $user_email) == 2)
             {
                 $query = "INSERT INTO users
                         SET user_name = '$user_name', 
@@ -68,25 +76,23 @@ class UserManager extends Manager
     public function activateAccount($email)
     {
         $db = $this->dbConnect();
-        $users = $db->query('SELECT user_id, user_email FROM users ORDER BY user_id');
+        $users = $db->query("SELECT user_email, account_valid FROM users WHERE user_email = '$email'");
 
-        if($users)
+        if($user = $users->fetch())
         {
-            while ($user = $users->fetch())
+            if ($user['account_valid'] == 1)
             {
-                if($user['user_email'] === $email)
-                {
-                    $query = "UPDATE users SET account_valid = ? WHERE user_email = ?";
-                    $user = $db->prepare($query);
-                    $affectedLines = $user->execute(array(1, $email));
-                    if (!$affectedLines)
-                    {
-                        die("ERROR: ". mysqli_error($db));
-
-                    } 
-                    return(1);
-                }
+                return (2);
             }
+            $query = "UPDATE users SET account_valid = ? WHERE user_email = ?";
+            $user = $db->prepare($query);
+            $affectedLines = $user->execute(array(1, $email));
+            if (!$affectedLines)
+            {
+                die("ERROR: ". mysqli_error($db));
+
+            } 
+            return(1);
         }
     }
 

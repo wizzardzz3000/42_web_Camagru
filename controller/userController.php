@@ -9,7 +9,7 @@ function user()
 function authUser($login, $passwd)
 {
     $userManager = new UserManager();
-    $users = $userManager->getUser($login);
+    $users = $userManager->getUser($login, "");
 
     if($user = $users->fetch())
     {
@@ -56,10 +56,10 @@ function login($login, $passwd)
     }
 }
 
-function verify($login, $email, $hash)
+function verify($email, $hash)
 {
     $userManager = new UserManager();
-    $users = $userManager->getUser($login);
+    $users = $userManager->getUser("", $email);
 
     if($user = $users->fetch())
     {
@@ -71,7 +71,12 @@ function verify($login, $email, $hash)
                 if ($verify == 1)
                 {
                     $verifyMessage = "Account succesfully activated! You can now login :)";
-                } else {
+                } else if ($verify == 2)
+                {
+                    $verifyMessage = "Account already verified, you may login with your credentials :)";
+                }
+                else
+                {
                     $verifyMessage = "Something went wrong :(";
                 }
             } 
@@ -93,7 +98,7 @@ function getAccountData()
 {
     session_start();
     $userManager = new UserManager();
-    $users = $userManager->getUser($_SESSION['loggued_on_user']);
+    $users = $userManager->getUser($_SESSION['loggued_on_user'], "");
     
     if ($user = $users->fetch())
     {
@@ -192,6 +197,32 @@ function modify($old_passwd, $name, $email, $new_passwd)
     }
 }
 
+function verifyAccountForReset($email, $hash)
+{
+    $userManager = new UserManager();
+    $users = $userManager->getUser("", $email);
+
+    if($user = $users->fetch())
+    {
+        if($email === $user['user_email'])
+        {
+            if($hash === $user['hash'])
+            {
+                $verify = $userManager->activateAccount($email);
+                if ($verify == 2)
+                {
+                    require('view/resetPasswordView.php');
+                } 
+                else
+                {
+                    $msg = "Something went wrong with your account verification, please ask for another email";
+                    require('view/forgotPasswordView.php');
+                }
+            } 
+        }
+    }
+}
+
 function sendEmail($name, $email, $hash)
 {
     $to = $email;
@@ -202,7 +233,7 @@ function sendEmail($name, $email, $hash)
     Your Camagru account has been created. 
     
     Please click this link to activate your account:
-    http://localhost:8100/index.php?action=verify&name='.$name.'&email='.$email.'&hash='.$hash.'
+    http://localhost:8100/index.php?action=verify&email='.$email.'&hash='.$hash.'
     
     ';
                         
