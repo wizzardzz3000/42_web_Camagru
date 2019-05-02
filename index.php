@@ -117,7 +117,7 @@ try {
         {
             if (isset($_GET['email']) && isset($_GET['hash']))
             {
-                verifyAccountForReset();
+                verifyAccountForReset($_GET['email'], $_GET['hash']);
             }
             else {
                 throw new Exception('Paramètres de reset incorrects');
@@ -125,7 +125,10 @@ try {
         }
         else if ($_GET['action'] == 'resetPassword')
         {
-            
+            if (isset($_GET['email']) && isset($_GET['hash']) && !empty($_POST['r_password']) && !empty($_POST['c_password']))
+            {
+                resetPassword($_GET['email'], $_GET['hash'], $_POST['r_password'], $_POST['c_password']);
+            }
         }
     }
     if (!isset($_GET['view']) && !isset($_GET['action'])) {

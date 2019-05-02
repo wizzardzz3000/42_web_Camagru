@@ -96,10 +96,13 @@ class UserManager extends Manager
         }
     }
 
-    public function updateUser($current_user, $new_user_name, $new_user_email, $new_user_password)
+    public function updateUser($email, $current_user, $new_user_name, $new_user_email, $new_user_password)
     {
         $db = $this->dbConnect();
-        $users = $db->query("SELECT user_name, user_email, user_password FROM users WHERE user_name = '$current_user'");
+        if ($email)
+            $users = $db->query("SELECT user_name, user_email, user_password FROM users WHERE user_email = '$email'");
+        if ($current_user)
+            $users = $db->query("SELECT user_name, user_email, user_password FROM users WHERE user_name = '$current_user'");
 
         if($user = $users->fetch())
         {

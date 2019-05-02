@@ -165,7 +165,7 @@ function modify($old_passwd, $name, $email, $new_passwd)
                 $msg = "Incorrect password :/";
                 require('view/userAccountView.php');
             }
-            else if ($userManager->updateUser($_SESSION['loggued_on_user'], $name, $email, $new_passwd) == 1)
+            else if ($userManager->updateUser("", $_SESSION['loggued_on_user'], $name, $email, $new_passwd) == 1)
             {
                 if ($name)
                     $username_message = "Username modified !";
@@ -221,6 +221,31 @@ function verifyAccountForReset($email, $hash)
             } 
         }
     }
+}
+
+function resetPassword($email, $hash, $r_password, $c_password)
+{
+    $userManager = new UserManager();
+    $users = $userManager->getUser("", $email);
+    $msg = "Could not reset password :/";
+
+    if ($user = $users->fetch())
+    {
+        if ($user['hash'] == $hash)
+        {
+            if ($r_password == $c_password)
+            {
+                if ($userManager->updateUser($email, "", "", "", $new_user_password) == 1)
+                {
+                    $msg = "Password successfully modified!";
+                }
+            }
+            else {
+                $msg = "Passwords don't match :/";
+            }
+        }
+    }
+    require('view/resetPasswordView.php');
 }
 
 function sendEmail($name, $email, $hash)
