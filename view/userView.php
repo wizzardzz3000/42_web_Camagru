@@ -30,7 +30,7 @@
             </form>
         </div>
         <?
-            if ($verify == 1)
+            if ($verify == 1 || $verify == 2)
             {
                 echo    '<p>'.$verifyMessage.'</p>';
             } else {

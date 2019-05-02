@@ -1,7 +1,9 @@
 <?
 require_once('model/UserManager.php');
 
-function sendEmail($name, $email, $hash)
+// SEND EMAIL FOR ACCOUNT VERIFICATION
+// ---------------------------------------------------------------
+function sendAccountVerificationEmail($name, $email, $hash)
 {
     $to = $email;
     $subject = 'Activate your Camagru account';
@@ -19,6 +21,8 @@ function sendEmail($name, $email, $hash)
     mail($to, $subject, $message, $headers);
 }
 
+// SEND EMAIL FOR PASSWORD RESET
+// ---------------------------------------------------------------
 function sendPasswordResetEmail($email)
 {
     $userManager = new UserManager();

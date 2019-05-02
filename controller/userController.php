@@ -2,30 +2,8 @@
 require_once('model/UserManager.php');
 require_once('controller/mailController.php');
 
-function authUser($login, $passwd)
-{
-    $userManager = new UserManager();
-    $users = $userManager->getUser($login, "");
-
-    if($user = $users->fetch())
-    {
-        if($login === $user['user_name'] && $user['account_valid'] == 1)
-        {
-            if(hash('whirlpool', $passwd) === $user['user_password'])
-            {
-                return(1);
-            } else
-            {
-                return(2);
-            }
-        } else {
-            return (0);
-        }
-    } else {
-        return (0);
-    }
-}
-
+// LOG USER IN
+// ---------------------------------------------------------------
 function login($login, $passwd)
 {
     $wrong = 0;
@@ -52,6 +30,19 @@ function login($login, $passwd)
     }
 }
 
+// LOG USER OUT
+// ---------------------------------------------------------------
+function logout()
+{
+    if(session_start())
+    {   
+        $_SESSION['loggued_on_user'] = '';
+        header("Location: index.php");
+    }
+}
+
+// VERIFY USER ACCOUNT
+// ---------------------------------------------------------------
 function verify($email, $hash)
 {
     $userManager = new UserManager();
@@ -81,15 +72,8 @@ function verify($email, $hash)
     require('view/userView.php');
 }
 
-function logout()
-{
-    if(session_start())
-    {   
-        $_SESSION['loggued_on_user'] = '';
-        header("Location: index.php");
-    }
-}
-
+// GET ACCOUNT DATA FOR THE ACCOUNT VIEW TO DISPLAY
+// ---------------------------------------------------------------
 function getAccountData()
 {
     session_start();
@@ -103,12 +87,15 @@ function getAccountData()
             $user_data = array (
                 'name' => $user['user_name'], 
                 'email' => $user['user_email']
+                // etc....
             );
         }
     }
     return($user_data);
 }
 
+// REGISTER USER
+// ---------------------------------------------------------------
 function register($name, $email, $passwd, $cPassword)
 {
     $userManager = new UserManager();
@@ -121,7 +108,7 @@ function register($name, $email, $passwd, $cPassword)
             if ($userManager->saveUser($name, $email, $passwd, $hash) == 3)
             {
                 $res = 3;
-                sendEmail($name, $email, $hash);
+                sendAccountVerificationEmail($name, $email, $hash);
             } 
             else if ($userManager->saveUser($name, $email, $passwd, $hash) == 2)
             {
@@ -139,6 +126,34 @@ function register($name, $email, $passwd, $cPassword)
     require('view/userView.php');
 }
 
+// AUTHORIZE USER LOGIN
+// ---------------------------------------------------------------
+function authUser($login, $passwd)
+{
+    $userManager = new UserManager();
+    $users = $userManager->getUser($login, "");
+
+    if($user = $users->fetch())
+    {
+        if($login === $user['user_name'] && $user['account_valid'] == 1)
+        {
+            if(hash('whirlpool', $passwd) === $user['user_password'])
+            {
+                return(1);
+            } else
+            {
+                return(2);
+            }
+        } else {
+            return (0);
+        }
+    } else {
+        return (0);
+    }
+}
+
+// MODIFY USER DATA
+// ---------------------------------------------------------------
 function modify($old_passwd, $name, $email, $new_passwd)
 {
     session_start();
@@ -190,6 +205,8 @@ function modify($old_passwd, $name, $email, $new_passwd)
     }
 }
 
+// VERIFY ACCOUNT FOR PASSWORD RESET
+// ---------------------------------------------------------------
 function verifyAccountForReset($email, $hash)
 {
     $userManager = new UserManager();
@@ -216,6 +233,8 @@ function verifyAccountForReset($email, $hash)
     }
 }
 
+// RESET PASSWORD
+// ---------------------------------------------------------------
 function resetPassword($email, $hash, $r_password, $c_password)
 {
     $userManager = new UserManager();
