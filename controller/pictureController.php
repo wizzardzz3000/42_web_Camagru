@@ -11,7 +11,6 @@ function saveData($data)
 {
     $galleryManager = new GalleryManager();
 
-    // to disk
     $input = $data;
     $time = time();
     $name = $time . '.png';

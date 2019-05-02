@@ -43,7 +43,7 @@
 
         $.ajax({
           method: "POST",
-          url: "testSave.php",
+          url: "controller/pictureController.php",
           data: { canvasData }
             }).done(function(data){
               console.log("Success");
