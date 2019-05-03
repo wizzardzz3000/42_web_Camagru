@@ -14,17 +14,21 @@
                         }
                     }
             ?>
-                <div id='full_product'>
-                    <div id='single_product'>
-                        <a href=''>
-                        <?php
-                            $img = $data['content'];
-                            echo '<img src="pictures/'.$img.'"/>';
-                            echo '<p>by '.$user_name.'</p>';
+            <div id='full_product'>
+                <div id='single_product'>
+                    <a href=''>
+                    <?php
+                        $img = $data['content'];
+                        echo '<img src="pictures/'.$img.'"/>';
+                    ?>
+                    <div class="band">
+                        <?
+                            echo '<span>by '.$user_name.'</span>';
                         ?>
-                        </a>
                     </div>
+                    </a>
                 </div>
+            </div>
             <?php
                 }
             ?>
