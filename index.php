@@ -33,6 +33,7 @@ try {
     // ---------------------------------------------------------------
     if (isset($_GET['action']))
     {
+        // USER ACTIONS
         if ($_GET['action'] == 'login')
         {
             login($_POST['login'], $_POST['passwd']);
@@ -56,16 +57,19 @@ try {
         {
             if ($_POST['old_passwd'] )
             {
-                modify($_POST['old_passwd'], $_POST['new_name'], $_POST['new_email'], $_POST['new_passwd']);
+                modify($_POST['old_passwd'], $_POST['new_name'], $_POST['new_email'], $_POST['new_passwd'], $_POST['c_passwd']);
+            } else {
+                echo("Please enter your current password to make changes");
             }
         }
-        else if ($_GET['action'] == 'resend')
-        {
-            if(isset($_GET['name']) && isset($_GET['email']) && isset($_GET['hash']))
-            {
-                resend($_GET['name'], $_GET['email'], $_GET['hash']);
-            }
-        }
+        // else if ($_GET['action'] == 'resend')
+        // {
+        //     if(isset($_GET['name']) && isset($_GET['email']) && isset($_GET['hash']))
+        //     {
+        //         resend($_GET['name'], $_GET['email'], $_GET['hash']);
+        //     }
+        // }
+        // POSTS ACTIONS
         else if ($_GET['action'] == 'listPosts') {
             listPosts();
         }
@@ -77,6 +81,7 @@ try {
                 throw new Exception('Aucun identifiant de billet envoyé');
             }
         }
+        // COMMENTS ACTIONS
         else if ($_GET['action'] == 'addComment') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 if (!empty($_POST['author']) && !empty($_POST['comment'])) {
@@ -111,6 +116,7 @@ try {
                 throw new Exception('Aucun identifiant de billet envoyé');
             }
         }
+        // RESET PASSWORD ACTIONS
         else if ($_GET['action'] == 'sendPasswordResetEmail')
         {
             if (!empty($_POST['email']))
@@ -136,10 +142,12 @@ try {
             }
         }
     }
+    // LOAD THE GALLERY BY DEFAULT
     if (!isset($_GET['view']) && !isset($_GET['action'])) {
         showGallery();
     }
 }
+// CATCH EXCEPTION
 catch(Exception $e) {
     $errorMessage = $e->getMessage();
     require('view/errorView.php');

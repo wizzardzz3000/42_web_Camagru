@@ -54,11 +54,14 @@ function verify($email, $hash)
         {
             if($hash === $user['hash'])
             {
+                // VERIFY ACCOUNT
                 $verify = $userManager->activateAccount($email);
                 if ($verify == 1)
                 {
                     $verifyMessage = "Account succesfully activated! You can now login :)";
-                } else if ($verify == 2)
+                } 
+                // ACCOUNT ALREADY VERIFIED
+                else if ($verify == 2)
                 {
                     $verifyMessage = "Account already verified, you may login with your credentials :)";
                 }
@@ -105,15 +108,19 @@ function register($name, $email, $passwd, $cPassword)
     {
         if ($passwd == $cPassword)
         {
+            // SUCCESS
             if ($userManager->saveUser($name, $email, $passwd, $hash) == 3)
             {
                 $res = 3;
                 sendAccountVerificationEmail($name, $email, $hash);
             } 
+            // EMAIL ALREADY TAKEN
             else if ($userManager->saveUser($name, $email, $passwd, $hash) == 2)
             {
                 $res = 2;
-            } else if ($userManager->saveUser($name, $email, $passwd, $hash) == 1)
+            }
+            // USERNAME ALREADY TAKEN
+            else if ($userManager->saveUser($name, $email, $passwd, $hash) == 1)
             {
                 $res = 1;
             } else {
@@ -154,51 +161,98 @@ function authUser($login, $passwd)
 
 // MODIFY USER DATA
 // ---------------------------------------------------------------
-function modify($old_passwd, $name, $email, $new_passwd)
+function modify($old_passwd, $name, $email, $new_passwd, $new_passwd_confirmation)
 {
     session_start();
     $userManager = new UserManager();
+    $name_ok = '';
+    $email_ok = '';
+    $password_ok = '';
     $username_message = '';
+    $username_error_message = '';
     $email_message = '';
+    $email_error_message = '';
     $password_message = '';
+    $password_error_message = '';
     $relog_message = '';
-    $msg = '';
 
-    if (authUser($_SESSION['loggued_on_user'], $old_passwd) == TRUE)
+    // Check password
+    if (authUser($_SESSION['loggued_on_user'], $old_passwd) == 1)
     {
-        if($name || $email || $new_passwd)
+        // Check that fields are not empty
+        if ($name || $email || $new_passwd && $new_passwd_confirmation)
         {
-            if($name && $userManager->userExists($name) == 1)
+            // Check name and email
+            if ($name || $email)
             {
-                $msg = "Incorrect password :/";
+                if($name && $userManager->userExists($name, "") == 1)
+                {
+                    $username_error_message = "Sorry, this user name is already taken :/";
+                    $problem = 1;
+                } else {
+                    $name_ok = $name;
+                }
+                if($email && $userManager->userExists("", $email) == 2)
+                {
+                    $email_error_message = "Sorry, this email address is already linked to an existing account :/";
+                    $problem = 1;
+                } else {
+                    $email_ok = $email;
+                }
+            }
+            // Check new password
+            if ($new_passwd && $new_passwd_confirmation)
+            {
+                if ($new_passwd == $new_passwd_confirmation)
+                {
+                    $password_ok = $new_passwd;
+                }
+                else
+                {
+                    $password_error_message = "Sorry, passwords don't match :/";
+                    $problem = 1;
+                }
+            }
+            // Everything's fine
+            if ($problem != 1)
+            {
+                // Save the new data and prepare the messages
+                if ($userManager->updateUser("", $_SESSION['loggued_on_user'], $name, $email, $new_passwd) == 1)
+                {
+                    if ($name)
+                        $username_message = "Username modified !";
+                    if ($email)
+                        $email_message = "Email modified !";
+                    if($new_passwd)
+                        $password_message = "Password modified !";
+                    $data_saved = 1;
+                }
+                // Do not log user out if only the email was changed
+                if ($email && !$name && !$new_passwd && $data_saved == 1)
+                {
+                    require("view/accountModifiedView.php");
+                } 
+                // Log user out if name or password were changed
+                else if ($data_saved == 1)
+                {
+                    if(session_start())
+                    {   
+                        $_SESSION['loggued_on_user'] = '';
+                    }
+                    $relog_message = "Please login with your new credentials :)";
+                    require("view/accountModifiedView.php");
+                }
+            // Display failure messages if something's wrong
+            } else if ($problem == 1)
+            {
                 require('view/userAccountView.php');
             }
-            else if ($userManager->updateUser("", $_SESSION['loggued_on_user'], $name, $email, $new_passwd) == 1)
-            {
-                if ($name)
-                    $username_message = "Username modified !";
-                if ($email)
-                    $email_message = "Email modified !";
-                if($new_passwd)
-                    $password_message = "Password modified !";
-            }
-            if ($email && !$name && !$new_passwd)
-            {
-                require("view/accountModifiedView.php");
-            } 
-            else 
-            {
-                if(session_start())
-                {   
-                    $_SESSION['loggued_on_user'] = '';
-                }
-                $relog_message = "Please login with your new credentials";
-                require("view/accountModifiedView.php");
-            }
+        // Nothing to update
         } else {
             $msg = "Nothing to modify :/";
             require('view/userAccountView.php');
         }
+    // Incorrect password
     } else {
         $msg = "Incorrect password :/";
         require('view/userAccountView.php');
@@ -218,14 +272,16 @@ function verifyAccountForReset($email, $hash)
         {
             if($hash === $user['hash'])
             {
+                // IF ACCOUNT IS ALREADY ACTIVATED
                 $verify = $userManager->activateAccount($email);
                 if ($verify == 2)
                 {
                     require('view/resetPasswordView.php');
-                } 
+                }
+                // ACCOUNT NOT ACTIVATED
                 else
                 {
-                    $msg = "Something went wrong with your account verification, please ask for another email";
+                    $msg = "There is no verified account with this email address :/";
                     require('view/forgotPasswordView.php');
                 }
             } 

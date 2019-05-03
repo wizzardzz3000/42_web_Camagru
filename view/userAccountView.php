@@ -36,6 +36,12 @@
                 <p id="password_spe_message" class="password_spe_message"></p>
                 <br>
                 <div>
+                    <label for="password">Confirm new password</label><br />
+                    <input class="input" id="c_password" type="password" name="c_passwd" value="" "/>
+                </div>
+                <p id="password_confirm_message" class="password_confirm_message"></p>
+                <br>
+                <div>
                     <label for="password">Enter your current password to confirm</label><br />
                     <input class="input" type="password" name="old_passwd" value="" />
                     <a href="index.php?view=forgotPassword" >(Forgot your password ?)</a>
@@ -45,6 +51,21 @@
                     <input type="submit" value="Modify" />
                 </div>
                 <?
+                    if ($username_error_message)
+                    {
+                        echo '<p>'.$username_error_message.'</p>';
+                        echo '<br>';
+                    }
+                    if ($email_error_message)
+                    {
+                        echo '<p>'.$email_error_message.'</p>';
+                        echo '<br>';
+                    }
+                    if ($password_error_message)
+                    {
+                        echo '<p>'.$password_error_message.'</p>';
+                        echo '<br>';
+                    }
                     if ($msg)
                         echo '<p>'.$msg.'</p>';
                 ?>

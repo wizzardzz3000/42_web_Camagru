@@ -4,7 +4,9 @@
     <div class="product">
         <div class="main-nav">
             <?php
+                // Save user PDO object as array using fetchAll()
                 $user = $users->fetchAll();
+                
                 while ($data = $gallery->fetch())
                 {  
                     for ($i = 0; $user[$i]; $i++) {

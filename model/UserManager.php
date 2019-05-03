@@ -62,14 +62,17 @@ class UserManager extends Manager
         {
             $user_pwd = hash('whirlpool', $user_password);
         
+            // USERNAME ALREADY TAKEN
             if ($this->userExists($user_name, $user_email) == 1)
             {
                 return(1);
-            } 
+            }
+            // EMAIL ALREADY TAKEN
             else if ($this->userExists($user_name, $user_email) == 2)
             {
                 return(2);
             }
+            // IT'S OK TO SAVE THE USER
             else if ($this->userExists($user_name, $user_email) == 3)
             {
                 $query = "INSERT INTO users
@@ -101,10 +104,12 @@ class UserManager extends Manager
 
         if($user = $users->fetch())
         {
+            // ACCOUNT ALREADY VERIFIED
             if ($user['account_valid'] == 1)
             {
                 return (2);
             }
+            // VERIFY ACCOUNT
             $query = "UPDATE users SET account_valid = ? WHERE user_email = ?";
             $user = $db->prepare($query);
             $affectedLines = $user->execute(array(1, $email));
