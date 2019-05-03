@@ -24,6 +24,5 @@ function saveData($data)
     $name = $time . '.png';
     $output = 'pictures/' . $name;
     file_put_contents($output, file_get_contents($input));
-
     $pic = $galleryManager->savePictures($user_id, $name);
 }

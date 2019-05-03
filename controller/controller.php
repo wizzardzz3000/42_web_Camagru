@@ -1,12 +1,16 @@
 <?php
+session_start();
 require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
 require_once('model/GalleryManager.php');
+require_once('model/UserManager.php');
 
 function showGallery()
 {
     $galleryManager = new GalleryManager();
+    $userManager = new UserManager();
     $gallery = $galleryManager->getPictures();
+    $users = $userManager->getUsers();
 
     require('view/galleryView.php');
 }

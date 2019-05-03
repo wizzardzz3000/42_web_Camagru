@@ -3,6 +3,15 @@ require_once('model/Manager.php');
 
 class UserManager extends Manager
 {
+    // GET USERS
+    // ---------------------------------------------------------------
+    public function getUsers()
+    {
+        $db = $this->dbConnect();
+        $req = $db->query("SELECT user_id, user_name, user_email, user_password, hash, account_valid FROM users ORDER BY user_id");
+
+        return $req;
+    }
     // GET USER DATA
     // ---------------------------------------------------------------
     public function getUser($login, $email)
