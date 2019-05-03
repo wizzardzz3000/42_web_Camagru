@@ -5,7 +5,7 @@
             <div>
                 <br>
                 <label for="password">Please choose a new password for your account :</label><br />
-                <input class="input" id="r_password" type="password" name="r_password" value="" onkeyup="checkPassword()"/>
+                <input class="input" id="r_password" type="password" name="r_password" value="" onkeyup="checkPassword()" required/>
             </div>
             <p id="password_len_message" class="password_len_message"></p>
             <p id="password_up_message" class="password_up_message"></p>
@@ -14,7 +14,7 @@
             <br>
             <div>
                 <label for="password">Confirm password</label><br />
-                <input class="input" id="c_password" type="password" name="c_password" value="" />
+                <input class="input" id="c_password" type="password" name="c_password" value="" required/>
             </div>
             <br>
             <div>

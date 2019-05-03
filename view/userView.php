@@ -5,12 +5,12 @@
             <form action="index.php?action=login" method="POST">
                 <div>
                     <label for="login">Name</label><br />
-                    <input class="input" type="text" id="login" name="login" />
+                    <input class="input" type="text" id="login" name="login" required/>
                 </div>
                 <br>
                 <div>
                     <label for="password">Password</label><br />
-                    <input class="input" type="password" name="passwd" value="" />
+                    <input class="input" type="password" name="passwd" value="" required/>
                     <a href="index.php?view=forgotPassword" >(Forgot your password ?)</a>
                 </div>
                 <br>
@@ -39,19 +39,19 @@
                         <form action="index.php?action=register" method="POST">
                             <div>
                                 <label for="name">Name</label><br />
-                                <input class="input" id="r_name" type="text" name="name" value="" onkeyup="checkName()"/>
+                                <input class="input" id="r_name" type="text" name="name" value="" onkeyup="checkName()" required/>
                             </div>
                             <p id="name_message" class="name_message"></p>
                             <br>
                             <div>
                                 <label for="email">Email</label><br />
-                                <input class="input" id="r_email" type="text" name="email" value="" onkeyup="checkEmail()"/>
+                                <input class="input" id="r_email" type="text" name="email" value="" onkeyup="checkEmail()" required/>
                             </div>
                             <p id="email_message" class="email_message"></p>
                             <br>
                             <div>
                                 <label for="password">Password</label><br />
-                                <input class="input" id="r_password" type="password" name="passwd" value="" onkeyup="checkPassword()"/>
+                                <input class="input" id="r_password" type="password" name="passwd" value="" onkeyup="checkPassword()" required/>
                             </div>
                             <p id="password_len_message" class="password_len_message"></p>
                             <p id="password_up_message" class="password_up_message"></p>
@@ -60,7 +60,7 @@
                             <br>
                             <div>
                                 <label for="password">Confirm password</label><br />
-                                <input class="input" id="c_password" type="password" name="c_passwd" value="" "/>
+                                <input class="input" id="c_password" type="password" name="c_passwd" value="" required/>
                             </div>
                             <p id="password_confirm_message" class="password_confirm_message"></p>
                             <br>
