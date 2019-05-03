@@ -21,7 +21,7 @@
                     <a href=''>
                     <?php
                         $img = $data['content'];
-                        echo '<img src="pictures/'.$img.'"/>';
+                        echo '<img class="gallery_picture" src="pictures/'.$img.'"/>';
                     ?>
                     <div class="band">
                         <?

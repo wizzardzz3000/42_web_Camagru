@@ -5,7 +5,7 @@
                 <div>
                     <label for="email">Enter your email address to reset your password</label><br />
                     <br>
-                    <input class="input" name="email" value="" />
+                    <input class="input" name="email" value="" required/>
                 </div>
                 <br>
                 <div>

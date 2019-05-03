@@ -81,15 +81,26 @@ function getAccountData()
 {
     session_start();
     $userManager = new UserManager();
+    $galleryManager = new GalleryManager();
     $users = $userManager->getUser($_SESSION['loggued_on_user'], "");
+    $gallery = $galleryManager->getPictures();
+    $pictures_taken = 0;
     
     if ($user = $users->fetch())
     {
         if($_SESSION['loggued_on_user'] === $user['user_name'])
         {
+            while ($data = $gallery->fetch())
+            {
+                if($data['user_id'] == $user['user_id'])
+                {
+                    $pictures_taken++;
+                }
+            } 
             $user_data = array (
                 'name' => $user['user_name'], 
-                'email' => $user['user_email']
+                'email' => $user['user_email'],
+                'pictures_taken' => $pictures_taken
                 // etc....
             );
         }

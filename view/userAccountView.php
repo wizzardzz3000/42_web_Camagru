@@ -7,7 +7,7 @@
             ?>
                 <p><strong>Name <br></strong><?= $user_data['name'] ?></p>
                 <p><strong>Email <br></strong><?= $user_data['email'] ?></p>
-                <p><strong>Pictures <br></strong></p>
+                <p><strong>Pictures <br></strong></p><?= $user_data['pictures_taken'] ?></p>
                 <p><strong>Comments <br></strong></p>
                 <p><strong>Likes <br></strong></p>
         </div>

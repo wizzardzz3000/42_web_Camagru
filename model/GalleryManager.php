@@ -6,7 +6,7 @@ class GalleryManager extends Manager
     public function getPictures()
     {
         $db = $this->dbConnect();
-        $pictures = $db->query('SELECT picture_id, user_id, content FROM pictures');
+        $pictures = $db->query('SELECT picture_id, user_id, content FROM pictures ORDER BY content DESC');
     
         return $pictures;
     }
