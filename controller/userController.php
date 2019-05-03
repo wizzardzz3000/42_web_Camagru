@@ -165,9 +165,6 @@ function modify($old_passwd, $name, $email, $new_passwd, $new_passwd_confirmatio
 {
     session_start();
     $userManager = new UserManager();
-    $name_ok = '';
-    $email_ok = '';
-    $password_ok = '';
     $username_message = '';
     $username_error_message = '';
     $email_message = '';
@@ -180,34 +177,24 @@ function modify($old_passwd, $name, $email, $new_passwd, $new_passwd_confirmatio
     if (authUser($_SESSION['loggued_on_user'], $old_passwd) == 1)
     {
         // Check that fields are not empty
-        if ($name || $email || $new_passwd && $new_passwd_confirmation)
+        if ($name || $email || ($new_passwd && $new_passwd_confirmation))
         {
-            // Check name and email
-            if ($name || $email)
+            // Check name
+            if ($name && $userManager->userExists($name, "") == 1)
             {
-                if($name && $userManager->userExists($name, "") == 1)
-                {
-                    $username_error_message = "Sorry, this user name is already taken :/";
-                    $problem = 1;
-                } else {
-                    $name_ok = $name;
-                }
-                if($email && $userManager->userExists("", $email) == 2)
-                {
-                    $email_error_message = "Sorry, this email address is already linked to an existing account :/";
-                    $problem = 1;
-                } else {
-                    $email_ok = $email;
-                }
+                $username_error_message = "Sorry, this user name is already taken :/";
+                $problem = 1;
+            }
+            // Check email
+            if ($email && $userManager->userExists("", $email) == 2)
+            {
+                $email_error_message = "Sorry, this email address is already linked to an existing account :/";
+                $problem = 1;
             }
             // Check new password
             if ($new_passwd && $new_passwd_confirmation)
             {
-                if ($new_passwd == $new_passwd_confirmation)
-                {
-                    $password_ok = $new_passwd;
-                }
-                else
+                if ($new_passwd != $new_passwd_confirmation)
                 {
                     $password_error_message = "Sorry, passwords don't match :/";
                     $problem = 1;
@@ -216,15 +203,16 @@ function modify($old_passwd, $name, $email, $new_passwd, $new_passwd_confirmatio
             // Everything's fine
             if ($problem != 1)
             {
-                // Save the new data and prepare the messages
+                // Save the new data and prepare messages
                 if ($userManager->updateUser("", $_SESSION['loggued_on_user'], $name, $email, $new_passwd) == 1)
                 {
                     if ($name)
                         $username_message = "Username modified !";
                     if ($email)
                         $email_message = "Email modified !";
-                    if($new_passwd)
+                    if ($new_passwd)
                         $password_message = "Password modified !";
+
                     $data_saved = 1;
                 }
                 // Do not log user out if only the email was changed
