@@ -69,18 +69,6 @@ try {
         //         resend($_GET['name'], $_GET['email'], $_GET['hash']);
         //     }
         // }
-        // POSTS ACTIONS
-        else if ($_GET['action'] == 'listPosts') {
-            listPosts();
-        }
-        else if ($_GET['action'] == 'post') {
-            if (isset($_GET['id']) && $_GET['id'] > 0) {
-                post();
-            }
-            else {
-                throw new Exception('Aucun identifiant de billet envoyé');
-            }
-        }
         // COMMENTS ACTIONS
         else if ($_GET['action'] == 'addComment') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
@@ -110,7 +98,7 @@ try {
         }
         else if ($_GET['action'] == 'comment') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
-                comment();
+                getComment($_GET['id']);
             }
             else {
                 throw new Exception('Aucun identifiant de billet envoyé');

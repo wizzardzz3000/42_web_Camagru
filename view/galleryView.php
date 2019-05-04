@@ -6,13 +6,29 @@
             <?php
                 // Save user PDO object as array using fetchAll()
                 $user = $users->fetchAll();
+                $comment = $comments->fetchAll();
+                $like = $likes->fetchAll();
                 
                 while ($data = $gallery->fetch())
                 {  
+                    $comment_nb = 0;
+                    $likes_nb = 0;
                     for ($i = 0; $user[$i]; $i++) {
                         if ($user[$i]['user_id'] == $data['user_id'])
                         {
                             $user_name = $user[$i]['user_name'];
+                        }
+                    }
+                    for ($i = 0; $comment[$i]; $i++) {
+                        if ($comment[$i]['picture_id'] == $data['picture_id'])
+                        {
+                            $comment_nb++;
+                        }
+                    }
+                    for ($i = 0; $like[$i]; $i++) {
+                        if ($like[$i]['picture_id'] == $data['picture_id'])
+                        {
+                            $likes_nb++;
                         }
                     }
             ?>
@@ -26,6 +42,8 @@
                     <div class="band">
                         <?
                             echo '<span>by '.$user_name.'</span>';
+                            echo '<span>'.$likes_nb.' Likes</span>';
+                            echo '<span>'.$comment_nb.' Comments</span>';
                         ?>
                     </div>
                     </a>

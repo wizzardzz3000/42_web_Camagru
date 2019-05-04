@@ -2,6 +2,7 @@
 session_start();
 require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
+require_once('model/LikesManager.php');
 require_once('model/GalleryManager.php');
 require_once('model/UserManager.php');
 
@@ -9,8 +10,12 @@ function showGallery()
 {
     $galleryManager = new GalleryManager();
     $userManager = new UserManager();
+    $commentManager = new CommentManager();
+    $likesManager = new LikesManager();
     $gallery = $galleryManager->getPictures();
     $users = $userManager->getUsers();
+    $comments = $commentManager->getComments();
+    $likes = $likesManager->getLikes();
 
     require('view/galleryView.php');
 }
@@ -32,40 +37,4 @@ function post()
     $comments = $commentManager->getComments($_GET['id']);
 
     require('view/postView.php');
-}
-
-function comment()
-{
-    $commentManager = new CommentManager();
-    $comments = $commentManager->getSingleComment($_GET['id']);
-
-    require('view/updateCommentView.php');
-}
-
-function addComment($postId, $author, $comment)
-{
-    $commentManager = new CommentManager();
-    $affectedLines = $commentManager->postComment($postId, $author, $comment);
-
-    if ($affectedLines === false) {
-        throw new Exception('Impossible d\'ajouter le commentaire !');
-    }
-    else {
-        header('Location: index.php?action=post&id=' . $postId);
-    }
-}
-
-function modifyComment($commentId, $comment)
-{
-    $commentManager = new CommentManager();
-    $affectedLines = $commentManager->updateComment($commentId, $comment);
-    $postId = $commentManager->getSingleComment($commentId);
-    $id = $postId->fetch();
-
-    if ($affectedLines === false) {
-        throw new Exception('Impossible de modifier le commentaire !');
-    }
-    else {
-        header('Location: index.php?action=post&id=' . $id['post_id']);
-    }
 }
