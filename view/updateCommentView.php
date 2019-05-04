@@ -4,7 +4,7 @@
     if ($comment = $comments->fetch())
     {
 ?>
-        <p><a href="index.php?action=post&amp;id=<?= $comment['post_id']?>">Retour au post</a></p>
+        <p><a href="index.php?view=picture&id=<?= $comment['picture_id']?>">Back to picture</a></p>
 <?php
     }
 ?>
@@ -12,7 +12,7 @@
     <p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr']?></p>
     <p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
   
-    <form action="index.php?action=modify&amp;id=<?= $comment['id'] ?>" method="post">
+    <form action="index.php?action=modifyComment&amp;id=<?= $comment['id'] ?>" method="post">
         <div>
             <label for="comment">Nouveau commentaire :</label><br />
             <textarea id="comment" name="comment"></textarea>

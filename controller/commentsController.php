@@ -1,10 +1,10 @@
 <?php
 require_once('model/CommentManager.php');
 
-function getComment($post_id)
+function getComment($comment_id)
 {
     $commentManager = new CommentManager();
-    $comments = $commentManager->getSingleComment($post_id);
+    $comments = $commentManager->getSingleComment($comment_id);
 
     require('view/updateCommentView.php');
 }
@@ -26,13 +26,13 @@ function modifyComment($comment_id, $comment)
 {
     $commentManager = new CommentManager();
     $affectedLines = $commentManager->updateComment($comment_id, $comment);
-    $post_id = $commentManager->getSingleComment($comment_id);
-    $id = $post_id->fetch();
+    $comment = $commentManager->getSingleComment($comment_id);
+    $picture = $comment->fetch();
 
     if ($affectedLines === false) {
         throw new Exception('Impossible de modifier le commentaire !');
     }
     else {
-        header('Location: index.php?action=post&id=' . $id['post_id']);
+        header('Location: index.php?view=picture&id=' . $picture['picture_id']);
     }
 }

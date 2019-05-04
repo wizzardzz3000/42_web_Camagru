@@ -2,6 +2,7 @@
 require('controller/picturesController.php');
 require('controller/mailController.php');
 require('controller/userController.php');
+require('controller/commentsController.php');
 
 try {
     // VIEWS
