@@ -9,10 +9,10 @@ function getComment($comment_id)
     require('view/updateCommentView.php');
 }
 
-function addComment($post_id, $author, $comment)
+function addComment($post_id, $user_id, $author, $comment)
 {
     $commentManager = new CommentManager();
-    $affectedLines = $commentManager->postComment($post_id, $author, $comment);
+    $affectedLines = $commentManager->postComment($post_id, $user_id, $author, $comment);
 
     if ($affectedLines === false) {
         throw new Exception('Impossible d\'ajouter le commentaire !');

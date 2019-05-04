@@ -55,7 +55,7 @@
                 <div id='single_product'>
                     <p><strong><?= htmlspecialchars($comment[$i]['author']) ?></strong> le <?= $comment[$i]['comment_date_fr'] ?>
                     <?php
-                        if($_SESSION['loggued_on_user'] && $_SESSION['loggued_on_user'] === $comment[$i]['author'])
+                        if($comment[$i]['user_id'] == $user_id)
                         {
                     ?>
                             <p><a href="index.php?action=comment&id=<?= $comment[$i]['id'] ?>">(Edit)</a></p>
