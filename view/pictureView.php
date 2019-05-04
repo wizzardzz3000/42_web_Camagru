@@ -46,7 +46,8 @@
                         if($_SESSION['loggued_on_user'] && $_SESSION['loggued_on_user'] === $comment[$i]['author'])
                         {
                     ?>
-                            <a href="index.php?action=comment&id=<?= $comment[$i]['id'] ?>">(Modifier)</a></p>
+                            <p><a href="index.php?action=comment&id=<?= $comment[$i]['id'] ?>">(Edit)</a></p>
+                            <p><a href="index.php?action=deleteComment&id=<?= $comment[$i]['id'] ?>">(Delete)</a></p>
                     <?php
                         }
                     ?>
