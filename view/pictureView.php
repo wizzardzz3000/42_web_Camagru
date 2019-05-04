@@ -1,10 +1,13 @@
-<?php ob_start(); ?>
+<?php
+    session_start();
+    ob_start();
+?>
 
     <div class="product">
         <div class="main-nav">
             <?php
                 // Save PDO objects as arrays using fetchAll()
-                // $user = $users->fetchAll();
+                $user = $users->fetchAll();
                 $comment = $comments->fetchAll();
                 $like = $likes->fetchAll();
                 $pictures = $gallery->fetchAll();
@@ -16,12 +19,21 @@
                     if ($pictures[$i]['picture_id'] == $picture_id)
                     {
                         $img = $pictures[$i]['content'];
+                        $was_taken_by = $pictures[$i]['user_id'];
                     }
                 }
-                for ($i = 0; $like[$i]; $i++) {
+                for ($i = 0; $like[$i]; $i++)
+                {
                     if ($like[$i]['picture_id'] == $picture_id)
                     {
                         $likes_nb++;
+                    }
+                }
+                for ($i = 0; $user[$i]; $i++)
+                {
+                    if ($user[$i]['user_name'] == $_SESSION['loggued_on_user'])
+                    {
+                        $user_id = $user[$i]['user_id'];
                     }
                 }
             ?>
@@ -61,6 +73,10 @@
             </div>
                 <?php
                     echo '<p> '.$likes_nb.' likes</p>';
+                    if($was_taken_by == $user_id)
+                    {
+                        echo '<p> <a href="index.php?action=deletePicture&id='.$picture_id.' ">(Delete picture) </a> </p>';
+                    }
                 ?>
             <div>
         </div>

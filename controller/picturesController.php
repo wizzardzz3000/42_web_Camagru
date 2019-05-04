@@ -3,12 +3,12 @@ session_start();
 require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
 require_once('model/LikesManager.php');
-require_once('model/GalleryManager.php');
+require_once('model/PictureManager.php');
 require_once('model/UserManager.php');
 
 function showMedia($arg, $picture_id)
 {
-    $galleryManager = new GalleryManager();
+    $galleryManager = new PictureManager();
     $userManager = new UserManager();
     $commentManager = new CommentManager();
     $likesManager = new LikesManager();
@@ -26,4 +26,11 @@ function showMedia($arg, $picture_id)
     {
         require('view/galleryView.php');
     }
+}
+
+function deletePicture($picture_id)
+{
+    $pictureManager = new PictureManager();
+
+    $pictureManager->deleteSinglePicture($picture_id);
 }

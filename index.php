@@ -67,6 +67,16 @@ try {
                 echo("Please enter your current password to make changes");
             }
         }
+        // PICTURES ACTIONS
+        else if ($_GET['action'] == 'deletePicture')
+        {
+            if (isset($_GET['id']) && $_GET['id'] > 0)
+            {
+                deletePicture($_GET['id']);
+            } else {
+                throw new Exception('Tous les champs ne sont pas remplis !');
+            }
+        }
         // COMMENTS ACTIONS
         else if ($_GET['action'] == 'addComment') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {

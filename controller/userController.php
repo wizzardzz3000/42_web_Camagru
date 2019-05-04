@@ -81,7 +81,7 @@ function getAccountData()
 {
     session_start();
     $userManager = new UserManager();
-    $galleryManager = new GalleryManager();
+    $galleryManager = new PictureManager();
     $users = $userManager->getUser($_SESSION['loggued_on_user'], "");
     $gallery = $galleryManager->getPictures();
     $pictures_taken = 0;
