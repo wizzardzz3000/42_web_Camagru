@@ -4,29 +4,29 @@
     <div class="product">
         <div class="main-nav">
             <?php
-                // Save user PDO object as array using fetchAll()
+                // Save PDO objects as arrays using fetchAll()
                 $user = $users->fetchAll();
                 $comment = $comments->fetchAll();
                 $like = $likes->fetchAll();
                 
-                while ($data = $gallery->fetch())
+                while ($picture = $gallery->fetch())
                 {  
                     $comment_nb = 0;
                     $likes_nb = 0;
                     for ($i = 0; $user[$i]; $i++) {
-                        if ($user[$i]['user_id'] == $data['user_id'])
+                        if ($user[$i]['user_id'] == $picture['user_id'])
                         {
                             $user_name = $user[$i]['user_name'];
                         }
                     }
                     for ($i = 0; $comment[$i]; $i++) {
-                        if ($comment[$i]['picture_id'] == $data['picture_id'])
+                        if ($comment[$i]['picture_id'] == $picture['picture_id'])
                         {
                             $comment_nb++;
                         }
                     }
                     for ($i = 0; $like[$i]; $i++) {
-                        if ($like[$i]['picture_id'] == $data['picture_id'])
+                        if ($like[$i]['picture_id'] == $picture['picture_id'])
                         {
                             $likes_nb++;
                         }
@@ -34,9 +34,9 @@
             ?>
             <div id='full_product'>
                 <div id='single_product'>
-                    <a href=''>
+                    <a href="index.php?view=picture&id=<?= $picture['picture_id'] ?>">
                     <?php
-                        $img = $data['content'];
+                        $img = $picture['content'];
                         echo '<img class="gallery_picture" src="pictures/'.$img.'"/>';
                     ?>
                     <div class="band">

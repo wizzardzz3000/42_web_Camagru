@@ -1,5 +1,5 @@
 <?php
-require('controller/controller.php');
+require('controller/picturesController.php');
 require('controller/mailController.php');
 require('controller/userController.php');
 
@@ -20,9 +20,13 @@ try {
         {
             require('view/mainView.php');
         }
+        else if ($_GET['view'] == 'picture' && isset($_GET['id']))
+        {
+            showMedia("picture", $_GET['id']);
+        }
         else if ($_GET['view'] == 'gallery')
         {
-            showGallery();
+            showMedia("gallery", "");
         }
         else if ($_GET['view'] == 'forgotPassword')
         {
@@ -62,13 +66,6 @@ try {
                 echo("Please enter your current password to make changes");
             }
         }
-        // else if ($_GET['action'] == 'resend')
-        // {
-        //     if(isset($_GET['name']) && isset($_GET['email']) && isset($_GET['hash']))
-        //     {
-        //         resend($_GET['name'], $_GET['email'], $_GET['hash']);
-        //     }
-        // }
         // COMMENTS ACTIONS
         else if ($_GET['action'] == 'addComment') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
@@ -132,7 +129,7 @@ try {
     }
     // LOAD THE GALLERY BY DEFAULT
     if (!isset($_GET['view']) && !isset($_GET['action'])) {
-        showGallery();
+        showMedia("gallery", "");
     }
 }
 // CATCH EXCEPTION
@@ -140,3 +137,11 @@ catch(Exception $e) {
     $errorMessage = $e->getMessage();
     require('view/errorView.php');
 }
+
+        // else if ($_GET['action'] == 'resend')
+        // {
+        //     if(isset($_GET['name']) && isset($_GET['email']) && isset($_GET['hash']))
+        //     {
+        //         resend($_GET['name'], $_GET['email'], $_GET['hash']);
+        //     }
+        // }
