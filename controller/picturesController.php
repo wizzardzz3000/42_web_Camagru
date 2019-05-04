@@ -32,5 +32,8 @@ function deletePicture($picture_id)
 {
     $pictureManager = new PictureManager();
 
-    $pictureManager->deleteSinglePicture($picture_id);
+    if ($delete = $pictureManager->deleteSinglePicture($picture_id));
+    {
+        header('Location: index.php');
+    }
 }
