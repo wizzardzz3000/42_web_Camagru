@@ -41,14 +41,35 @@
         canvas.getContext('2d').drawImage(video, 0, 0, width, height);
         var canvasData = canvas.toDataURL("image/png");
 
-        $.ajax({
-          method: "POST",
-          url: "pictureController.php",
-          data: { canvasData }
-            }).done(function(data){
-              console.log("Success");
-            }).fail(function(html){
-              console.log("Fail");
-       });
+        const req = new XMLHttpRequest();
+
+        req.onreadystatechange = function(ev) {
+            // XMLHttpRequest.DONE === 4
+            if (this.readyState === XMLHttpRequest.DONE) {
+                if (this.status === 200) {
+                    // console.log("Réponse reçue: %s", this.responseText);
+                    console.log("Success");
+                } else {
+                    console.log("Status de la réponse: %d (%s)", this.status, this.statusText);
+                }
+            }
+        };
+
+        req.open('POST', 'pictureController.php', true);
+        req.send({ canvasData });
+
+      //   $.ajax({
+      //     method: "POST",
+      //     url: "pictureController.php",
+      //     data: { canvasData : canvasData }
+      //       }).done(function(data){
+      //         console.log("Success");
+      //       }).fail(function(html){
+      //         console.log("Fail");
+      //  });
     }
+
+      
+
+
   })();  

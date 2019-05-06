@@ -1,9 +1,10 @@
 <?php
 session_start();
-require_once('model/GalleryManager.php');
+require_once('model/PictureManager.php');
 require_once('model/UserManager.php');
 
-if(isset($_POST['canvasData'])){
+if(isset($_POST['canvasData']))
+{
     $data = $_POST['canvasData'];
     saveData($data);
 }
