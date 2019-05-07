@@ -103,17 +103,9 @@
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="javascript/check_password.js"></script>
     <script src="javascript/check_email.js"></script>
     <script src="javascript/check_name.js"></script>
 
 <?php $content = ob_get_clean(); ?>
 <?php require('view/template.php'); ?>
-
-<!-- <div>
-                        <label for="password">Confirm password</label><br />
-                        <input id="c_password" type="password" name="passwd" value="" onkeyup="checkConfirmationPassword()"/>
-                    </div>
-                    <p id="password_confirm_message" class="password_confirm_message"></p>
-                    <br> -->

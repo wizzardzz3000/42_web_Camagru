@@ -10,7 +10,6 @@
     <canvas id="canvas"></canvas>
 </div>
 
-<!-- <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script> -->
 <script src="javascript/take_pic.js"></script>
 
 <?php $content = ob_get_clean(); ?>

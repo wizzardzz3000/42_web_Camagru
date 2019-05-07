@@ -73,7 +73,6 @@
         </div>
     </div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="javascript/check_password.js"></script>
 <script src="javascript/check_email.js"></script>
 <script src="javascript/check_name.js"></script>
