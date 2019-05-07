@@ -34,6 +34,13 @@ try {
         {
             require('view/forgotPasswordView.php');
         }
+        else if ($_GET['view'] == 'updateCommentView')
+        {
+            if (isset($_GET['comment_id']) && isset($_GET['picture_id']))
+            {
+                showCommentUpdateView($_GET['comment_id'], $_GET['picture_id']);
+            }
+        }
     }
     // ACTIONS
     // ---------------------------------------------------------------
@@ -93,9 +100,9 @@ try {
             }
         }
         else if ($_GET['action'] == 'modifyComment') {
-            if (isset($_GET['id']) && $_GET['id'] > 0) {
+            if (isset($_GET['comment_id']) && isset($_GET['picture_id'])) {
                 if (!empty($_POST['comment'])) {
-                    modifyComment($_GET['id'], $_POST['comment']);
+                    modifyComment($_GET['comment_id'], $_GET['picture_id'], $_POST['comment']);
                 }
                 else {
                     throw new Exception('Tous les champs ne sont pas remplis !');
@@ -106,7 +113,7 @@ try {
             }
         }
         else if ($_GET['action'] == 'deleteComment') {
-            if (isset($_GET['comment_id']) && $_GET['picture_id'] > 0) {
+            if (isset($_GET['comment_id']) && isset($_GET['picture_id'])) {
                 deleteCommentCall($_GET['comment_id'], $_GET['picture_id']);
             }
             else {

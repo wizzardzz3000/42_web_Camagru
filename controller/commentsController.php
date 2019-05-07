@@ -22,12 +22,19 @@ function addComment($post_id, $user_id, $comment)
     }
 }
 
-function modifyComment($comment_id, $comment)
+function showCommentUpdateView($comment_id, $picture_id)
+{
+    $commentManager = new CommentManager();
+    $userManager = new UserManager();
+    $users = $userManager->getUsers();
+    $singleComment = $commentManager->getSingleComment($comment_id);
+    require('view/updateCommentView.php');
+}
+
+function modifyComment($comment_id, $picture_id, $comment)
 {
     $commentManager = new CommentManager();
     $affectedLines = $commentManager->updateComment($comment_id, $comment);
-    $comment = $commentManager->getSingleComment($comment_id);
-    $picture = $comment->fetch();
 
     if ($affectedLines === false) {
         throw new Exception('Impossible de modifier le commentaire !');

@@ -71,7 +71,7 @@
                         if($comment[$i]['user_id'] == $user_id)
                         {
                     ?>
-                            <p><a href="index.php?action=modifyComment&comment_id=<?= $comment[$i]['id'] ?>&picture_id=<?= $picture_id ?>">(Edit)</a></p>
+                            <p><a href="index.php?view=updateCommentView&comment_id=<?= $comment[$i]['id'] ?>&picture_id=<?= $picture_id ?>">(Edit)</a></p>
                             <p><a href="index.php?action=deleteComment&comment_id=<?= $comment[$i]['id'] ?>&picture_id=<?= $picture_id ?>">(Delete)</a></p>
                     <?php
                         }
