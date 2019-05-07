@@ -27,6 +27,7 @@
                     if ($user[$i]['user_name'] == $_SESSION['loggued_on_user'])
                     {
                         $user_id = $user[$i]['user_id'];
+                        $author = $user[$i]['user_name'];
                     }
                 }
                 for ($i = 0; $like[$i]; $i++)
@@ -48,7 +49,15 @@
                     ?>
                 </div>
             </div>
-
+            <form action="index.php?action=addComment&picture_id=<?= $picture_id ?>&user_id=<?= $user_id ?>" method="post">
+                <div>
+                    <label for="comment">Comment</label><br />
+                    <textarea id="comment" name="comment"></textarea>
+                </div>
+                <div>
+                    <input type="submit" />
+                </div>
+            </form>
             <?php
                 for ($i = 0; $comment[$i]; $i++)
                 {
@@ -57,13 +66,13 @@
             ?>
             <div id='full_product'>
                 <div id='single_product'>
-                    <p><strong><?= htmlspecialchars($comment[$i]['author']) ?></strong> le <?= $comment[$i]['comment_date_fr'] ?>
+                    <p><strong><?= htmlspecialchars($author) ?></strong> le <?= $comment[$i]['comment_date_fr'] ?>
                     <?php
                         if($comment[$i]['user_id'] == $user_id)
                         {
                     ?>
-                            <p><a href="index.php?action=comment&id=<?= $comment[$i]['id'] ?>">(Edit)</a></p>
-                            <p><a href="index.php?action=deleteComment&id=<?= $comment[$i]['id'] ?>">(Delete)</a></p>
+                            <p><a href="index.php?action=modifyComment&comment_id=<?= $comment[$i]['id'] ?>&picture_id=<?= $picture_id ?>">(Edit)</a></p>
+                            <p><a href="index.php?action=deleteComment&comment_id=<?= $comment[$i]['id'] ?>&picture_id=<?= $picture_id ?>">(Delete)</a></p>
                     <?php
                         }
                     ?>

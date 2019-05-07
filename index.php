@@ -80,16 +80,16 @@ try {
         }
         // COMMENTS ACTIONS
         else if ($_GET['action'] == 'addComment') {
-            if (isset($_GET['id']) && $_GET['id'] > 0) {
-                if (!empty($_POST['author']) && !empty($_POST['comment'])) {
-                    addComment($_GET['id'], $_GET['user_id'], $_POST['author'], $_POST['comment']);
+            if (isset($_GET['picture_id']) && isset($_GET['user_id'])) {
+                if (session_start() && !empty($_POST['comment'])) {
+                    addComment($_GET['picture_id'], $_GET['user_id'], $_POST['comment']);
                 }
                 else {
                     throw new Exception('Tous les champs ne sont pas remplis !');
                 }
             }
             else {
-                throw new Exception('Aucun identifiant de billet envoyé');
+                throw new Exception('Aucun identifiant de photo envoyé');
             }
         }
         else if ($_GET['action'] == 'modifyComment') {
@@ -100,6 +100,14 @@ try {
                 else {
                     throw new Exception('Tous les champs ne sont pas remplis !');
                 }
+            }
+            else {
+                throw new Exception('Aucun identifiant de billet envoyé');
+            }
+        }
+        else if ($_GET['action'] == 'deleteComment') {
+            if (isset($_GET['comment_id']) && $_GET['picture_id'] > 0) {
+                deleteCommentCall($_GET['comment_id'], $_GET['picture_id']);
             }
             else {
                 throw new Exception('Aucun identifiant de billet envoyé');

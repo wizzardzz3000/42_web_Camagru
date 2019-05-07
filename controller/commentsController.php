@@ -1,5 +1,5 @@
 <?php
-require_once('model/CommentManager.php');
+require_once $_SERVER['DOCUMENT_ROOT'].'/model/CommentManager.php';
 
 function getComment($comment_id)
 {
@@ -9,16 +9,16 @@ function getComment($comment_id)
     require('view/updateCommentView.php');
 }
 
-function addComment($post_id, $user_id, $author, $comment)
+function addComment($post_id, $user_id, $comment)
 {
     $commentManager = new CommentManager();
-    $affectedLines = $commentManager->postComment($post_id, $user_id, $author, $comment);
+    $affectedLines = $commentManager->postComment($post_id, $user_id, $comment);
 
     if ($affectedLines === false) {
         throw new Exception('Impossible d\'ajouter le commentaire !');
     }
     else {
-        header('Location: index.php?action=post&id=' . $post_id);
+        header('Location: index.php?view=picture&id=' . $post_id);
     }
 }
 
@@ -34,5 +34,18 @@ function modifyComment($comment_id, $comment)
     }
     else {
         header('Location: index.php?view=picture&id=' . $picture['picture_id']);
+    }
+}
+
+function deleteCommentCall($comment_id, $picture_id)
+{
+    $commentManager = new CommentManager();
+    $affectedLines = $commentManager->deleteComment($comment_id);
+
+    if ($affectedLines === false) {
+        throw new Exception('Impossible de supprimer le commentaire !');
+    }
+    else {
+        header('Location: index.php?view=picture&id=' . $picture_id);
     }
 }
