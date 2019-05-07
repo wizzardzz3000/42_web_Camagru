@@ -14,7 +14,16 @@ class LikesManager extends Manager
     public function saveLike($picture_id, $user_id)
     {
         $db = $this->dbConnect();
-        $likes = $db->prepare('INSERT INTO pictures(picture_id, user_id) VALUES(?, ?)');
+        $likes = $db->prepare('INSERT INTO likes(picture_id, user_id) VALUES(?, ?)');
+        $affectedLines = $likes->execute(array($picture_id, $user_id));
+
+        return $affectedLines;
+    }
+
+    public function deleteLike($picture_id, $user_id)
+    {
+        $db = $this->dbConnect();
+        $likes = $db->prepare("DELETE FROM likes WHERE picture_id = ? AND user_id = ?");
         $affectedLines = $likes->execute(array($picture_id, $user_id));
 
         return $affectedLines;

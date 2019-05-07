@@ -22,18 +22,22 @@
                         $was_taken_by = $pictures[$i]['user_id'];
                     }
                 }
+                for ($i = 0; $user[$i]; $i++)
+                {
+                    if ($user[$i]['user_name'] == $_SESSION['loggued_on_user'])
+                    {
+                        $user_id = $user[$i]['user_id'];
+                    }
+                }
                 for ($i = 0; $like[$i]; $i++)
                 {
                     if ($like[$i]['picture_id'] == $picture_id)
                     {
                         $likes_nb++;
                     }
-                }
-                for ($i = 0; $user[$i]; $i++)
-                {
-                    if ($user[$i]['user_name'] == $_SESSION['loggued_on_user'])
+                    if ($like[$i]['picture_id'] == $picture_id && $like[$i]['user_id'] == $user_id)
                     {
-                        $user_id = $user[$i]['user_id'];
+                        $user_has_liked = 1;
                     }
                 }
             ?>
@@ -76,6 +80,14 @@
                     if($was_taken_by == $user_id)
                     {
                         echo '<p> <a href="index.php?action=deletePicture&id='.$picture_id.' ">(Delete picture) </a> </p>';
+                    }
+                    if ($user_has_liked == 1)
+                    {
+                        echo '<p><a href="index.php?action=unlike&picture_id='.$picture_id.'&user_id='.$user_id.'">(Unlike)</a></p>';
+                    }
+                    else if ($user_id)
+                    {
+                        echo '<p><a href="index.php?action=like&picture_id='.$picture_id.'&user_id='.$user_id.'">(Like)</a></p>';
                     }
                 ?>
             <div>

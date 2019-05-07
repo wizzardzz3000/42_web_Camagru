@@ -3,6 +3,7 @@ require('controller/picturesController.php');
 require('controller/mailController.php');
 require('controller/userController.php');
 require('controller/commentsController.php');
+require('controller/likesController.php');
 
 try {
     // VIEWS
@@ -110,6 +111,21 @@ try {
             }
             else {
                 throw new Exception('Aucun identifiant de billet envoyé');
+            }
+        }
+        // LIKES ACTIONS
+        else if ($_GET['action'] == 'like')
+        {
+            if (isset($_GET['picture_id']) && isset($_GET['user_id']))
+            {
+                like($_GET['picture_id'], $_GET['user_id']);
+            }
+        }
+        else if ($_GET['action'] == 'unlike')
+        {
+            if (isset($_GET['picture_id']) && isset($_GET['user_id']))
+            {
+                unlike($_GET['picture_id'], $_GET['user_id']);
             }
         }
         // RESET PASSWORD ACTIONS
