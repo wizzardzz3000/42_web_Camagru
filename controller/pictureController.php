@@ -3,6 +3,17 @@ session_start();
 require_once $_SERVER['DOCUMENT_ROOT'].'/model/PictureManager.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/model/UserManager.php';
 
+function showMainView()
+{
+    $galleryManager = new PictureManager();
+    $userManager = new UserManager();
+
+    $gallery = $galleryManager->getPictures("");
+    $users = $userManager->getUsers();
+
+    require('view/mainView.php');
+}
+
 if(isset($_POST['img']))
 {
     $data = $_POST['img'];
@@ -29,5 +40,9 @@ function saveData($image)
     $output = '../pictures/' . $name;
     file_put_contents($output, $data);
 
-    $pic = $galleryManager->savePictures($user_id, $name);
+    if ($pic = $galleryManager->savePictures($user_id, $name))
+    {
+        header('Location: index.php?view=camera');
+    }
+    // error catch ?
 }

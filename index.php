@@ -1,4 +1,5 @@
 <?php
+require('controller/pictureController.php');
 require('controller/picturesController.php');
 require('controller/mailController.php');
 require('controller/userController.php');
@@ -20,7 +21,7 @@ try {
         }
         else if ($_GET['view'] == 'camera')
         {
-            require('view/mainView.php');
+            showMainView();
         }
         else if ($_GET['view'] == 'picture' && isset($_GET['id']))
         {
