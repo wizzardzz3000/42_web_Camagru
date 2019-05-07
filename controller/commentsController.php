@@ -26,8 +26,10 @@ function showCommentUpdateView($comment_id, $picture_id)
 {
     $commentManager = new CommentManager();
     $userManager = new UserManager();
-    $users = $userManager->getUsers();
+
     $singleComment = $commentManager->getSingleComment($comment_id);
+    $users = $userManager->getUsers();
+
     require('view/updateCommentView.php');
 }
 
@@ -40,7 +42,7 @@ function modifyComment($comment_id, $picture_id, $comment)
         throw new Exception('Impossible de modifier le commentaire !');
     }
     else {
-        header('Location: index.php?view=picture&id=' . $picture['picture_id']);
+        header('Location: index.php?view=picture&id=' . $picture_id);
     }
 }
 

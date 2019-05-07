@@ -20,7 +20,7 @@
     <p><strong><?= htmlspecialchars($author) ?></strong> le <?= $comment[0]['comment_date_fr']?></p>
     <p><?= nl2br(htmlspecialchars($comment[0]['comment'])) ?></p>
   
-    <form action="index.php?action=modifyComment&comment_id=<?= $comment['id'] ?>" method="post">
+    <form action="index.php?action=modifyComment&comment_id=<?= $comment[0]['id'] ?>&picture_id=<?= $picture_id ?>" method="post">
         <div>
             <label for="comment">Nouveau commentaire :</label><br />
             <textarea id="comment" name="comment"></textarea>
