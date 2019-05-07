@@ -13,7 +13,7 @@ function showMedia($arg, $picture_id)
     $commentManager = new CommentManager();
     $likesManager = new LikesManager();
 
-    $gallery = $galleryManager->getPictures();
+    $gallery = $galleryManager->getPictures("");
     $users = $userManager->getUsers();
     $comments = $commentManager->getComments();
     $likes = $likesManager->getLikes();
@@ -32,7 +32,14 @@ function deletePicture($picture_id)
 {
     $pictureManager = new PictureManager();
 
-    if ($delete = $pictureManager->deleteSinglePicture($picture_id));
+    if ($picture = $pictureManager->getPictures($picture_id))
+    {
+        $pic = $picture->fetchAll();
+        $picture_name = $pic[0]['content'];
+    }
+
+
+    if ($delete = $pictureManager->deleteSinglePicture($picture_id, $picture_name));
     {
         header('Location: index.php');
     }

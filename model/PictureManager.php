@@ -1,12 +1,19 @@
 <?
-require_once('model/Manager.php');
+require_once $_SERVER['DOCUMENT_ROOT'].'/model/Manager.php';
 
 class PictureManager extends Manager
 {
-    public function getPictures()
+    public function getPictures($picture_id)
     {
         $db = $this->dbConnect();
-        $pictures = $db->query('SELECT picture_id, user_id, content FROM pictures ORDER BY content DESC');
+        if ($picture_id != '')
+        {
+            $pictures = $db->query("SELECT picture_id, user_id, content FROM pictures WHERE picture_id = '$picture_id'");
+        }
+        else
+        {
+            $pictures = $db->query('SELECT picture_id, user_id, content FROM pictures ORDER BY content DESC');
+        }
     
         return $pictures;
     }
@@ -20,7 +27,7 @@ class PictureManager extends Manager
         return $affectedLines;
     }
 
-    public function deleteSinglePicture($picture_id)
+    public function deleteSinglePicture($picture_id, $picture_name)
     {
         $db = $this->dbConnect();
         
@@ -31,6 +38,11 @@ class PictureManager extends Manager
         $affectedLines = $picture->execute();
         $res1 = $likes->execute();
         $res2 = $comments->execute();
+
+        $file_path = $_SERVER['DOCUMENT_ROOT'].'/pictures/';
+
+        if (file_exists($file_path . $picture_name))
+            unlink($file_path . $picture_name);
 
         return $affectedLines;
     }

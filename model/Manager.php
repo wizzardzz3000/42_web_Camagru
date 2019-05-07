@@ -1,5 +1,5 @@
 <?
-require('config/database.php');
+require $_SERVER['DOCUMENT_ROOT'].'/config/database.php';
 
 class Manager
 {

@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once('../model/PictureManager.php');
-require_once('../model/UserManager.php');
+require_once $_SERVER['DOCUMENT_ROOT'].'/model/PictureManager.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/model/UserManager.php';
 
 if(isset($_POST['img']))
 {
@@ -11,7 +11,7 @@ if(isset($_POST['img']))
 
 function saveData($image)
 {
-    $galleryManager = new GalleryManager();
+    $galleryManager = new PictureManager();
     $userManager = new UserManager();
 
     $users = $userManager->getUser($_SESSION["loggued_on_user"], "");

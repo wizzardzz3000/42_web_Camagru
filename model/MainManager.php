@@ -1,5 +1,5 @@
 <?
-require_once('model/Manager.php');
+require_once $_SERVER['DOCUMENT_ROOT'].'/model/Manager.php';
 
 class MainManager extends Manager
 {
