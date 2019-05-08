@@ -48,7 +48,7 @@
             <div id='full_product'>
                 <div id='single_product'>
                     <?php
-                        echo '<img class="gallery_picture" src="pictures/'.$img.'"/>';
+                        echo '<img class="gallery_picture" src="pictures/snaps/'.$img.'"/>';
                     ?>
                 </div>
             </div>

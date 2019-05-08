@@ -39,7 +39,7 @@ class PictureManager extends Manager
         $res1 = $likes->execute();
         $res2 = $comments->execute();
 
-        $file_path = $_SERVER['DOCUMENT_ROOT'].'/pictures/';
+        $file_path = $_SERVER['DOCUMENT_ROOT'].'/pictures/snaps/';
 
         if (file_exists($file_path . $picture_name))
             unlink($file_path . $picture_name);

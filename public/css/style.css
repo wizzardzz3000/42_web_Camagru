@@ -1,12 +1,20 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 .main_div {
     margin-top: 0px;
-    height: 1100px;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
 }
 
 .top_bar {
     display: inline;
     text-align: center;   
+    background-color: rgb(205, 205, 252);
 }
 .top_bar_elements {
     margin: 0;
@@ -15,7 +23,7 @@
 }
 .top_bar_elements li {
     font-family: "Avenir",Arial,sans-serif;
-    line-height: 50px;
+    line-height: 40px;
     display: inline;
 }
 
@@ -61,6 +69,7 @@ a
 footer {
     font-family: "Avenir",Arial,sans-serif;
     text-align: center;
+    height: 3vh;
 }
 
 li {
@@ -134,13 +143,11 @@ li {
     margin-bottom: 15px;
     margin-right: 15px;
     width: 300px;
-    height: 225px;
   }
 
 #single_product {
     position: relative;
     width: 300px;
-    height: 225px;
 }
 .gallery_picture {
     display: block;
@@ -153,16 +160,14 @@ li {
     display: block;
     float: left;
     margin-left: auto;
-    margin-bottom: 1px;
+    margin-bottom: 10px;
     margin-right: 10px;
     width: 200px;
-    height: 160px;
   }
 
 #single_product_small {
     position: relative;
     width: 200px;
-    height: 160px;
 }
 
 .band span {
@@ -184,27 +189,58 @@ li {
 }
 
 .mainView {
-    width: 100%;
-    height: 1000px;
+    width: 100vw;
+    height: 90vh;
     background-color: rgb(216, 215, 215);
 }
 
-.main1 {
+/* LEFT BOX */
+.left_box {
+    display: inline-block;
+}
+.snap_button {
+    width: 300px;
+}
+.camera_view, .snap_button, .snap_view {
+    display: block;
+    margin: auto;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+.left_box {
     float: left;
-    width: 600px;
+    height: 85vh;
+    width: 35vw;
+    background-color: rgb(202, 247, 185); 
 }
 
-.main2 {
-    background-color: rgb(250, 176, 176);
+
+
+.right_box {
     display: inline;
+}
+.right_box {
+    float: right;
+    height: 80vh;
+    width: 50vw;
+    background-color: rgb(250, 176, 176); 
 }
 
 .filters_list {
+    vertical-align: middle;
     background-color: rgb(200, 200, 252);
-    height: 100px;
-    width: 100%;
+    height: 90px;
+    width: 100vw;
 }
 
 .filter {
     float: left;
+    height: 12vh;
+}
+
+.camera_view {
+    height: 35vh;
+}
+.snap_view {
+    height: 35vh;
 }

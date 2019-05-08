@@ -37,7 +37,7 @@
                     <a href="index.php?view=picture&id=<?= $picture['picture_id'] ?>">
                     <?php
                         $img = $picture['content'];
-                        echo '<img class="gallery_picture" src="pictures/'.$img.'"/>';
+                        echo '<img class="gallery_picture" src="pictures/snaps/'.$img.'"/>';
                     ?>
                     <div class="band">
                         <?

@@ -1,15 +1,18 @@
 <?php
 session_start();
 require_once $_SERVER['DOCUMENT_ROOT'].'/model/PictureManager.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/model/FiltersManager.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/model/UserManager.php';
 
 // LOAD THE CAMERA VIEW
 function showMainView()
 {
     $galleryManager = new PictureManager();
+    $filterManager = new FiltersManager();
     $userManager = new UserManager();
 
     $gallery = $galleryManager->getPictures("");
+    $filters = $filterManager->getFilters();
     $users = $userManager->getUsers();
 
     require('view/mainView.php');
@@ -38,7 +41,7 @@ function saveData($image)
     $data = base64_decode($image);
     $time = time();
     $file_name = $time . '.png';
-    $output = '../pictures/' . $file_name;
+    $output = '../pictures/snaps/' . $file_name;
     file_put_contents($output, $data);
 
     if ($pic = $galleryManager->savePictures($user_id, $file_name))

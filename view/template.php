@@ -28,7 +28,7 @@
     </head>
     <hr>
     <body>
-        <div class ="main_div">
+        <div class="main_div">
             <?= $content ?>
             <?= $errorMsg ?>
         </div>
