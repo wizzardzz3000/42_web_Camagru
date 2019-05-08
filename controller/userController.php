@@ -1,6 +1,7 @@
 <?
-require_once('model/UserManager.php');
-require_once('controller/mailController.php');
+require_once $_SERVER['DOCUMENT_ROOT'].'/model/UserManager.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/controller/mailController.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/controller/pictureController.php';
 
 // LOG USER IN
 // ---------------------------------------------------------------
@@ -15,7 +16,7 @@ function login($login, $passwd)
         if (authUser($login, $passwd) === 1)
         {
             $_SESSION['loggued_on_user'] = $login;
-            require('view/mainView.php');
+            showMainView();
         } else if (authUser($login, $passwd) === 2) {
             $_SESSION['loggued_on_user'] = '';
             $wrong_password = "Wrong password :(";

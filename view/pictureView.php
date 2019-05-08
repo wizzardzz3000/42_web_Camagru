@@ -19,15 +19,18 @@
                     if ($pictures[$i]['picture_id'] == $picture_id)
                     {
                         $img = $pictures[$i]['content'];
-                        $was_taken_by = $pictures[$i]['user_id'];
+                        $picture_was_taken_by = $pictures[$i]['user_id'];
                     }
                 }
                 for ($i = 0; $user[$i]; $i++)
                 {
+                    if ($picture_was_taken_by == $user[$i]['user_id'])
+                    {
+                        $picture_author = $user[$i]['user_name'];
+                    }   
                     if ($user[$i]['user_name'] == $_SESSION['loggued_on_user'])
                     {
-                        $user_id = $user[$i]['user_id'];
-                        $author = $user[$i]['user_name'];
+                        $loggued_user_id = $user[$i]['user_id'];
                     }
                 }
                 for ($i = 0; $like[$i]; $i++)
@@ -36,7 +39,7 @@
                     {
                         $likes_nb++;
                     }
-                    if ($like[$i]['picture_id'] == $picture_id && $like[$i]['user_id'] == $user_id)
+                    if ($like[$i]['picture_id'] == $picture_id && $like[$i]['user_id'] == $loggued_user_id)
                     {
                         $user_has_liked = 1;
                     }
@@ -49,7 +52,11 @@
                     ?>
                 </div>
             </div>
-            <form action="index.php?action=addComment&picture_id=<?= $picture_id ?>&user_id=<?= $user_id ?>" method="post">
+            <?php
+                if ($_SESSION['loggued_on_user'] != '')
+                {
+            ?>
+            <form action="index.php?action=addComment&picture_id=<?= $picture_id ?>&user_id=<?= $loggued_user_id ?>" method="post">
                 <div>
                     <label for="comment">Comment</label><br />
                     <textarea id="comment" name="comment"></textarea>
@@ -59,6 +66,9 @@
                 </div>
             </form>
             <?php
+                }
+            ?>
+            <?php
                 for ($i = 0; $comment[$i]; $i++)
                 {
                     if ($comment[$i]['picture_id'] == $picture_id)
@@ -66,9 +76,9 @@
             ?>
             <div id='full_product'>
                 <div id='single_product'>
-                    <p><strong><?= htmlspecialchars($author) ?></strong> le <?= $comment[$i]['comment_date_fr'] ?>
+                    <p><strong><?= htmlspecialchars($picture_author) ?></strong> le <?= $comment[$i]['comment_date_fr'] ?>
                     <?php
-                        if($comment[$i]['user_id'] == $user_id)
+                        if($comment[$i]['user_id'] == $loggued_user_id)
                         {
                     ?>
                             <p><a href="index.php?view=updateCommentView&comment_id=<?= $comment[$i]['id'] ?>&picture_id=<?= $picture_id ?>">(Edit)</a></p>
@@ -86,17 +96,17 @@
             </div>
                 <?php
                     echo '<p> '.$likes_nb.' likes</p>';
-                    if($was_taken_by == $user_id)
+                    if($picture_was_taken_by == $loggued_user_id)
                     {
                         echo '<p> <a href="index.php?action=deletePicture&id='.$picture_id.' ">(Delete picture) </a> </p>';
                     }
                     if ($user_has_liked == 1)
                     {
-                        echo '<p><a href="index.php?action=unlike&picture_id='.$picture_id.'&user_id='.$user_id.'">(Unlike)</a></p>';
+                        echo '<p><a href="index.php?action=unlike&picture_id='.$picture_id.'&user_id='.$loggued_user_id.'">(Unlike)</a></p>';
                     }
-                    else if ($user_id)
+                    else if ($loggued_user_id)
                     {
-                        echo '<p><a href="index.php?action=like&picture_id='.$picture_id.'&user_id='.$user_id.'">(Like)</a></p>';
+                        echo '<p><a href="index.php?action=like&picture_id='.$picture_id.'&user_id='.$loggued_user_id.'">(Like)</a></p>';
                     }
                 ?>
             <div>
