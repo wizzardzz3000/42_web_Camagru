@@ -12,19 +12,19 @@ html, body {
     display: grid;
     width: 100vw;
     height: 100vh;
-    background-color: rgb(250, 223, 193);
+    /* background-color: rgb(250, 223, 193); */
 }
 
 footer {
-    background-color: rgb(146, 144, 144);
+    /* background-color: rgb(237, 242, 253); */
     font-family: "Avenir",Arial,sans-serif;
     text-align: center;
-    height: 40px;
+    height: 20px;
 }
 
 header {
-    background-color: rgb(146, 144, 144);
-    height: 60px;
+    /* background-color: rgb(224, 232, 250); */
+    height: 40px;
 }
 
 /* #header {
@@ -33,24 +33,30 @@ header {
 #center {
     height: 85vh;
 }
-/* #footer {
 
-} */
-.main_div {
-    margin-top: 0px;
-    /* height: 100vh; */
-    width: 100vw;
+.gallery_top {
+    margin: auto;
+    height: 50px;
 }
+h4 {
+    margin-top: auto;
+    margin-bottom: auto;
+    font-family: "Avenir",Arial,sans-serif;
+    line-height: 50px;
+    font-size: 20px;
+    text-align: center;
+}
+
 .mainView {
     width: 100vw;
     height: 80vh;
-    background-color: rgb(172, 229, 255);
+    /* background-color: rgb(172, 229, 255); */
 }
 
 .top_bar {
     display: inline;
     text-align: center;   
-    background-color: rgb(205, 205, 252);
+    /* background-color: rgb(205, 205, 252); */
 }
 .top_bar_elements {
     margin: 0;
@@ -69,10 +75,6 @@ label {
 }
 h2 {
     font-family: "Avenir",Arial,sans-serif;
-}
-h4 {
-    font-family: "Avenir",Arial,sans-serif;
-    font-size: 20px;
 }
 h1, h3
 {
@@ -107,6 +109,7 @@ li {
     padding: 10;
 }
 .logo {
+    margin-left: 5px;
     font-size: 30px;
     font-weight: 840;
     float: left;
@@ -194,22 +197,36 @@ li {
     margin-bottom: 10px;
 }
 .left_box {
+    margin-left: 70px;
+    margin-top: 10px;
     float: left;
     height: 65vh;
     width: 35vw;
-    background-color: rgb(202, 247, 185); 
+    /* background-color: rgb(231, 252, 223);  */
 }
 
 
 /** BOX SMALL **/
+.right_box_top {
+    height: 40px;
+}
+h5 {
+    margin-top: auto;
+    margin-bottom: auto;
+    font-family: "Avenir",Arial,sans-serif;
+    line-height: 20px;
+    font-size: 20px;
+    text-align: center;
+}
 .right_box {
     float: right;
+    margin-right: 80px;
     height: 65vh;
     width: 40vw;
-    background-color: rgb(250, 176, 176); 
+    /* background-color: rgb(250, 176, 176);  */
 }
 .right_box section {
-    height: 65vh;
+    height: 54vh;
     width: 50vw;
     overflow-y: auto;
     grid-template-columns: 100px 1fr;
@@ -231,12 +248,12 @@ li {
 
 /** BOX BIG **/
 .main_box {
-    height: 80vh;
+    height: 82vh;
     width: 100vw;
-    background-color: rgb(250, 176, 176); 
+    /* background-color: rgb(250, 176, 176);  */
 }
 .main_box section {
-    height: 75vh;
+    height: 82vh;
     width: 100vw;
     overflow-y: auto;
   }
@@ -244,7 +261,7 @@ li {
     position: relative;
     display: block;
     float: left;
-    margin-left: auto;
+    margin-left: 4px;
     margin-bottom: 7px;
     margin-right: 7px;
     width: 240px;
@@ -256,7 +273,7 @@ li {
 }
 
 .filters_list {
-    background-color: rgb(200, 200, 252);
+    /* background-color: rgb(200, 200, 252); */
     height: 90px;
     width: 100vw;
 }
@@ -268,8 +285,8 @@ li {
 }
 
 .camera_view {
-    height: 35vh;
+    height: 33vh;
 }
 .snap_view {
-    height: 35vh;
+    height: 33vh;
 }

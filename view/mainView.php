@@ -20,12 +20,13 @@
             <video class="camera_view" id="video" autoplay></video>
             <button class="snap_button" id="startbutton">Snap it!</button>
             <canvas class="snap_view" id="canvas"></canvas>
-
     </div>
 
     <div class="right_box">
+    <div class="right_box_top">
+        <h5>Your pictures</h5>
+        </div>
         <section id="content">
-            <p>Your pictures</p>
             <?php
                 $picture = $gallery->fetchAll();
                 $user = $users->fetchAll();

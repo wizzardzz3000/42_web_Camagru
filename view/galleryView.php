@@ -1,6 +1,8 @@
 <?php ob_start(); ?>
 
-<h4>Gallery</h4>
+<div class="gallery_top">
+    <h4>Gallery</h4>
+</div>
 
 <div class="mainView">
     <div class="main_box">

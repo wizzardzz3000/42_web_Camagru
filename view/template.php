@@ -41,7 +41,7 @@
       
         <section id="footer">
             <footer>
-                <p>© Martin Scaglioni 2019</p>
+                <p>© Martini Scaglioni 2019</p>
             </footer>
         </section>
     </section>
