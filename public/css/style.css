@@ -140,34 +140,19 @@ li {
     display: block;
     float: left;
     margin-left: auto;
-    margin-bottom: 15px;
-    margin-right: 15px;
-    width: 300px;
+    margin-bottom: 7px;
+    margin-right: 7px;
+    width: 240px;
   }
 
 #single_product {
     position: relative;
-    width: 300px;
+    width: 240px;
 }
 .gallery_picture {
     display: block;
-    width: 100%;
+    width: 240px;
     height: auto;
-}
-
-#full_product_small {
-    position: relative;
-    display: block;
-    float: left;
-    margin-left: auto;
-    margin-bottom: 10px;
-    margin-right: 10px;
-    width: 200px;
-  }
-
-#single_product_small {
-    position: relative;
-    width: 200px;
 }
 
 .band span {
@@ -179,10 +164,11 @@ li {
 .band {
     background-color: rgba(0,0,0,0.25);
     position: absolute;
-    height: 30px;
-    line-height: 30px;
-    width: 300px;
+    height: 20px;
+    line-height: 20px;
+    width: 240px;
     font-family: Verdana, Geneva, sans-serif;
+    font-size: 60%;
     color: #FFF;
     bottom: 0px;
     z-index: 1;
@@ -192,6 +178,26 @@ li {
     width: 100vw;
     height: 90vh;
     background-color: rgb(216, 215, 215);
+}
+
+#full_product_small {
+    position: relative;
+    display: block;
+    float: left;
+    margin-left: auto;
+    margin-bottom: 4px;
+    margin-right: 4px;
+    width: 165px;
+  }
+
+#single_product_small {
+    position: relative;
+    width: 165px;
+}
+.gallery_picture_small {
+    display: block;
+    width: 165px;
+    height: auto;
 }
 
 /* LEFT BOX */
@@ -227,7 +233,6 @@ li {
 }
 
 .filters_list {
-    vertical-align: middle;
     background-color: rgb(200, 200, 252);
     height: 90px;
     width: 100vw;

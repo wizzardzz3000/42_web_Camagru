@@ -46,7 +46,7 @@
                         <div id='single_product_small'>
                             <a href="index.php?view=picture&id=<?= $picture[$i]['picture_id'] ?>">
                                 <?php
-                                    echo '<img class="gallery_picture" src="pictures/snaps/'.$picture[$i]['content'].'"/>';
+                                    echo '<img class="gallery_picture_small" src="pictures/snaps/'.$picture[$i]['content'].'"/>';
                                 ?>
                             </a>
                         </div>
