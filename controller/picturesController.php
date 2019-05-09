@@ -1,6 +1,5 @@
 <?php
 session_start();
-require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
 require_once('model/LikesManager.php');
 require_once('model/PictureManager.php');

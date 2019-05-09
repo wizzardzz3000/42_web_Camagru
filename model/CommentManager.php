@@ -9,6 +9,7 @@ class CommentManager extends Manager
         $comments = $db->query('SELECT id, picture_id, user_id, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments ORDER BY id ASC');
 
         return $comments;
+        $comments->closeCursor(); // add to every other connexion
     }
 
     public function getSingleComment($comment_id)
