@@ -39,7 +39,8 @@ function saveData($image)
     $image = str_replace('data:image/png;base64,', '', $image);
     $image = str_replace(' ', '+', $image);
     $data = base64_decode($image);
-    $time = time();
+    $time = microtime();
+    $time = str_replace(' ', ':', $time);
     $file_name = $time . '.png';
     $output = '../pictures/snaps/' . $file_name;
     file_put_contents($output, $data);

@@ -12,7 +12,7 @@ class PictureManager extends Manager
         }
         else
         {
-            $pictures = $db->query('SELECT picture_id, user_id, content FROM pictures ORDER BY content DESC');
+            $pictures = $db->query('SELECT picture_id, user_id, content FROM pictures ORDER BY picture_id DESC');
         }
     
         return $pictures;

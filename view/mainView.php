@@ -8,7 +8,9 @@
         {
             if (strpos($filters[$i], '.png'))
             {
-                echo '<img class="filter" src="pictures/filters/'.$filters[$i].'"/>';
+                echo '<div class="filter_box">';
+                    echo '<img class="filter" src="pictures/filters/'.$filters[$i].'"/>';
+                echo '</div>';
             }
         }
     ?>

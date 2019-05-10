@@ -277,10 +277,20 @@ h5 {
     height: 90px;
     width: 100vw;
 }
+.filters_list {
+    /* display: inline; */
+}
 
-.filter {
-    margin-top: 5px;
+.filter_box {
+    display: block;
     float: left;
+    height: 90px;
+    width: 90px;
+}
+.filter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
     height: 80px;
 }
 
