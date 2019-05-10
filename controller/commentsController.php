@@ -9,16 +9,17 @@ function getComment($comment_id)
     require('view/updateCommentView.php');
 }
 
-function addComment($post_id, $user_id, $comment)
+function addComment($picture_id, $user_id, $comment)
 {
     $commentManager = new CommentManager();
-    $affectedLines = $commentManager->postComment($post_id, $user_id, $comment);
+    $affectedLines = $commentManager->postComment($picture_id, $user_id, $comment);
 
     if ($affectedLines === false) {
         throw new Exception('Impossible d\'ajouter le commentaire !');
     }
     else {
-        header('Location: index.php?view=picture&id=' . $post_id);
+        checkForEmailNotification("comment", $picture_id);
+        header('Location: index.php?view=picture&id=' . $picture_id);
     }
 }
 

@@ -1,6 +1,43 @@
 <?
 require_once $_SERVER['DOCUMENT_ROOT'].'/model/UserManager.php';
 
+// CHECK IF NOTIFICATION NEEDS TO BE SENT
+// ---------------------------------------------------------------
+function checkForEmailNotification($kind, $picture_id)
+{
+    $userManager = new UserManager();
+    $pictureManager = new PictureManager();
+
+    $users = $userManager->getUsers();
+    $pictures = $pictureManager->getPictures("");
+
+    $user = $users->fetchAll();
+    $picture = $pictures->fetchAll();
+
+    if ($user && $picture && $kind != '' && $picture_id > 0)
+    {
+        for ($i = 0; $picture[$i]; $i++)
+        {
+            if ($picture_id == $picture[$i]['picture_id'])
+            {
+                $picture_was_taken_by = $picture[$i]['user_id'];
+            }
+        }
+        for ($i = 0; $user[$i]; $i++)
+        {
+            if ($picture_was_taken_by == $user[$i]['user_id'])
+            {
+                if ($user[$i]['notifications'] == 1)
+                {
+                    $name = $user[$i]['user_name'];
+                    $email = $user[$i]['user_email'];
+                    sendNotificationEmail($kind, $name, $email, $picture_id);   
+                }
+            }
+        }
+    }
+}
+
 // SEND EMAIL FOR ACCOUNT VERIFICATION
 // ---------------------------------------------------------------
 function sendAccountVerificationEmail($name, $email, $hash)
@@ -53,36 +90,26 @@ function sendPasswordResetEmail($email)
     require('view/forgotPasswordView.php');
 }
 
-// SEND EMAIL FOR LIKE NOTIFICATION
+// SEND EMAIL FOR NOTIFICATION
 // ---------------------------------------------------------------
-function sendLikeEmail($name, $email, $picture_id)
+function sendNotificationEmail($kind, $name, $email, $picture_id)
 {
-    $to = $email;
-    $subject = 'New like on your picture!';
-    $message = '
-    
-    Hello '.$name.'!
-    Someone liked your picture! 
-    
-    Click here to check it:
-    http://localhost:8100//index.php?view=picture&id='.$picture_id.'
-    
-    ';
-                        
-    $headers = 'From:noreply@camagru.com' . "\r\n";
-    mail($to, $subject, $message, $headers);
-}
+    if ($kind == "like")
+    {
+        $subject = 'New like on your picture!';
+        $sentence_1 = 'Someone liked your picture! ';
+    }
+    if ($kind == "comment")
+    {
+        $subject = 'New comment on your picture!';
+        $sentence_1 = 'Someone left a comment on your picture! ';
+    }
 
-// SEND EMAIL FOR COMMENT NOTIFICATION
-// ---------------------------------------------------------------
-function sendCommentEmail($name, $email, $picture_id)
-{
     $to = $email;
-    $subject = 'New comment on your picture!';
     $message = '
     
     Hello '.$name.'!
-    Someone left a comment on your picture! 
+    '.$sentence_1.'
     
     Click here to check it:
     http://localhost:8100//index.php?view=picture&id='.$picture_id.'
