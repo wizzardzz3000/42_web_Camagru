@@ -7,7 +7,6 @@ function like($picture_id, $user_id)
 
     if ($likes = $likesManager->saveLike($picture_id, $user_id))
     {
-        checkForEmailNotification("like", $picture_id);
         header('Location: index.php?view=picture&id='.$picture_id.'');
     }
 }

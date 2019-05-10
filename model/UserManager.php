@@ -81,7 +81,7 @@ class UserManager extends Manager
                         user_password = '$user_pwd',
                         hash = '$hash',
                         account_valid = 0,
-                        notifications = 1";
+                        notifications = 1"; // notifications activated by default
                 $user = $db->prepare($query);
                 $affectedLines = $user->execute(array($user_name, $user_email, $user_pwd, $hash));
                 if (!$affectedLines)
@@ -110,10 +110,11 @@ class UserManager extends Manager
             {
                 return (2);
             }
-            // VERIFY ACCOUNT
-            $query = "UPDATE users SET account_valid = ? WHERE user_email = ?";
+            // VERIFY ACCOUNT AND CHANGE HASH
+            $hash = hash("whirlpool", rand(0,1000));
+            $query = "UPDATE users SET account_valid = ?, hash = ? WHERE user_email = ?";
             $user = $db->prepare($query);
-            $affectedLines = $user->execute(array(1, $email));
+            $affectedLines = $user->execute(array(1, $hash, $email));
             if (!$affectedLines)
             {
                 die("ERROR: ". mysqli_error($db));

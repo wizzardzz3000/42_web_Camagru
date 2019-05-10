@@ -94,11 +94,6 @@ function sendPasswordResetEmail($email)
 // ---------------------------------------------------------------
 function sendNotificationEmail($kind, $name, $email, $picture_id)
 {
-    if ($kind == "like")
-    {
-        $subject = 'New like on your picture!';
-        $sentence_1 = 'Someone liked your picture! ';
-    }
     if ($kind == "comment")
     {
         $subject = 'New comment on your picture!';

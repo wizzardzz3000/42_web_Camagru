@@ -44,7 +44,13 @@
                         $user_has_liked = 1;
                     }
                 }
+                $date = strstr($img, ':');
+                $date = substr($date, 1);
+                $date = strtok($date, '.');
+                date_default_timezone_set('Europe/Paris');
             ?>
+            <p><strong>by </strong><?= $picture_author ?></p>
+            <p><strong>on </strong><?= date('m/d/Y H:i:s', $date) ?></p>
             <div id='full_product'>
                 <div id='single_product'>
                     <?php
@@ -99,7 +105,6 @@
                     if($picture_was_taken_by == $loggued_user_id)
                     {
                         echo '<p> <a href="index.php?action=deletePicture&id='.$picture_id.'" onclick="return confirm(\'Do you really want to delete that picture?\')"> (Delete picture) </a> </p>';
-                        // onclick="return confirm('Do you really want to remove your comment?')"
                     }
                     if ($user_has_liked == 1)
                     {
