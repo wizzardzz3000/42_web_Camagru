@@ -52,3 +52,43 @@ function sendPasswordResetEmail($email)
     
     require('view/forgotPasswordView.php');
 }
+
+// SEND EMAIL FOR LIKE NOTIFICATION
+// ---------------------------------------------------------------
+function sendLikeEmail($name, $email, $picture_id)
+{
+    $to = $email;
+    $subject = 'New like on your picture!';
+    $message = '
+    
+    Hello '.$name.'!
+    Someone liked your picture! 
+    
+    Click here to check it:
+    http://localhost:8100//index.php?view=picture&id='.$picture_id.'
+    
+    ';
+                        
+    $headers = 'From:noreply@camagru.com' . "\r\n";
+    mail($to, $subject, $message, $headers);
+}
+
+// SEND EMAIL FOR COMMENT NOTIFICATION
+// ---------------------------------------------------------------
+function sendCommentEmail($name, $email, $picture_id)
+{
+    $to = $email;
+    $subject = 'New comment on your picture!';
+    $message = '
+    
+    Hello '.$name.'!
+    Someone left a comment on your picture! 
+    
+    Click here to check it:
+    http://localhost:8100//index.php?view=picture&id='.$picture_id.'
+    
+    ';
+                        
+    $headers = 'From:noreply@camagru.com' . "\r\n";
+    mail($to, $subject, $message, $headers);
+}
