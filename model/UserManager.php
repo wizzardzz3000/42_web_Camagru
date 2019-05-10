@@ -80,7 +80,8 @@ class UserManager extends Manager
                         user_email = '$user_email',
                         user_password = '$user_pwd',
                         hash = '$hash',
-                        account_valid = 0";
+                        account_valid = 0,
+                        notifications = 1";
                 $user = $db->prepare($query);
                 $affectedLines = $user->execute(array($user_name, $user_email, $user_pwd, $hash));
                 if (!$affectedLines)
