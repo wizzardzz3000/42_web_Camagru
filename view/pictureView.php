@@ -82,7 +82,7 @@
                         {
                     ?>
                             <p><a href="index.php?view=updateCommentView&comment_id=<?= $comment[$i]['id'] ?>&picture_id=<?= $picture_id ?>">(Edit)</a></p>
-                            <p><a href="index.php?action=deleteComment&comment_id=<?= $comment[$i]['id'] ?>&picture_id=<?= $picture_id ?>">(Delete)</a></p>
+                            <p><a href="index.php?action=deleteComment&comment_id=<?= $comment[$i]['id'] ?>&picture_id=<?= $picture_id ?>" onclick="return confirm('Do you really want to remove your comment?')">(Delete)</a></p>
                     <?php
                         }
                     ?>
@@ -98,7 +98,8 @@
                     echo '<p> '.$likes_nb.' likes</p>';
                     if($picture_was_taken_by == $loggued_user_id)
                     {
-                        echo '<p> <a href="index.php?action=deletePicture&id='.$picture_id.' ">(Delete picture) </a> </p>';
+                        echo '<p> <a href="index.php?action=deletePicture&id='.$picture_id.'" onclick="return confirm(\'Do you really want to delete that picture?\')"> (Delete picture) </a> </p>';
+                        // onclick="return confirm('Do you really want to remove your comment?')"
                     }
                     if ($user_has_liked == 1)
                     {
