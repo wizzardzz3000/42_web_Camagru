@@ -103,7 +103,7 @@ function getAccountData()
                 'email' => $user['user_email'],
                 'user_id' => $user['user_id'],
                 'pictures_taken' => $pictures_taken,
-                'account_verified' => $user['account_verified'],
+                'account_valid' => $user['account_valid'],
                 'notifications' => $user['notifications']
                 // etc....
             );

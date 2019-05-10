@@ -6,9 +6,24 @@
                 $user_data = getAccountData();
             ?>
                 <p><strong>Name <br></strong><?= $user_data['name'] ?></p>
-                <p><strong>Email <br></strong><?= $user_data['email'] ?></p>
                 <!-- pass php variable to javascript : -->
-                <div id="dom-target" style="display: none;">
+                <div id="account-target" style="display: none;">
+                    <?php 
+                        echo htmlspecialchars($user_data['account_valid']);
+                    ?>
+                </div>
+                <!-- ... -->
+                <p><strong>Email <br></strong></p>
+                <!-- pass php variable to javascript : -->
+                <div id="email-target" style="display: none;">
+                    <?php 
+                        echo htmlspecialchars($user_data['email']);
+                    ?>
+                </div>
+                <!-- ... -->
+                <p id="email_tag"><strong><br></strong></p>
+                <!-- pass php variable to javascript : -->
+                <div id="notification-target" style="display: none;">
                     <?php 
                         echo htmlspecialchars($user_data['notifications']);
                     ?>
@@ -33,8 +48,6 @@
     
                 </div>
                 <p><strong>Pictures <br></strong></p><?= $user_data['pictures_taken'] ?></p>
-                <p><strong>Comments <br></strong></p>
-                <p><strong>Likes <br></strong></p>
         </div>
         <div class="modify_form">
             <h2>Modify your informations</h2>
