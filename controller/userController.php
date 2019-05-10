@@ -101,7 +101,10 @@ function getAccountData()
             $user_data = array (
                 'name' => $user['user_name'], 
                 'email' => $user['user_email'],
-                'pictures_taken' => $pictures_taken
+                'user_id' => $user['user_id'],
+                'pictures_taken' => $pictures_taken,
+                'account_verified' => $user['account_verified'],
+                'notifications' => $user['notifications']
                 // etc....
             );
         }
@@ -314,6 +317,28 @@ function resetPassword($email, $hash, $r_password, $c_password)
         }
     }
     require('view/resetPasswordView.php');
+}
+
+// NOTIFICATIONS
+// ---------------------------------------------------------------
+if(isset($_POST['user_id']) && isset($_POST['bool']))
+{
+    $user_id = $_POST['user_id'];
+    $bool = $_POST['bool'];
+    changeNotificationsPreferences($user_id, $bool);
+}
+
+function changeNotificationsPreferences($user_id, $bool)
+{
+    $userManager = new UserManager();
+    if ($user_id && ($bool == 1 || $bool == 0))
+    {
+        if ($userManager->turnNotificationsOnOff($user_id, $bool) == 1)
+        {
+            return(1);
+        }
+    }
+    return(0);
 }
 
 // function resend($name, $email, $hash)

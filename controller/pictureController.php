@@ -5,6 +5,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/model/FiltersManager.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/model/UserManager.php';
 
 // LOAD THE CAMERA VIEW
+// ---------------------------------------------------------------
 function showMainView()
 {
     $galleryManager = new PictureManager();
@@ -19,6 +20,7 @@ function showMainView()
 }
 
 // SAVE THE PICTURE (CALLED FROM AJAX)
+// ---------------------------------------------------------------
 if(isset($_POST['img']))
 {
     $image = $_POST['img'];

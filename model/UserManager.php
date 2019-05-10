@@ -8,7 +8,7 @@ class UserManager extends Manager
     public function getUsers()
     {
         $db = $this->dbConnect();
-        $req = $db->query("SELECT user_id, user_name, user_email, user_password, hash, account_valid FROM users ORDER BY user_id");
+        $req = $db->query("SELECT user_id, user_name, user_email, user_password, hash, account_valid, notifications FROM users ORDER BY user_id");
 
         return $req;
     }
@@ -18,9 +18,9 @@ class UserManager extends Manager
     {
         $db = $this->dbConnect();
         if ($login) {
-            $req = $db->query("SELECT user_id, user_name, user_email, user_password, hash, account_valid FROM users WHERE user_name = '$login'");
+            $req = $db->query("SELECT user_id, user_name, user_email, user_password, hash, account_valid, notifications FROM users WHERE user_name = '$login'");
         } else if ($email) {
-            $req = $db->query("SELECT user_id, user_name, user_email, user_password, hash, account_valid FROM users WHERE user_email = '$email'");
+            $req = $db->query("SELECT user_id, user_name, user_email, user_password, hash, account_valid, notifications FROM users WHERE user_email = '$email'");
         }
 
         return $req;
@@ -170,5 +170,24 @@ class UserManager extends Manager
             if ($affectedLines)
                 return(1);
         }
+    }
+    
+    // NOTIFICATIONS
+    // ---------------------------------------------------------------
+    public function turnNotificationsOnOff($user_id, $bool)
+    {
+        if ($bool == 1 || $bool == 0)
+        {
+            $db = $this->dbConnect();
+            $query = "UPDATE users SET notifications = ? WHERE user_id = '$user_id'";
+            $user = $db->prepare($query);
+            $affectedLines = $user->execute(array($bool));
+            if (!$affectedLines)
+            {
+                die("ERROR: ". mysqli_error($db));
+            } 
+        }
+        if ($affectedLines)
+            return(1);
     }
 }

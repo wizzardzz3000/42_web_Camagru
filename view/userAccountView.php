@@ -7,6 +7,31 @@
             ?>
                 <p><strong>Name <br></strong><?= $user_data['name'] ?></p>
                 <p><strong>Email <br></strong><?= $user_data['email'] ?></p>
+                <!-- pass php variable to javascript : -->
+                <div id="dom-target" style="display: none;">
+                    <?php 
+                        echo htmlspecialchars($user_data['notifications']);
+                    ?>
+                </div>
+                <!-- ... -->
+                <p id="notifications_tag"><strong>Notifications <br></strong></p>
+                <div>
+                    <?php
+                        if ($user_data['notifications'] == 0)
+                        {
+                            $notification_value = "Turn notifications on";
+                        } 
+                        else if ($user_data['notifications'] == 1)
+                        {
+                            $notification_value = "Turn notifications off";
+                        }
+                    ?>
+                    <?php
+                        $user_id = $user_data['user_id'];
+                        echo '<input type="submit" value="'.$notification_value.'" onclick="refreshPage(\'' . $user_data['user_id'] . '\', \'' . $notification_value . '\')"/>'; 
+                    ?>
+    
+                </div>
                 <p><strong>Pictures <br></strong></p><?= $user_data['pictures_taken'] ?></p>
                 <p><strong>Comments <br></strong></p>
                 <p><strong>Likes <br></strong></p>
@@ -37,7 +62,7 @@
                 <br>
                 <div>
                     <label for="password">Confirm new password</label><br />
-                    <input class="input" id="c_password" type="password" name="c_passwd" value="" "/>
+                    <input class="input" id="c_password" type="password" name="c_passwd" value="" />
                 </div>
                 <p id="password_confirm_message" class="password_confirm_message"></p>
                 <br>
@@ -73,6 +98,7 @@
         </div>
     </div>
 
+<script src="javascript/notifications.js"></script>
 <script src="javascript/check_password.js"></script>
 <script src="javascript/check_email.js"></script>
 <script src="javascript/check_name.js"></script>

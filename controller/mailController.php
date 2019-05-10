@@ -1,5 +1,5 @@
 <?
-require_once('model/UserManager.php');
+require_once $_SERVER['DOCUMENT_ROOT'].'/model/UserManager.php';
 
 // SEND EMAIL FOR ACCOUNT VERIFICATION
 // ---------------------------------------------------------------
