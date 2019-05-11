@@ -287,6 +287,9 @@ h5 {
     height: 90px;
     width: 90px;
 }
+.filter_box:focus {
+    outline: 1px solid blue;
+}
 .filter {
     display: block;
     margin-left: auto;

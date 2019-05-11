@@ -31,7 +31,8 @@
       }
     }, false);
 
-    startbutton.addEventListener('click', function(ev){
+    startbutton.addEventListener('click', function(ev)
+    {
       takepicture();
       ev.preventDefault();
     }, false);
@@ -59,6 +60,7 @@
       };
 
       req.send('img=' + canvasData);
+      // document.location.reload(true);
     }
 
   })();  

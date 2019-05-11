@@ -8,7 +8,17 @@
         {
             if (strpos($filters[$i], '.png'))
             {
-                echo '<div class="filter_box">';
+                ?>
+                <!-- pass php variable to javascript : -->
+                <div id="filter-target" style="display: none;">
+                    <?php
+                        echo htmlspecialchars($i);
+                    ?>
+                </div>
+                <!-- ... -->
+
+                <?php
+                echo '<div tabindex="-1" class="filter_box" onclick="getFilterName('.$i.')">';
                     echo '<img class="filter" src="pictures/filters/'.$filters[$i].'"/>';
                 echo '</div>';
             }
@@ -61,8 +71,8 @@
 
 </div>
 
-
 <script src="javascript/take_pic.js"></script>
+<script src="javascript/select_filter.js"></script>
 
 <?php $content = ob_get_clean(); ?>
 <?php require('view/template.php'); ?>
