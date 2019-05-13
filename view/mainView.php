@@ -8,17 +8,7 @@
         {
             if (strpos($filters[$i], '.png'))
             {
-                ?>
-                <!-- pass php variable to javascript : -->
-                <div id="filter-target" style="display: none;">
-                    <?php
-                        echo htmlspecialchars($i);
-                    ?>
-                </div>
-                <!-- ... -->
-
-                <?php
-                echo '<div tabindex="-1" class="filter_box" onclick="getFilterName('.$i.')">';
+                echo '<div tabindex="-1" class="filter_box" onclick="getFilterName(\''.$filters[$i].'\')">';
                     echo '<img class="filter" src="pictures/filters/'.$filters[$i].'"/>';
                 echo '</div>';
             }
@@ -29,9 +19,12 @@
 <div class="mainView">
 
     <div class="left_box">
+        <div class="middle_box">
             <video class="camera_view" id="video" autoplay></video>
+            <canvas class="filter_img" id="filter_image"></canvas>
             <button class="snap_button" id="startbutton">Snap it!</button>
-            <canvas class="snap_view" id="canvas"></canvas>
+            <canvas class="snap_view" id="snap_canvas"></canvas>
+        </div>
     </div>
 
     <div class="right_box">
