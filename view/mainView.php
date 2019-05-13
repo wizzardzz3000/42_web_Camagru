@@ -8,7 +8,7 @@
         {
             if (strpos($filters[$i], '.png'))
             {
-                echo '<div tabindex="-1" class="filter_box" onclick="getFilterName(\''.$filters[$i].'\')">';
+                echo '<div tabindex="-1" class="\''.$filters[$i].'\'" id="filter_box_id" onclick="selectFilter(\''.$filters[$i].'\')">';
                     echo '<img class="filter" src="pictures/filters/'.$filters[$i].'"/>';
                 echo '</div>';
             }
@@ -21,7 +21,7 @@
     <div class="left_box">
         <div class="middle_box">
             <video class="camera_view" id="video" autoplay></video>
-            <canvas class="filter_img" id="filter_image"></canvas>
+            <img class="filter_img" id="filter_image" src="">
             <button class="snap_button" id="startbutton">Snap it!</button>
             <canvas class="snap_view" id="snap_canvas"></canvas>
         </div>

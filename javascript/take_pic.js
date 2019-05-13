@@ -31,7 +31,7 @@
       canvas.width = width;
       canvas.height = height;
       canvas.getContext('2d').drawImage(video, 0, 0, width, height);
-      // canvas.getContext('2d').drawImage(filter, 130, 0, 160, 160);
+      // canvas.getContext('2d').drawImage(filter, 0, 0, 100, 100);
       var canvasData = canvas.toDataURL('image/png');
 
       const req = new XMLHttpRequest();

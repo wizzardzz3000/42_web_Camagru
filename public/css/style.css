@@ -256,17 +256,14 @@ h5 {
     height: 90px;
     width: 100vw;
 }
-.filters_list {
-    /* display: inline; */
-}
 
-.filter_box {
+#filter_box_id {
     display: block;
     float: left;
     height: 90px;
     width: 90px;
 }
-.filter_box:focus {
+#filter_box_id:focus {
     outline: 1px solid blue;
 }
 .filter {
@@ -316,9 +313,9 @@ h5 {
     position: absolute;
     z-index: 10;
     top: 0px;
-    left: 130px;
-    width: auto;
-	height: 160px;
+    left: 140px;
+    width: 430px;
+	height: auto;
 }
 .snap_view {
     position: absolute;
