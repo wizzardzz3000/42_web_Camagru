@@ -46,36 +46,37 @@ function saveData($img, $filter)
     }
 
     // save picture
-    // $image = str_replace('data:image/png;base64,', '', $image);
-    // $image = str_replace(' ', '+', $image);
-    // $data = base64_decode($image);
-    // $time = microtime();
-    // $time = str_replace(' ', ':', $time);
-    // $file_name = $time . '.png';
-    // $output = '../pictures/snaps/' . $file_name;
-    // file_put_contents($output, $data);
-
-    // get filter and assemble
+    $time = microtime();
+    $time = str_replace(' ', ':', $time);
+    $file_name = $time . '.png';
     $img = str_replace('data:image/png;base64,', '', $img);
     $img = str_replace(' ', '+', $img);
     $dest = base64_decode($img);
     file_put_contents("../pictures/tmp.png", $dest);
 
+    // get filter and assemble
     $sourceImage = "../pictures/filters/" . $filter;
     $destImage = '../pictures/tmp.png';
-    // list($srcWidth, $srcHeight) = getimagesize($imageResized);
     $src = imagecreatefrompng($sourceImage);
     $imageResized = imagescale($src, 200, 200);
     $dest = imagecreatefrompng($destImage);
     imagecopy($dest, $imageResized, 130, 0, 0, 0, 200, 200);
 
-    imagepng($dest,'../pictures/tmp.png');
-    $img = base64_encode(file_get_contents('../pictures/tmp.png'));
+    // save final picture
+    imagepng($dest, '../pictures/snaps/' . $file_name);
+    $img = base64_encode(file_get_contents('../pictures/snaps/' . $file_name));
 
-    // if ($pic = $galleryManager->savePictures($user_id, $file_name))
-    // {
-    //     header('Location: index.php?view=camera');
-    //     //ajaxify !
-    // }
+    // free memory
+    imagedestroy($src);
+    imagedestroy($dest);
+
+    // save link to db
+    if ($pic = $galleryManager->savePictures($user_id, $file_name))
+    {
+        header('Location: index.php?view=camera');
+        //ajaxify !
+    }
     // error catch ?
 }
+
+// list($srcWidth, $srcHeight) = getimagesize($imageResized);
