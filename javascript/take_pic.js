@@ -31,8 +31,8 @@
       canvas.width = width;
       canvas.height = height;
       canvas.getContext('2d').drawImage(video, 0, 0, width, height);
-      // canvas.getContext('2d').drawImage(filter, 0, 0, 100, 100);
       var canvasData = canvas.toDataURL('image/png');
+      var filterName = document.getElementsByClassName("filter_img")[0].id + ".png";
 
       const req = new XMLHttpRequest();
       req.open('POST', '../controller/pictureController.php', true);
@@ -49,7 +49,7 @@
           }
       };
 
-      req.send('img=' + canvasData);
+      req.send('img=' + canvasData + '&filterName=' + filterName);
       // document.location.reload(true);
     }
 

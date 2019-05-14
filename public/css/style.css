@@ -257,15 +257,16 @@ h5 {
     width: 100vw;
 }
 
-#filter_box_id {
+.filter_box {
     display: block;
     float: left;
     height: 90px;
     width: 90px;
 }
-#filter_box_id:focus {
+.filter_box:focus {
     outline: 1px solid blue;
 }
+
 .filter {
     display: block;
     margin-left: auto;
@@ -307,15 +308,21 @@ h5 {
     width: 430px;
 	height: 320px;
 }
-
+.filter_view {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 430px;
+	height: 320px;
+}
 .filter_img
 {
     position: absolute;
     z-index: 10;
     top: 0px;
-    left: 140px;
-    width: 430px;
-	height: auto;
+    left: 130px;
+    width: auto;
+	height: 200px;
 }
 .snap_view {
     position: absolute;

@@ -8,20 +8,24 @@
         {
             if (strpos($filters[$i], '.png'))
             {
-                echo '<div tabindex="-1" class="\''.$filters[$i].'\'" id="filter_box_id" onclick="selectFilter(\''.$filters[$i].'\')">';
-                    echo '<img class="filter" src="pictures/filters/'.$filters[$i].'"/>';
+                echo '<div tabindex="-1" class="filter_box" id="\''.$filters[$i].'\'" onclick="selectFilter(\''.$filters[$i].'\')">';
+                    echo '<img class="filter" id="\''.$filters[$i].'\'" src="pictures/filters/'.$filters[$i].'"/>';
                 echo '</div>';
             }
         }
     ?>
 </div>
 
-<div class="mainView">
+<div class="mainView" id="main_view">
+
+<p id="demo"></p>
 
     <div class="left_box">
         <div class="middle_box">
             <video class="camera_view" id="video" autoplay></video>
-            <img class="filter_img" id="filter_image" src="">
+            <div class="filter_view">
+                <img class="filter_img" id="filter_image" src="">
+            </div>
             <button class="snap_button" id="startbutton">Snap it!</button>
             <canvas class="snap_view" id="snap_canvas"></canvas>
         </div>
@@ -64,8 +68,8 @@
 
 </div>
 
-<script src="javascript/take_pic.js"></script>
-<script src="javascript/select_filter.js"></script>
+<script src="/javascript/take_pic.js"></script>
+<script src="/javascript/select_filter.js"></script>
 
 <?php $content = ob_get_clean(); ?>
 <?php require('view/template.php'); ?>
