@@ -21,12 +21,12 @@
                         if (!$_SESSION['loggued_on_user'])
                         {
                             echo '<li class="right" onclick=location.href="index.php?view=user" style="cursor:pointer;">Login/Register</li>';
-                            echo '<li class="right" onclick=location.href="index.php?view=gallery" style="cursor:pointer;">Gallery</li>';
+                            echo '<li class="right" onclick=location.href="index.php?view=gallery&page=1" style="cursor:pointer;">Gallery</li>';
                         } else {
                             echo '<li class="right" onclick=location.href="index.php?action=logout" style="cursor:pointer;">Logout</li>';
                             echo '<li class="right" onclick=location.href="index.php?view=account" style="cursor:pointer;">Hello '.$_SESSION["loggued_on_user"].'</li>';
                             echo '<li class="right" onclick=location.href="index.php?view=camera" style="cursor:pointer;">Take a picture</li>';
-                            echo '<li class="right" onclick=location.href="index.php?view=gallery" style="cursor:pointer;">Gallery</li>';
+                            echo '<li class="right" onclick=location.href="index.php?view=gallery&page=1" style="cursor:pointer;">Gallery</li>';
                         }
                         ?>
                     </ul>

@@ -25,11 +25,11 @@ try {
         }
         else if ($_GET['view'] == 'picture' && isset($_GET['id']))
         {
-            showMedia("picture", $_GET['id']);
+            showMedia("picture", "", $_GET['id']);
         }
-        else if ($_GET['view'] == 'gallery')
+        else if ($_GET['view'] == 'gallery' && isset($_GET['page']))
         {
-            showMedia("gallery", "");
+            showMedia("gallery", $_GET['page'], "");
         }
         else if ($_GET['view'] == 'forgotPassword')
         {
@@ -172,7 +172,7 @@ try {
     }
     // LOAD THE GALLERY BY DEFAULT
     if (!isset($_GET['view']) && !isset($_GET['action'])) {
-        showMedia("gallery", "");
+        showMedia("gallery", "", "");
     }
 }
 // CATCH EXCEPTION

@@ -14,32 +14,44 @@
         $like = $likes->fetchAll();
         $picture = $gallery->fetchAll();
 
-        for ($i = 0; $picture[$i]; $i++)
+        for ($count = 0; $picture[$count]; $count++)
         {
-            $comment_nb = 0;
-            $likes_nb = 0;
+            $nb_of_pages = ceil($count / 9);
+        }
+        if($_GET['page'] > 0)
+        {
+            $page = $_GET['page'];
+            $items_per_page = 9;
+            $start = ($page - 1) * $items_per_page;
+        }
+        for ($i = $start; $picture[$i]; $i++)
+        {
+            if ($i <= $start + 8)
+            {
+                $comment_nb = 0;
+                $likes_nb = 0;
 
-            for ($j = 0; $user[$j]; $j++)
-            {
-                if ($user[$j]['user_id'] == $picture[$i]['user_id'])
+                for ($j = 0; $user[$j]; $j++)
                 {
-                    $user_name = $user[$j]['user_name'];
+                    if ($user[$j]['user_id'] == $picture[$i]['user_id'])
+                    {
+                        $user_name = $user[$j]['user_name'];
+                    }
                 }
-            }
-            for ($k = 0; $comment[$k]; $k++)
-            {
-                if ($comment[$k]['picture_id'] == $picture[$i]['picture_id'])
+                for ($k = 0; $comment[$k]; $k++)
                 {
-                    $comment_nb++;
+                    if ($comment[$k]['picture_id'] == $picture[$i]['picture_id'])
+                    {
+                        $comment_nb++;
+                    }
                 }
-            }
-            for ($l = 0; $like[$l]; $l++)
-            {
-                if ($like[$l]['picture_id'] == $picture[$i]['picture_id'])
+                for ($l = 0; $like[$l]; $l++)
                 {
-                    $likes_nb++;
+                    if ($like[$l]['picture_id'] == $picture[$i]['picture_id'])
+                    {
+                        $likes_nb++;
+                    }
                 }
-            }
     ?>
 
             <div id='full_product'>
@@ -59,10 +71,31 @@
             </div>
 
     <?php
+            }
         }
     ?>
             </section>
+
+    <div class="paginator">
+        <?php
+            if(($page - 1) > 0)
+            {
+                $previous = $page -1;
+                echo '<a href="index.php?view=gallery&page='.$previous.'"><</a>';
+            }
+        ?>
+        <p> Page <?= $page ?> / <?= $nb_of_pages ?> </p>
+        <?php
+            if (($page + 1) <= $nb_of_pages)
+            {
+                $next = $page + 1;
+                echo '<a href="index.php?view=gallery&page='.$next.'">></a>';
+            }
+        ?>
     </div>
+
+    </div>
+
 </div>
     
 <?php $content = ob_get_clean(); ?>
