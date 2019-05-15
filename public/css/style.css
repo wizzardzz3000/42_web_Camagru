@@ -313,7 +313,6 @@ a {
     float: left;
     height: 400px;
     width: 500px;
-    /* background-color: rgb(231, 252, 223);  */
 }
 .buttons_list {
     display: inline-block;
@@ -359,6 +358,8 @@ a {
 }
 .snap_view {
     position: absolute;
+    top: 0px;
+    left: 0px;
     width: 430px;
     height: 320px;
 }
