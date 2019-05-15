@@ -32,6 +32,7 @@
       canvas.height = height;
       canvas.getContext('2d').drawImage(video, 0, 0, width, height);
       var canvasData = canvas.toDataURL('image/png');
+      canvas.getContext('2d').drawImage(filter, 130, 0, 200, 200);
       var filterName = document.getElementsByClassName("filter_img")[0].id + ".png";
 
       const req = new XMLHttpRequest();

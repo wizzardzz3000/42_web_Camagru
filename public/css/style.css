@@ -268,7 +268,7 @@ margin-right: 0px;
     width: 50vh;
     height: 20px;
 }
-p {
+h5 {
     float: left;
     display: block;
     text-align: center;
@@ -306,28 +306,33 @@ a {
 .left_box {
     display: inline-block;
 }
-.snap_button {
-    position: absolute;
-    top: 330px;
-    width: 300px;
-}
-.camera_view, .snap_button, .snap_view {
-    display: block;
-    margin: auto;
-    margin-bottom: 10px;
-}
 .left_box {
+    position: relative;
     margin-left: 70px;
     margin-top: 10px;
     float: left;
-    height: 800px;
-    width: 600px;
+    height: 400px;
+    width: 500px;
     /* background-color: rgb(231, 252, 223);  */
 }
-.middle_box {
-    position: relative;
-    height: 800px;
-    width: 600px;
+.buttons_list {
+    display: inline-block;
+    margin-top: 330px;
+    height: 40px;
+    width: 430px;
+}
+.snap_button {
+    float: left;
+    width: 215px;
+}
+.import_button {
+    float: right;
+    width: 215px;
+}
+.camera_view, .snap_view {
+    display: block;
+    margin: auto;
+    margin-bottom: 10px;
 }
 .camera_view {
     position: absolute;
@@ -356,5 +361,4 @@ a {
     position: absolute;
     width: 430px;
     height: 320px;
-    bottom: 50px;
 }

@@ -85,7 +85,7 @@
                 echo '<a href="index.php?view=gallery&page='.$previous.'"><</a>';
             }
         ?>
-        <p> Page <?= $page ?> / <?= $nb_of_pages ?> </p>
+        <h5>Page <?= $page ?> / <?= $nb_of_pages ?></h5>
         <?php
             if (($page + 1) <= $nb_of_pages)
             {

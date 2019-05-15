@@ -181,11 +181,3 @@ catch(Exception $e) {
     $errorMessage = $e->getMessage();
     require('view/errorView.php');
 }
-
-        // else if ($_GET['action'] == 'resend')
-        // {
-        //     if(isset($_GET['name']) && isset($_GET['email']) && isset($_GET['hash']))
-        //     {
-        //         resend($_GET['name'], $_GET['email'], $_GET['hash']);
-        //     }
-        // }
