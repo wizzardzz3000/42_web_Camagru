@@ -23,8 +23,6 @@ function showMedia($arg, $page, $picture_id)
     }
     else if ($arg = "gallery")
     {
-        if ($page == "")
-            $page = 1;
         require('view/galleryView.php');
     }
 }

@@ -14,10 +14,6 @@
         $like = $likes->fetchAll();
         $picture = $gallery->fetchAll();
 
-        for ($count = 0; $picture[$count]; $count++)
-        {
-            $nb_of_pages = ceil($count / 9);
-        }
         if($_GET['page'] > 0)
         {
             $page = $_GET['page'];
@@ -78,6 +74,11 @@
 
     <div class="paginator">
         <?php
+            for ($count = 0; $picture[$count]; $count++)
+            {
+                $nb_of_pages = ceil($count / 9);
+            }
+
             if(($page - 1) > 0)
             {
                 $previous = $page -1;

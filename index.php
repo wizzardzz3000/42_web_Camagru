@@ -171,8 +171,9 @@ try {
         }
     }
     // LOAD THE GALLERY BY DEFAULT
-    if (!isset($_GET['view']) && !isset($_GET['action'])) {
-        showMedia("gallery", "", "");
+    if (!isset($_GET['view']) && !isset($_GET['action']))
+    {
+        header('Location: index.php?view=gallery&page=1');
     }
 }
 // CATCH EXCEPTION
