@@ -198,17 +198,24 @@ h5 {
 }
 .right_box {
     float: right;
-    margin-right: 80px;
     height: 65vh;
-    width: 40vw;
+    width: 900px;
+    margin-right: 10px;
     /* background-color: rgb(250, 176, 176);  */
 }
 .right_box section {
     height: 54vh;
-    width: 50vw;
+    width: 900px;
     overflow-y: auto;
+    margin-right: 0px;
     grid-template-columns: 100px 1fr;
-  }
+}
+#user_pictures {
+height: 54vh;
+width: 900px;
+margin-right: 0px;
+}
+
 #full_product_small {
     position: relative;
     display: block;
@@ -249,6 +256,11 @@ h5 {
     width: 430px;
     height: auto;
 }
+#gallery_pictures {
+    height: 82vh;
+    width: 100vw;
+    margin-right: 0px;
+    }
 
 /* FILTERS */
 .filters_list {

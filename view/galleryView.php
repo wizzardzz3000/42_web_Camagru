@@ -6,31 +6,36 @@
 
 <div class="mainView">
     <div class="main_box">
-        <section id="content">
+        <section id="gallery_pictures">
     <?php
         // Save PDO objects as arrays using fetchAll()
         $user = $users->fetchAll();
         $comment = $comments->fetchAll();
         $like = $likes->fetchAll();
-        
-        while ($picture = $gallery->fetch())
-        {  
+        $picture = $gallery->fetchAll();
+
+        for ($i = 0; $picture[$i]; $i++)
+        {
             $comment_nb = 0;
             $likes_nb = 0;
-            for ($i = 0; $user[$i]; $i++) {
-                if ($user[$i]['user_id'] == $picture['user_id'])
+
+            for ($j = 0; $user[$j]; $j++)
+            {
+                if ($user[$j]['user_id'] == $picture[$i]['user_id'])
                 {
-                    $user_name = $user[$i]['user_name'];
+                    $user_name = $user[$j]['user_name'];
                 }
             }
-            for ($i = 0; $comment[$i]; $i++) {
-                if ($comment[$i]['picture_id'] == $picture['picture_id'])
+            for ($k = 0; $comment[$k]; $k++)
+            {
+                if ($comment[$k]['picture_id'] == $picture[$i]['picture_id'])
                 {
                     $comment_nb++;
                 }
             }
-            for ($i = 0; $like[$i]; $i++) {
-                if ($like[$i]['picture_id'] == $picture['picture_id'])
+            for ($l = 0; $like[$l]; $l++)
+            {
+                if ($like[$l]['picture_id'] == $picture[$i]['picture_id'])
                 {
                     $likes_nb++;
                 }
@@ -38,9 +43,9 @@
     ?>
 
             <div id='full_product'>
-                <a href="index.php?view=picture&id=<?= $picture['picture_id'] ?>">
+                <a href="index.php?view=picture&id=<?= $picture[$i]['picture_id'] ?>">
                 <?php
-                    $img = $picture['content'];
+                    $img = $picture[$i]['content'];
                     echo '<img class="gallery_picture" src="pictures/snaps/'.$img.'"/>';
                 ?>
                 <div class="band">
@@ -53,9 +58,9 @@
                 </a>
             </div>
 
-        <?php
-            }
-        ?>
+    <?php
+        }
+    ?>
             </section>
     </div>
 </div>

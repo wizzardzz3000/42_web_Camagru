@@ -18,8 +18,6 @@
 
 <div class="mainView" id="main_view">
 
-<p id="demo"></p>
-
     <div class="left_box">
         <div class="middle_box">
             <video class="camera_view" id="video" autoplay></video>
@@ -35,7 +33,7 @@
     <div class="right_box_top">
         <h5>Your pictures</h5>
         </div>
-        <section id="content">
+        <section id="user_pictures">
             <?php
                 $picture = $gallery->fetchAll();
                 $user = $users->fetchAll();
