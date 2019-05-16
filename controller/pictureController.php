@@ -94,17 +94,24 @@ function savePicture()
 
     $users = $userManager->getUser($_SESSION["loggued_on_user"], "");
 
-    if ($user = $users->fetch())
-    {
-        $user_id = $user['user_id'];
-    }
+    $old_path = '../pictures/tmp/';
+    $new_path = '../pictures/snaps/';
+    $file = glob($old_path . 'id='.$user_id.'*');
+    $filename = strstr($file[0], 'id');
 
-    // save link to db
-    if ($pic = $galleryManager->savePictures($user_id, $file_name))
-    {
-        // header('Location: index.php?view=camera');
-        //ajaxify !
-    }
+    rename($old_path . $filename, $new_path . $filename);
+
+    // if ($user = $users->fetch())
+    // {
+    //     $user_id = $user['user_id'];
+    // }
+
+    // // save link to db
+    // if ($pic = $galleryManager->savePictures($user_id, $file_name))
+    // {
+    //     // header('Location: index.php?view=camera');
+    //     //ajaxify !
+    // }
     //error catch ?
 
 }
