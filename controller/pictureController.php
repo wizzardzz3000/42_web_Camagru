@@ -101,17 +101,17 @@ function savePicture()
 
     rename($old_path . $filename, $new_path . $filename);
 
-    // if ($user = $users->fetch())
-    // {
-    //     $user_id = $user['user_id'];
-    // }
+    if ($user = $users->fetch())
+    {
+        $user_id = $user['user_id'];
+    }
 
     // // save link to db
-    // if ($pic = $galleryManager->savePictures($user_id, $file_name))
-    // {
-    //     // header('Location: index.php?view=camera');
-    //     //ajaxify !
-    // }
+    if ($pic = $galleryManager->savePictures($user_id, $filename))
+    {
+        // header('Location: index.php?view=camera');
+        //ajaxify !
+    }
     //error catch ?
 
 }
