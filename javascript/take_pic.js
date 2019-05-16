@@ -91,9 +91,10 @@ function savePicture()
   {
     if (this.readyState === XMLHttpRequest.DONE) {
         if (this.status === 200) {
-            console.log("Response: %s", this.responseText);
+          window.location.reload();
+          console.log("Response: %s", this.responseText);
         } else {
-            console.log("Response status : %d (%s)", this.status, this.statusText);
+          console.log("Response status : %d (%s)", this.status, this.statusText);
         }
     }
   };
@@ -114,9 +115,10 @@ function retry()
   {
     if (this.readyState === XMLHttpRequest.DONE) {
         if (this.status === 200) {
-            console.log("Response: %s", this.responseText);
+          window.location.reload();
+          console.log("Response: %s", this.responseText);
         } else {
-            console.log("Response status : %d (%s)", this.status, this.statusText);
+          console.log("Response status : %d (%s)", this.status, this.statusText);
         }
     }
   };
