@@ -19,7 +19,7 @@ function showMainView()
     require('view/mainView.php');
 }
 
-// SAVE THE PICTURE (CALLED FROM AJAX)
+// CHECK ACTION (CALLED FROM AJAX)
 // ---------------------------------------------------------------
 if(isset($_POST['img']))
 {
@@ -34,16 +34,18 @@ if(isset($_POST['img']))
     saveTmp($image, $filter);
 }
 
-// if(isset($_POST['action']) && $_POST['action'] == 'save')
-// {
-//     savePicture($_POST['action']);
-// }
+if(isset($_POST['action']) && $_POST['action'] == 'save')
+{
+    savePicture();
+}
 
-if(isset($_POST['action']))
+if(isset($_POST['action'])&& $_POST['action'] == 'delete')
 {
     deleteTmp();
 }
 
+// SAVE TEMPORARY PICTURE
+// ---------------------------------------------------------------
 function saveTmp($img, $filter)
 {
     $galleryManager = new PictureManager();
@@ -81,21 +83,34 @@ function saveTmp($img, $filter)
     unlink('../pictures/tmp/tmp.png');
     imagedestroy($src);
     imagedestroy($dest);
-
-    // save link to db
-    // if ($pic = $galleryManager->savePictures($user_id, $file_name))
-    // {
-    //     // header('Location: index.php?view=camera');
-    //     //ajaxify !
-    // }
-    // error catch ?
 }
 
-// function savePicture($action)
-// {
+// SAVE PICTURE IN FOLDER AND DATABASE
+// ---------------------------------------------------------------
+function savePicture()
+{
+    $galleryManager = new PictureManager();
+    $userManager = new UserManager();
 
-// }
+    $users = $userManager->getUser($_SESSION["loggued_on_user"], "");
 
+    if ($user = $users->fetch())
+    {
+        $user_id = $user['user_id'];
+    }
+
+    // save link to db
+    if ($pic = $galleryManager->savePictures($user_id, $file_name))
+    {
+        // header('Location: index.php?view=camera');
+        //ajaxify !
+    }
+    //error catch ?
+
+}
+
+// DELETE TEMPORARY PICTURE
+// ---------------------------------------------------------------
 function deleteTmp()
 {
     $userManager = new UserManager();
