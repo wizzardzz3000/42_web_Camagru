@@ -20,12 +20,13 @@
 
     <div class="left_box">
         <video class="camera_view" id="video" autoplay></video>
+        <canvas class="imported" id="imported"></canvas>
         <div class="filter_view">
             <img class="filter_img" id="filter_image" src="">
         </div>
         <div class="buttons_list">
             <button  type="button" disabled class="snap_button" id="snap_button" onclick="checkButtonMode()">Snap it!</button>
-            <button class="import_button" id="import_button" onclick="importPicture()">Import a picture</button>
+            <button class="import_button" id="import_button">Import a picture</button>
             <input type="file" id="imgLoader"/>
         </div>
         <canvas class="snap_view" id="snap_canvas"></canvas>

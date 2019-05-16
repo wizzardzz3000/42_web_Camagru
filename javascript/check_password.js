@@ -10,14 +10,7 @@ function checkPassword()
     var aLowerCase = /[a-z]/; 
     var aNumber = /[0-9]/;
     var aSpecial = /[!|@|#|$|%|^|&|*|(|)|=|+|-|_]/;
-
-    // if (password.length < 1)
-    // {
-    //     password_len_message.style.display = 'none';
-    //     password_up_message.style.display = 'none';
-    //     password_num_message.style.display = 'none';
-    //     password_spe_message.style.display = 'none';
-    // } 
+ 
         if (password.length < 12)
         {
             password_len_message.innerHTML = "✗ 12 characters or more";
