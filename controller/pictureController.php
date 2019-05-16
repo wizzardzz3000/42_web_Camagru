@@ -31,52 +31,91 @@ if(isset($_POST['img']))
         $filter = $_POST['filterName'];
     }
 
-    saveData($image, $filter);
+    saveTmp($image, $filter);
 }
 
-function saveData($img, $filter)
+if(isset($_POST['action']))
+{
+    savePicture($_POST['action']);
+}
+
+function saveTmp($img, $filter)
 {
     $galleryManager = new PictureManager();
     $userManager = new UserManager();
 
     $users = $userManager->getUser($_SESSION["loggued_on_user"], "");
+
     if ($user = $users->fetch())
     {
         $user_id = $user['user_id'];
     }
 
     // save picture
-    $time = microtime();
-    $time = str_replace(' ', ':', $time);
-    $file_name = $time . '.png';
     $img = str_replace('data:image/png;base64,', '', $img);
     $img = str_replace(' ', '+', $img);
     $dest = base64_decode($img);
-    file_put_contents("../pictures/tmp.png", $dest);
+    file_put_contents("../pictures/tmp/tmp.png", $dest);
 
     // get filter and assemble
     $sourceImage = "../pictures/filters/" . $filter;
-    $destImage = '../pictures/tmp.png';
+    $destImage = '../pictures/tmp/tmp.png';
     $src = imagecreatefrompng($sourceImage);
     $imageResized = imagescale($src, 200, 200);
     $dest = imagecreatefrompng($destImage);
     imagecopy($dest, $imageResized, 130, 0, 0, 0, 200, 200);
 
     // save final picture
-    imagepng($dest, '../pictures/snaps/' . $file_name);
-    $img = base64_encode(file_get_contents('../pictures/snaps/' . $file_name));
+    $time = microtime();
+    $time = str_replace(' ', ':', $time);
+    $file_name = $user_id . "&" . $time . '.png';
+    imagepng($dest, '../pictures/tmp/' . $file_name);
+    $img = base64_encode(file_get_contents('../pictures/tmp/' . $file_name));
 
     // free memory
+    unlink('../pictures/tmp/tmp.png');
     imagedestroy($src);
     imagedestroy($dest);
 
     // save link to db
     if ($pic = $galleryManager->savePictures($user_id, $file_name))
     {
-        header('Location: index.php?view=camera');
+        // header('Location: index.php?view=camera');
         //ajaxify !
     }
     // error catch ?
 }
 
-// list($srcWidth, $srcHeight) = getimagesize($imageResized);
+// function savePicture($action)
+// {
+//     $galleryManager = new PictureManager();
+//     $userManager = new UserManager();
+
+//     $users = $userManager->getUser($_SESSION["loggued_on_user"], "");
+
+//     if ($user = $users->fetch())
+//     {
+//         $user_id = $user['user_id'];
+//     }
+
+//     if ($action == 'save')
+//     {
+//         $time = microtime();
+//         $time = str_replace(' ', ':', $time);
+//         $file_name = $time . '.png';
+
+//         $destImage = '../pictures/tmp.png';
+//         $dest = imagecreatefrompng($destImage);
+
+//         // save final picture
+//         imagepng($dest, '../pictures/snaps/' . $file_name);
+//         $img = base64_encode(file_get_contents('../pictures/snaps/' . $file_name));
+
+//         // save link to db
+//         if ($pic = $galleryManager->savePictures($user_id, $file_name))
+//         {
+//             header('Location: index.php?view=camera');
+//             //ajaxify !
+//         }
+//     }
+// }

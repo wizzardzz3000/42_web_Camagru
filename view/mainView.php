@@ -24,8 +24,8 @@
             <img class="filter_img" id="filter_image" src="">
         </div>
         <div class="buttons_list">
-            <button class="snap_button" id="startbutton">Snap it!</button>
-            <button class="import_button" id="startbutton">Import a picture</button>
+            <button class="snap_button" id="snap_button" onclick="checkButtonMode()">Snap it!</button>
+            <button class="import_button" id="import_button">Import a picture</button>
         </div>
         <canvas class="snap_view" id="snap_canvas"></canvas>
     </div>

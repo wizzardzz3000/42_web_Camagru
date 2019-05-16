@@ -1,4 +1,5 @@
-document.addEventListener("click",function(e){
+document.addEventListener("click",function(e)
+{
     if (!e.target.closest('.filters_list')) {
        blur();
     }
@@ -14,6 +15,7 @@ function selectFilter(filter_name)
 function blur()
 {
     document.getElementsByClassName("filter_img")[0].src = ""; 
+    document.getElementsByClassName("filter_img")[0].id = "";
 }
 
 function getfiltersrc()

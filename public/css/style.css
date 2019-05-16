@@ -322,11 +322,11 @@ a {
 }
 .snap_button {
     float: left;
-    width: 215px;
+    width: 100px;
 }
 .import_button {
     float: right;
-    width: 215px;
+    width: 100px;
 }
 .camera_view, .snap_view {
     display: block;
