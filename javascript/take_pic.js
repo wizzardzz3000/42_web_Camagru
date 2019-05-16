@@ -4,6 +4,7 @@ var streaming = false,
       video        = document.querySelector('#video'),
       filter       = document.querySelector('#filter_image'),
       canvas       = document.querySelector('#snap_canvas'),
+      canvas_imported = document.querySelector('#imported'),
       photo        = document.querySelector('#photo'),
       snapButton  = document.querySelector('#snap_button'),
       width = 430,
@@ -52,7 +53,16 @@ function takePicture()
   // webcam picture
   canvas.width = width;
   canvas.height = height;
-  canvas.getContext('2d').drawImage(video, 0, 0, width, height);
+
+  if (video)
+  {
+    canvas.getContext('2d').drawImage(video, 0, 0, width, height);
+  }
+  if (canvas_imported)
+  {
+    canvas.getContext('2d').drawImage(canvas_imported, 0, 0, width, height);
+  }
+
   var canvasData = canvas.toDataURL('image/png');
 
   // + filter superposition for preview
