@@ -34,9 +34,14 @@ if(isset($_POST['img']))
     saveTmp($image, $filter);
 }
 
+// if(isset($_POST['action']) && $_POST['action'] == 'save')
+// {
+//     savePicture($_POST['action']);
+// }
+
 if(isset($_POST['action']))
 {
-    savePicture($_POST['action']);
+    deleteTmp();
 }
 
 function saveTmp($img, $filter)
@@ -68,7 +73,7 @@ function saveTmp($img, $filter)
     // save final picture
     $time = microtime();
     $time = str_replace(' ', ':', $time);
-    $file_name = $user_id . "&" . $time . '.png';
+    $file_name = "id=" . $user_id . "&" . $time . '.png';
     imagepng($dest, '../pictures/tmp/' . $file_name);
     $img = base64_encode(file_get_contents('../pictures/tmp/' . $file_name));
 
@@ -78,44 +83,33 @@ function saveTmp($img, $filter)
     imagedestroy($dest);
 
     // save link to db
-    if ($pic = $galleryManager->savePictures($user_id, $file_name))
-    {
-        // header('Location: index.php?view=camera');
-        //ajaxify !
-    }
+    // if ($pic = $galleryManager->savePictures($user_id, $file_name))
+    // {
+    //     // header('Location: index.php?view=camera');
+    //     //ajaxify !
+    // }
     // error catch ?
 }
 
 // function savePicture($action)
 // {
-//     $galleryManager = new PictureManager();
-//     $userManager = new UserManager();
 
-//     $users = $userManager->getUser($_SESSION["loggued_on_user"], "");
-
-//     if ($user = $users->fetch())
-//     {
-//         $user_id = $user['user_id'];
-//     }
-
-//     if ($action == 'save')
-//     {
-//         $time = microtime();
-//         $time = str_replace(' ', ':', $time);
-//         $file_name = $time . '.png';
-
-//         $destImage = '../pictures/tmp.png';
-//         $dest = imagecreatefrompng($destImage);
-
-//         // save final picture
-//         imagepng($dest, '../pictures/snaps/' . $file_name);
-//         $img = base64_encode(file_get_contents('../pictures/snaps/' . $file_name));
-
-//         // save link to db
-//         if ($pic = $galleryManager->savePictures($user_id, $file_name))
-//         {
-//             header('Location: index.php?view=camera');
-//             //ajaxify !
-//         }
-//     }
 // }
+
+function deleteTmp()
+{
+    $userManager = new UserManager();
+
+    $users = $userManager->getUser($_SESSION["loggued_on_user"], "");
+
+    if ($user = $users->fetch())
+    {
+        $user_id = $user['user_id'];
+    }
+
+    $path = '../pictures/tmp/'; 
+    $file = glob($path . 'id='.$user_id.'*');
+    $filename = strstr($file[0], 'id');
+
+    unlink('../pictures/tmp/' . $filename);
+}

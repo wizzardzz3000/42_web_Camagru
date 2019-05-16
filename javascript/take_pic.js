@@ -6,7 +6,6 @@
       canvas       = document.querySelector('#snap_canvas'),
       photo        = document.querySelector('#photo'),
       snapButton  = document.querySelector('#snap_button'),
-      saveButton  = document.querySelector('#save_button'),
       width = 430,
       height = 320;
 
@@ -22,10 +21,14 @@
   }
 
   snap_button.addEventListener('click', function(ev)
-    {
+  {
+    //var mode = document.getElementsByClassName("snap_button")[0].id;
+
+
       takePicture();
-      ev.preventDefault();
-    }, false);
+  
+    ev.preventDefault();
+  }, false);
 
   function takePicture()
   {
@@ -63,29 +66,49 @@
 
 function checkButtonMode()
 {
-    // var mode = document.getElementsByClassName("snap_button")[0].id;
-    
-    // if (mode == 'snap_button')
-    // {
-    //     document.getElementsByClassName("snap_button")[0].id = 'save_button';
-    //     document.getElementsByClassName("snap_button")[0].innerHTML = 'Save picture';
-    //     var btn = document.createElement("BUTTON");
-    //     btn.innerHTML = "Retry";
-    //     btn.setAttribute('onclick','refresh();');
-    //     btn.style.width = '100px'
-    //     document.getElementsByClassName("buttons_list")[0].appendChild(btn);
-    //     takePicture();
-    // }
-    // else
-    // {
-    //     document.getElementsByClassName("snap_button")[0].id = 'snap_button';
-    //     document.getElementsByClassName("snap_button")[0].innerHTML = 'Snap it!';
-    //     savePicture();
-    // }
+  var mode = document.getElementsByClassName("snap_button")[0].id;
+  
+  if (mode == 'snap_button')
+  {
+      document.getElementsByClassName("snap_button")[0].id = 'save_button';
+      document.getElementsByClassName("snap_button")[0].innerHTML = 'Save picture';
+      var btn = document.createElement("BUTTON");
+      btn.innerHTML = "Retry";
+      btn.setAttribute('onclick','refresh();');
+      btn.style.width = '100px'
+      document.getElementsByClassName("buttons_list")[0].appendChild(btn);
+  }
+  else
+  {
+      document.getElementsByClassName("snap_button")[0].id = 'snap_button';
+      document.getElementsByClassName("snap_button")[0].innerHTML = 'Snap it!';
+  }
 }
  
 
-function savePicture()
+// function savePicture()
+// {
+//   // ajax post request
+//   const req = new XMLHttpRequest();
+//   req.open('POST', '../controller/pictureController.php', true);
+//   req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+//   req.onreadystatechange = function()
+//   {
+//     if (this.readyState === XMLHttpRequest.DONE) {
+//         if (this.status === 200) {
+//             console.log("Response: %s", this.responseText);
+//         } else {
+//             console.log("Response status : %d (%s)", this.status, this.statusText);
+//         }
+//     }
+//   };
+
+//   req.send('action=' + 'save');
+//   document.location.reload(true);
+// }
+
+function refresh()
 {
   // ajax post request
   const req = new XMLHttpRequest();
@@ -94,20 +117,15 @@ function savePicture()
 
   req.onreadystatechange = function()
   {
-      if (this.readyState === XMLHttpRequest.DONE) {
-          if (this.status === 200) {
-              console.log("Response: %s", this.responseText);
-          } else {
-              console.log("Response status : %d (%s)", this.status, this.statusText);
-          }
-      }
+    if (this.readyState === XMLHttpRequest.DONE) {
+        if (this.status === 200) {
+            console.log("Response: %s", this.responseText);
+        } else {
+            console.log("Response status : %d (%s)", this.status, this.statusText);
+        }
+    }
   };
 
-  req.send('action=' + 'save');
+  req.send('action=' + 'delete');
   // document.location.reload(true);
-}
-
-function refresh()
-{
-  document.location.reload(true);
 }
