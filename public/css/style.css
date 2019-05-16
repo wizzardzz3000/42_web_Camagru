@@ -363,3 +363,7 @@ a {
     width: 430px;
     height: 320px;
 }
+
+#imgLoader {
+    display: none;
+}

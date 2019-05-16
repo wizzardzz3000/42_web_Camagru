@@ -25,7 +25,8 @@
         </div>
         <div class="buttons_list">
             <button  type="button" disabled class="snap_button" id="snap_button" onclick="checkButtonMode()">Snap it!</button>
-            <button class="import_button" id="import_button">Import a picture</button>
+            <button class="import_button" id="import_button" onclick="importPicture()">Import a picture</button>
+            <input type="file" id="imgLoader"/>
         </div>
         <canvas class="snap_view" id="snap_canvas"></canvas>
     </div>
@@ -69,6 +70,7 @@
 
 <script src="/javascript/take_pic.js"></script>
 <script src="/javascript/select_filter.js"></script>
+<script src="/javascript/import_picture.js"></script>
 
 <?php $content = ob_get_clean(); ?>
 <?php require('view/template.php'); ?>
