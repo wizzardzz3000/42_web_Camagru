@@ -5,17 +5,24 @@ document.addEventListener("click",function(e)
     }
  });
 
+ var snapButton = document.getElementsByClassName('snap_button')[0];
+
 function selectFilter(filter_name)
 {
     var filter_name_short = filter_name.substring(0, filter_name.indexOf('.'));
     document.getElementsByClassName("filter_img")[0].src = "/pictures/filters/" + filter_name;
     document.getElementsByClassName("filter_img")[0].id = filter_name_short;
+    snapButton.disabled = false;
 }
 
 function blur()
 {
     document.getElementsByClassName("filter_img")[0].src = ""; 
     document.getElementsByClassName("filter_img")[0].id = "";
+    if (document.getElementsByClassName("snap_button")[0].innerHTML != 'Save picture')
+    {
+        snapButton.disabled = true;
+    }
 }
 
 function getfiltersrc()
