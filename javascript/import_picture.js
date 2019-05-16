@@ -2,29 +2,28 @@ document.getElementById('import_button').onclick = function() {
     document.getElementById('imgLoader').click();
 };
 
-document.getElementById('imgLoader').addEventListener('change', importPicture, false);
+var fileinput = document.getElementById('imgLoader').addEventListener('change', importPicture, false);
 
 function importPicture()
 {
     var canvas = document.querySelector('#imported');
-    var context = canvas.getContext("2d"); 
-    var fileinput = document.getElementById('imgLoader');
+    var context = canvas.getContext("2d");
     var img = new Image();
-
-    var file = document.getElementById('imgLoader').files[0];
+    var file = this.files[0];
     var reader = new FileReader();
     reader.readAsDataURL(file);
 
-    alert("HERE");
-
     reader.onload = function(evt)
     {
-        alert("THERE");
-        if( evt.target.readyState == FileReader.DONE)
+        if (evt.target.readyState == FileReader.DONE)
         {
-            alert("AGAIN");
+            img.onload = function()
+            {
+                canvas.width = img.width;
+                canvas.height = img.height;
+                context.drawImage(img, 0, 0);
+            }
             img.src = evt.target.result;
-            context.drawImage(img, 200, 200);
         }
-    }  
-}
+    }
+  }

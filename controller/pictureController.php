@@ -101,6 +101,8 @@ function savePicture()
 
     rename($old_path . $filename, $new_path . $filename);
 
+    // remove user_id in front of filename if it changes the display order!!!!
+
     if ($user = $users->fetch())
     {
         $user_id = $user['user_id'];
