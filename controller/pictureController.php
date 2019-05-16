@@ -98,8 +98,9 @@ function savePicture()
     $new_path = '../pictures/snaps/';
     $file = glob($old_path . 'id='.$user_id.'*');
     $filename = strstr($file[0], 'id');
+    $new_filename = explode('&', $filename, 2)[1];
 
-    rename($old_path . $filename, $new_path . $filename);
+    rename($old_path . $filename, $new_path . $new_filename);
 
     // remove user_id in front of filename if it changes the display order!!!!
 
@@ -109,7 +110,7 @@ function savePicture()
     }
 
     // // save link to db
-    if ($pic = $galleryManager->savePictures($user_id, $filename))
+    if ($pic = $galleryManager->savePictures($user_id, $new_filename))
     {
         //ajaxify !
     }
