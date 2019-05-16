@@ -1,3 +1,4 @@
+// BLUR FILTER BOX WHEN CLICKED OUTSIDE
 document.addEventListener("click",function(e)
 {
     if (!e.target.closest('.filters_list')) {
@@ -5,7 +6,7 @@ document.addEventListener("click",function(e)
     }
  });
 
- var snapButton = document.getElementsByClassName('snap_button')[0];
+var snapButton = document.getElementsByClassName('snap_button')[0];
 
 function selectFilter(filter_name)
 {
@@ -19,17 +20,19 @@ function blur()
 {
     document.getElementsByClassName("filter_img")[0].src = ""; 
     document.getElementsByClassName("filter_img")[0].id = "";
+    
     if (document.getElementsByClassName("snap_button")[0].innerHTML != 'Save picture')
     {
         snapButton.disabled = true;
     }
 }
 
-function getfiltersrc()
-{
-    var someimage = document.getElementsByClassName('selected_filter').getElementsByTagName('filter')[0].src;
-    alert(someimage);
-}
+// function getfiltersrc()
+// {
+//     var someimage = document.getElementsByClassName('selected_filter').getElementsByTagName('filter')[0].src;
+//     alert(someimage);
+// }
+
 function show_filter(filter_name)
 {
     var canvas = document.getElementById('filter_image');

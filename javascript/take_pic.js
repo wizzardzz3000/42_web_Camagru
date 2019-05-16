@@ -20,9 +20,6 @@ if (navigator.mediaDevices.getUserMedia)
     });
 }
 
-var snapButton = document.getElementsByClassName('snap_button')[0];
-// snapButton.disabled = false;
-
 // CHECK SNAP BUTTON STATE
 //------------------------------------------------------
 function checkButtonMode()
