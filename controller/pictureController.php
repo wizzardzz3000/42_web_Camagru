@@ -109,7 +109,6 @@ function savePicture()
     // // save link to db
     if ($pic = $galleryManager->savePictures($user_id, $filename))
     {
-        // header('Location: index.php?view=camera');
         //ajaxify !
     }
     //error catch ?
