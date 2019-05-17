@@ -101,7 +101,7 @@
                     ?>
                     
                         <div class='single_comment'>
-                            <p><strong><?= htmlspecialchars($picture_author) ?></strong> le <?= $comment[$i]['comment_date_fr'] ?>
+                            <p><strong><?= htmlspecialchars($picture_author) ?></strong> on <?= $comment[$i]['comment_date_fr'] ?>
                             <p><?= nl2br(htmlspecialchars($comment[$i]['comment'])) ?></p>
                             <?php
                                 if($comment[$i]['user_id'] == $loggued_user_id)

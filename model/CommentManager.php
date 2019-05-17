@@ -6,7 +6,7 @@ class CommentManager extends Manager
     public function getComments()
     {
         $db = $this->dbConnect();
-        $comments = $db->query('SELECT id, picture_id, user_id, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments ORDER BY id ASC');
+        $comments = $db->query('SELECT id, picture_id, user_id, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y at %H:%i:%s\') AS comment_date_fr FROM comments ORDER BY id ASC');
 
         return $comments;
         $comments->closeCursor(); // add to every other connexion
@@ -15,7 +15,7 @@ class CommentManager extends Manager
     public function getSingleComment($comment_id)
     {
         $db = $this->dbConnect();
-        $comment = $db->prepare('SELECT picture_id, user_id, id, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE id = ? ORDER BY comment_date DESC');
+        $comment = $db->prepare('SELECT picture_id, user_id, id, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y at %H:%i:%s\') AS comment_date_fr FROM comments WHERE id = ? ORDER BY comment_date DESC');
         $comment->execute(array($comment_id));
 
         return $comment;

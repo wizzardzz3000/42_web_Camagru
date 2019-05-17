@@ -14,6 +14,7 @@
                     <a href="index.php?view=forgotPassword" >(Forgot your password ?)</a>
                 </div>
                 <br>
+                <br />
                 <div>
                     <input type="submit" value="Login"/>
                 </div>

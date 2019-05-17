@@ -133,7 +133,7 @@ h6 {
     display:flex;
     flex-direction:row;
     padding-top: 50px;
-    width: 400px;
+    width: 427px;
     height: 300px;
     position: relative;
     margin-left: auto;
@@ -141,11 +141,22 @@ h6 {
 }
 .login_form {
     padding: 0px;
-    width: 200px;
+    width: 240px;
+    height: 230px;
+    border:1px solid rgba(255, 255, 255, 0.5);
+    background: linear-gradient(180deg, #000000 30%, #050227 90%);
+    border-radius: 20px;
+    padding: 15px;
 }
 .register_form {
     padding: 0px;
     width: 200px;
+    height: 395px;
+    margin-left: 20px;
+    border:1px solid rgba(255, 255, 255, 0.5);
+    background: linear-gradient(180deg, #000000 30%, #050227 90%);
+    border-radius: 20px;
+    padding: 15px;
 }
 
 .forms_account_view {
@@ -162,6 +173,7 @@ h6 {
     padding: 0px;
     width: 200px;
     border:1px solid rgba(255, 255, 255, 0.5);
+    background: linear-gradient(180deg, #000000 30%, #050227 90%);
     border-radius: 20px;
     padding: 15px;
 }
@@ -169,6 +181,7 @@ h6 {
     padding: 0px;
     width: 200px;
     border:1px solid rgba(255, 255, 255, 0.5);
+    background: linear-gradient(180deg, #000000 30%, #050227 90%);
     border-radius: 20px;
     padding: 15px;
     margin-left: 20px;
@@ -273,7 +286,7 @@ h6 {
     margin-left: auto;
     margin-right: auto;
     height: 70vh;
-    background-color: rgba(0, 0, 0, 0.1);
+    background: linear-gradient(180deg, #000000 30%, #050227 90%);
     width: 76.22vw;
     border:1px solid rgba(255, 255, 255, 0.5);
     border-radius: 25px;
@@ -340,9 +353,11 @@ a {
     /* background-color: rgb(200, 200, 252); */
     height: 90px;
     width: 98vw;
+    margin-left: 5px;
     border:1px solid rgba(255, 255, 255, 0.5);
     border-radius: 20px;
     padding: 15px;
+    background: linear-gradient(180deg, #000000 , #04011a 90%);
 }
 .filters_list_top {
     /* background-color: rgb(200, 200, 252); */
@@ -392,6 +407,7 @@ h5 {
     margin-top: 30px;
     margin-right: 300px;
     border:1px solid rgba(255, 255, 255, 0.5);
+    background: linear-gradient(180deg, #000000 , #04011a 90%);
     border-radius: 20px;
     padding: 15px;
 }
@@ -513,6 +529,7 @@ h5 {
     height: 346px;
     width: 430px;
     border:1px solid rgba(255, 255, 255, 0.5);
+    background: linear-gradient(180deg, #000000 , #04011a 90%);
     border-radius: 20px;
     padding: 15px;
 }
