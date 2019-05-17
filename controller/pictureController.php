@@ -68,9 +68,9 @@ function saveTmp($img, $filter)
     $sourceImage = "../pictures/filters/" . $filter;
     $destImage = '../pictures/tmp/tmp.png';
     $src = imagecreatefrompng($sourceImage);
-    $imageResized = imagescale($src, 200, 200);
+    $imageResized = imagescale($src, 180, 180);
     $dest = imagecreatefrompng($destImage);
-    imagecopy($dest, $imageResized, 130, 0, 0, 0, 200, 200);
+    imagecopy($dest, $imageResized, 130, 0, 0, 0, 180, 180);
 
     // save final picture
     $time = microtime();

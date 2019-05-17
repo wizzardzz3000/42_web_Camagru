@@ -6,7 +6,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>Camagru</title>
+        <title>Fidelio</title>
         <link href="public/css/style.css" rel="stylesheet" /> 
     </head>
 
@@ -15,8 +15,8 @@
         <section id="header">
             <header>
                 <div class="top_bar">
+                <h6 class="logo" onclick="location.href='index.php';" style="cursor:pointer;">Fidelio</h6>
                     <ul class="top_bar_elements">
-                        <li class="logo" onclick="location.href='index.php';" style="cursor:pointer;">Camagru</li>
                         <?php
                         if (!$_SESSION['loggued_on_user'])
                         {

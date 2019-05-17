@@ -3,6 +3,9 @@ html, body {
     width: 100%;
     margin: 0;
     padding: 0;
+    color: white;
+    background-color: #000000;
+background-image: linear-gradient(180deg, #000000 40%, #07032c 90%);
 }
 
 /** ELEMENTS **/
@@ -24,12 +27,14 @@ footer {
 
 header {
     /* background-color: rgb(224, 232, 250); */
-    height: 40px;
+    margin-top: 10px;
+    height: 5vh;
 }
 
-/* #header {
+p {
+    font-family: "Avenir",Arial,sans-serif;
+}
 
-} */
 #center {
     height: 85vh;
 }
@@ -50,6 +55,10 @@ h4 {
 .mainView {
     width: 100vw;
     height: 80vh;
+    /* background-color: rgb(172, 229, 255); */
+}
+.main_box {
+    margin-top: 20px;
     /* background-color: rgb(172, 229, 255); */
 }
 
@@ -87,19 +96,10 @@ h3
     font-size:0.9em;
     margin-bottom:0px;
 }
-.news p
-{
-    background-color:#CCCCCC;
-    margin-top:0px;
-}
-.news
-{
-    width:70%;
-    margin:auto;
-}
 
 a
 {
+    font-family: "Avenir",Arial,sans-serif;
     text-decoration: none;
     color: blue;
 }
@@ -108,10 +108,17 @@ a
 li {
     padding: 10;
 }
+
+h6 {
+    font-family: "Avenir",Arial,sans-serif;
+    margin-top: 0px;
+    height: 40px;
+    margin: 0;
+}
 .logo {
-    margin-left: 5px;
-    font-size: 30px;
-    font-weight: 840;
+    margin-left: 20px;
+    font-size: 40px;
+    /* font-weight: 840; */
     float: left;
 }
 .right {
@@ -144,8 +151,8 @@ li {
     display:flex;
     flex-direction:row;
     padding-top: 50px;
-    width: 400px;
-    height: 300px;
+    width: 450px;
+    height: 580px;
     position: relative;
     margin-left: auto;
     margin-right: auto;
@@ -153,10 +160,20 @@ li {
 .account_information {
     padding: 0px;
     width: 200px;
+    border:1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    padding: 15px;
 }
 .modify_form {
     padding: 0px;
     width: 200px;
+    border:1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    padding: 15px;
+    margin-left: 20px;
+}
+#modify_button {
+    width: 90px;
 }
 .input {
     width: 160px;
@@ -183,52 +200,14 @@ li {
     z-index: 1;
 }
 
-
-/** BOX SMALL **/
-.right_box_top {
-    height: 40px;
-}
-h5 {
-    margin-top: auto;
-    margin-bottom: auto;
-    font-family: "Avenir",Arial,sans-serif;
-    line-height: 20px;
-    font-size: 20px;
-    text-align: center;
-}
-.right_box {
-    float: right;
-    height: 65vh;
-    width: 900px;
-    margin-right: 10px;
-    /* background-color: rgb(250, 176, 176);  */
-}
-.right_box section {
-    height: 54vh;
-    width: 900px;
-    overflow-y: auto;
-    margin-right: 0px;
-    grid-template-columns: 100px 1fr;
-}
-#user_pictures {
-height: 54vh;
-width: 900px;
-margin-right: 0px;
-}
-
-#full_product_small {
-    position: relative;
-    display: block;
-    float: left;
-    margin-left: auto;
-    margin-bottom: 4px;
-    margin-right: 4px;
-    width: 165px;
-  }
-.gallery_picture_small {
-    display: block;
-    width: 165px;
-    height: auto;
+@media screen and (max-width: 600px)
+{
+    .top_bar_elements {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        width: 100vw;
+    }
 }
 
 /** BOX BIG **/
@@ -236,13 +215,16 @@ margin-right: 0px;
     position: relative;
     margin-left: auto;
     margin-right: auto;
-    height: 82vh;
-    width: 46vw;
+    height: 70vh;
+    width: 76.22vw;
+    border:1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 25px;
+    padding: 20px;
     /* background-color: rgb(250, 176, 176);  */
 }
 .main_box section {
     height: 75vh;
-    width: 46vw;
+    width: 78vw;
     overflow-y: auto;
   }
 
@@ -278,11 +260,40 @@ a {
     display: block;
 }
 
+@media screen and (max-width: 1200px)
+{
+    .main_box {
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        height: 82vh;
+        width: 80vw;
+        /* background-color: rgb(250, 176, 176);  */
+    }
+    .main_box section {
+        height: 75vh;
+        width: 80vw;
+        overflow-y: auto;
+      }
+}
+
 /* FILTERS */
 .filters_list {
     /* background-color: rgb(200, 200, 252); */
     height: 90px;
+    width: 98vw;
+    border:1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    padding: 15px;
+}
+.filters_list_top {
+    /* background-color: rgb(200, 200, 252); */
+    height: 30px;
     width: 100vw;
+}
+.filters_list_top h5 {
+    /* background-color: rgb(200, 200, 252); */
+    margin-left: 20px;
 }
 
 .filter_box {
@@ -302,17 +313,160 @@ a {
     height: 80px;
 }
 
+/** RIGHT BOX **/
+
+h5 {
+    margin-top: auto;
+    margin-bottom: auto;
+    font-family: "Avenir",Arial,sans-serif;
+    line-height: 20px;
+    font-size: 20px;
+    text-align: center;
+}
+.right_box_top {
+    height: 40px;
+}
+.right_box {
+    position: relative;
+    float: right;
+    height: 50vh;
+    width: 843px;
+    margin-top: 30px;
+    margin-right: 300px;
+    border:1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    padding: 15px;
+}
+.right_box section {
+    height: 45vh;
+    width: 900px;
+    overflow-y: auto;
+    margin-right: 0px;
+    grid-template-columns: 100px 1fr;
+}
+#user_pictures {
+height: 54vh;
+width: 900px;
+margin-right: 0px;
+}
+
+#full_product_small {
+    position: relative;
+    display: block;
+    float: left;
+    margin-left: auto;
+    margin-bottom: 4px;
+    margin-right: 4px;
+    width: 165px;
+  }
+.gallery_picture_small {
+    display: block;
+    width: 165px;
+    height: auto;
+}
+@media screen and (max-width: 1200px)
+{
+    .right_box {
+        position: relative;
+        float: left;
+        height: 400px;
+        width: 100vw;
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+
+    .right_box section {
+        height: 400px;
+        width: 100vw;
+        overflow-y: auto;
+        margin-right: 0px;
+        grid-template-columns: 100px 1fr;
+    }
+    #user_pictures {
+        height: 400px;
+        width: 100vw;
+        margin-right: 0px;
+    }
+    .right_box_top {
+        height: 40px;
+        width: 100vw;
+
+    }
+    #user_pictures {
+        height: 54vh;
+        width: 100vw;
+        margin-right: 0px;
+        }
+}
+
+@media screen and (max-width: 500px)
+{
+    .right_box {
+        position: relative;
+        float: left;
+        height: 400px;
+        width: 100vw;
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+
+    .right_box section {
+        height: 400px;
+        width: 100vw;
+        overflow-y: auto;
+        margin-right: 0px;
+        grid-template-columns: 100px 1fr;
+    }
+    #user_pictures {
+        height: 400px;
+        width: 100vw;
+        margin-right: 0px;
+    }
+    .right_box_top {
+        height: 40px;
+        width: 100vw;
+
+    }
+    #user_pictures {
+        height: 54vh;
+        width: 100vw;
+        margin-right: 0px;
+        }
+    #full_product_small {
+        position: relative;
+        display: block;
+        float: left;
+        margin-left: auto;
+        margin-bottom: 4px;
+        margin-right: 4px;
+        width: 30vw;
+        }
+    .gallery_picture_small {
+        display: block;
+        width: 30vw;
+        height: auto;
+    }
+}
+
 /* LEFT BOX */
 .left_box {
     display: inline-block;
 }
 .left_box {
     position: relative;
-    margin-left: 70px;
-    margin-top: 10px;
+    margin-left: 400px;
+    margin-top: 30px;
     float: left;
-    height: 400px;
-    width: 500px;
+    height: 346px;
+    width: 430px;
+    border:1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    padding: 15px;
+}
+.left_elements {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
 }
 .buttons_list {
     display: inline-block;
@@ -354,7 +508,7 @@ a {
     top: 0px;
     left: 130px;
     width: auto;
-	height: 200px;
+	height: 180px;
 }
 .snap_view {
     position: absolute;
@@ -373,4 +527,25 @@ a {
     left: 0px;
     width: 430px;
     height: 320px;
+}
+
+@media screen and (max-width: 1200px)
+{
+    .left_box {
+        display: inline-block;
+    }
+    .left_box {
+        position: relative;
+        margin-left: 10px;
+        margin-right: auto;
+        margin-top: 100px;
+        float: left;
+        height: 400px;
+        width: 100vw;
+    }
+    .left_elements {
+        position: absolute;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }

@@ -66,7 +66,7 @@ function takePicture()
   var canvasData = canvas.toDataURL('image/png');
 
   // + filter superposition for preview
-  canvas.getContext('2d').drawImage(filter, 130, 0, 200, 200);
+  canvas.getContext('2d').drawImage(filter, 130, 0, 180, 180);
   var filterName = document.getElementsByClassName("filter_img")[0].id + ".png";
 
   // ajax post request

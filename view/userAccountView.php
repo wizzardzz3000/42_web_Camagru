@@ -86,7 +86,9 @@
                 </div>
                 <br>
                 <div>
-                    <input type="submit" value="Modify" />
+                    <br>
+                    <br>
+                    <input type="submit" id="modify_button" value="Modify" />
                 </div>
                 <?
                     if ($username_error_message)

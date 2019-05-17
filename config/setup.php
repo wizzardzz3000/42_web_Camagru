@@ -1,59 +1,158 @@
-#------------------------------------------------------------
-#        Script MySQL.
-#------------------------------------------------------------
+<?php
+    require_once('database.php');
+    $co = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
+    if (!$co)
+        die("An error occured 😥\n");
+    $all_query = file_get_contents('./camagrudb.sql');
+    try {
+        $co->exec($all_query);
+        echo "Create table successfully 👌 \n";
+    }
+    catch (PDOException $e)
+    {
+        echo "An error occured 😥\n";
+        echo $e->getMessage();
+        die();
+    }
+?>
+
+-- phpMyAdmin SQL Dump
+-- version 4.8.5
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost:3306
+-- Generation Time: May 17, 2019 at 04:16 AM
+-- Server version: 5.6.43
+-- PHP Version: 5.6.40
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
 
 
-#------------------------------------------------------------
-# Table: user
-#------------------------------------------------------------
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
-CREATE TABLE user(
-        user_id       Int  Auto_increment  NOT NULL ,
-        user_pseudo   Varchar (100) NOT NULL ,
-        user_password Varchar (100) NOT NULL ,
-        user_email    Varchar (100) NOT NULL
-	,CONSTRAINT user_PK PRIMARY KEY (user_id)
-)ENGINE=InnoDB;
+--
+-- Database: `test`
+--
+CREATE DATABASE IF NOT EXISTS `test` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `test`;
 
+-- --------------------------------------------------------
 
-#------------------------------------------------------------
-# Table: photos
-#------------------------------------------------------------
+--
+-- Table structure for table `comments`
+--
 
-CREATE TABLE photos(
-        photo_id      Int  Auto_increment  NOT NULL ,
-        photo_content Varchar (500) NOT NULL
-	,CONSTRAINT photos_PK PRIMARY KEY (photo_id)
-)ENGINE=InnoDB;
+CREATE TABLE `comments` (
+  `id` int(11) NOT NULL,
+  `picture_id` int(11) NOT NULL,
+  `user_id` int(100) NOT NULL,
+  `comment` text NOT NULL,
+  `comment_date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
 
-#------------------------------------------------------------
-# Table: likes
-#------------------------------------------------------------
+--
+-- Table structure for table `likes`
+--
 
-CREATE TABLE likes(
-        photo_id Int NOT NULL ,
-        user_id  Int NOT NULL
-	,CONSTRAINT likes_PK PRIMARY KEY (photo_id,user_id)
+CREATE TABLE `likes` (
+  `id` int(11) NOT NULL,
+  `picture_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-	,CONSTRAINT likes_photos_FK FOREIGN KEY (photo_id) REFERENCES photos(photo_id)
-	,CONSTRAINT likes_user0_FK FOREIGN KEY (user_id) REFERENCES user(user_id)
-)ENGINE=InnoDB;
+-- --------------------------------------------------------
 
+--
+-- Table structure for table `pictures`
+--
 
-#------------------------------------------------------------
-# Table: comments
-#------------------------------------------------------------
+CREATE TABLE `pictures` (
+  `picture_id` int(11) NOT NULL,
+  `user_id` int(100) NOT NULL,
+  `content` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE comments(
-        user_id          Int NOT NULL ,
-        photo_id         Int NOT NULL ,
-        user_id_comments Int NOT NULL ,
-        photo_id_photos  Int NOT NULL
-	,CONSTRAINT comments_PK PRIMARY KEY (user_id,photo_id,user_id_comments,photo_id_photos)
+-- --------------------------------------------------------
 
-	,CONSTRAINT comments_user_FK FOREIGN KEY (user_id) REFERENCES user(user_id)
-	,CONSTRAINT comments_photos0_FK FOREIGN KEY (photo_id) REFERENCES photos(photo_id)
-	,CONSTRAINT comments_user1_FK FOREIGN KEY (user_id_comments) REFERENCES user(user_id)
-	,CONSTRAINT comments_photos2_FK FOREIGN KEY (photo_id_photos) REFERENCES photos(photo_id)
-)ENGINE=InnoDB;
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `user_id` int(11) NOT NULL,
+  `user_name` varchar(100) NOT NULL,
+  `user_email` varchar(100) NOT NULL,
+  `user_password` text NOT NULL,
+  `hash` text NOT NULL,
+  `account_valid` int(11) NOT NULL,
+  `notifications` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `likes`
+--
+ALTER TABLE `likes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `pictures`
+--
+ALTER TABLE `pictures`
+  ADD PRIMARY KEY (`picture_id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`user_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `likes`
+--
+ALTER TABLE `likes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+
+--
+-- AUTO_INCREMENT for table `pictures`
+--
+ALTER TABLE `pictures`
+  MODIFY `picture_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
