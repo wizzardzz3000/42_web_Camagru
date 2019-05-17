@@ -39,8 +39,8 @@
     </div>
 
     <div class="right_box">
-    <div class="right_box_top">
-        <h5>Your pictures</h5>
+        <div class="right_box_top">
+            <h5>Your pictures</h5>
         </div>
         <section id="user_pictures">
             <?php

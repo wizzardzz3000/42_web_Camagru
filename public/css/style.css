@@ -37,6 +37,7 @@ p {
 
 #center {
     height: 85vh;
+    width: 100vw;
 }
 
 .gallery_top {
@@ -210,12 +211,69 @@ h6 {
     }
 }
 
+/** PICTURE VIEW **/
+.main_nav {
+    position: relative;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: 35vw;
+    height: 77vh;
+}
+.picture_view {
+    position: relative;
+    float: left;
+    width: 430px;
+    height: 450px;
+}
+.add_comment_form {
+    width: 200px;
+    height: 100px;
+}
+.add_comment {
+    width: 200px;
+    height: 100px;
+    padding-bottom: 20px;
+}
+.single-picture {
+    width: 430px;
+    height: 320px;
+}
+.comment_view {
+    position: relative;
+    height: 600px;
+    width: 450px;
+    margin-left: 50px;
+}
+.comment_area {
+    height: 50px;
+    width: 394px;
+}
+
+.comments_section {
+    background-color: rgb(255, 255, 255, 0.1);
+    height: 600px;
+    width: 400px;
+    overflow-y: auto;
+}
+
+.comments_section p {
+    margin-left: 10px;
+}
+
+.single_comment {
+    height: 100px;
+}
+
+
+
 /** BOX BIG **/
 .main_box {
     position: relative;
     margin-left: auto;
     margin-right: auto;
     height: 70vh;
+    background-color: rgba(0, 0, 0, 0.1);
     width: 76.22vw;
     border:1px solid rgba(255, 255, 255, 0.5);
     border-radius: 25px;
@@ -343,11 +401,6 @@ h5 {
     overflow-y: auto;
     margin-right: 0px;
     grid-template-columns: 100px 1fr;
-}
-#user_pictures {
-height: 54vh;
-width: 900px;
-margin-right: 0px;
 }
 
 #full_product_small {

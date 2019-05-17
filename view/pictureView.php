@@ -3,8 +3,7 @@
     ob_start();
 ?>
 
-    <div class="product">
-        <div class="main-nav">
+        <div class="main_nav">
             <?php
                 // Save PDO objects as arrays using fetchAll()
                 $user = $users->fetchAll();
@@ -49,57 +48,16 @@
                 $date = strtok($date, '.');
                 date_default_timezone_set('Europe/Paris');
             ?>
-            <p><strong>by </strong><?= $picture_author ?></p>
-            <p><strong>on </strong><?= date('m/d/Y H:i:s', $date) ?></p>
-            <div id='full_product'>
-                <div id='single_product'>
-                    <?php
-                        echo '<img class="gallery_picture" src="pictures/snaps/'.$img.'"/>';
-                    ?>
-                </div>
-            </div>
-            <?php
-                if ($_SESSION['loggued_on_user'] != '')
-                {
-            ?>
-            <form action="index.php?action=addComment&picture_id=<?= $picture_id ?>&user_id=<?= $loggued_user_id ?>" method="post">
-                <div>
-                    <label for="comment">Comment</label><br />
-                    <textarea id="comment" name="comment"></textarea>
-                </div>
-                <div>
-                    <input type="submit" />
-                </div>
-            </form>
-            <?php
-                }
-            ?>
-            <?php
-                for ($i = 0; $comment[$i]; $i++)
-                {
-                    if ($comment[$i]['picture_id'] == $picture_id)
-                    {
-            ?>
-            <div id='full_product'>
-                <div id='single_product'>
-                    <p><strong><?= htmlspecialchars($picture_author) ?></strong> le <?= $comment[$i]['comment_date_fr'] ?>
-                    <?php
-                        if($comment[$i]['user_id'] == $loggued_user_id)
-                        {
-                    ?>
-                            <p><a href="index.php?view=updateCommentView&comment_id=<?= $comment[$i]['id'] ?>&picture_id=<?= $picture_id ?>">(Edit)</a></p>
-                            <p><a href="index.php?action=deleteComment&comment_id=<?= $comment[$i]['id'] ?>&picture_id=<?= $picture_id ?>" onclick="return confirm('Do you really want to remove your comment?')">(Delete)</a></p>
-                    <?php
-                        }
-                    ?>
-                    <p><?= nl2br(htmlspecialchars($comment[$i]['comment'])) ?></p>
-                </div>
-            </div>
-            <?php
-                    }
-                }
-            ?>
-            </div>
+
+            <div class="picture_view">
+            
+                <?php
+                    echo '<img class="single-picture" src="pictures/snaps/'.$img.'"/>';
+                ?>
+
+                <p><strong>by </strong><?= $picture_author ?></p>
+                <p><strong>on </strong><?= date('m/d/Y H:i:s', $date) ?></p>
+
                 <?php
                     echo '<p> '.$likes_nb.' likes</p>';
                     if($picture_was_taken_by == $loggued_user_id)
@@ -115,9 +73,57 @@
                         echo '<p><a href="index.php?action=like&picture_id='.$picture_id.'&user_id='.$loggued_user_id.'">(Like)</a></p>';
                     }
                 ?>
-            <div>
+            </div>
+       
+            <?php
+                if ($_SESSION['loggued_on_user'] != '')
+                {
+            ?>
+            <div class="comment_view">
+                <form class="add_comment_form" action="index.php?action=addComment&picture_id=<?= $picture_id ?>&user_id=<?= $loggued_user_id ?>" method="post">
+                    <div class="add_comment">
+                        <label for="comment">Add a comment</label><br />
+                        <textarea class="comment_area" name="comment"></textarea><br />
+                        <input type="submit" />
+                    </div>
+                </form>
+                <br>
+                <?php
+                    }
+                ?>
+        
+                <section class="comments_section">
+                    <?php
+                        for ($i = 0; $comment[$i]; $i++)
+                        {
+                            if ($comment[$i]['picture_id'] == $picture_id)
+                            {
+                    ?>
+                    
+                        <div class='single_comment'>
+                            <p><strong><?= htmlspecialchars($picture_author) ?></strong> le <?= $comment[$i]['comment_date_fr'] ?>
+                            <p><?= nl2br(htmlspecialchars($comment[$i]['comment'])) ?></p>
+                            <?php
+                                if($comment[$i]['user_id'] == $loggued_user_id)
+                                {
+                            ?>
+                                    <p><a href="index.php?view=updateCommentView&comment_id=<?= $comment[$i]['id'] ?>&picture_id=<?= $picture_id ?>">(Edit)</a></p>
+                                    <p><a href="index.php?action=deleteComment&comment_id=<?= $comment[$i]['id'] ?>&picture_id=<?= $picture_id ?>" onclick="return confirm('Do you really want to remove your comment?')">(Delete)</a></p>
+                            <?php
+                                }
+                            ?>
+                            
+                        </div>
+                        <hr>
+            
+                    <?php
+                            }
+                        }
+                    ?>
+                </section>
+            </div>
+
         </div>
-    </div>
-    
+
 <?php $content = ob_get_clean(); ?>
 <?php require('view/template.php'); ?>
