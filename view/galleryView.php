@@ -6,7 +6,7 @@
 
 <div class="mainView">
     <div class="main_box">
-        <section id="gallery_pictures">
+        <section class="gallery_pictures">
     <?php
         // Save PDO objects as arrays using fetchAll()
         $user = $users->fetchAll();
@@ -14,16 +14,17 @@
         $like = $likes->fetchAll();
         $picture = $gallery->fetchAll();
 
-        if($_GET['page'] > 0)
+        // if($_GET['page'] > 0)
+        // {
+        //     $page = $_GET['page'];
+        //     $items_per_page = 9;
+        //     $start = ($page - 1) * $items_per_page;
+        // }
+        // for ($i = $start; $picture[$i]; $i++)
+        for ($i = 0; $picture[$i]; $i++)
         {
-            $page = $_GET['page'];
-            $items_per_page = 9;
-            $start = ($page - 1) * $items_per_page;
-        }
-        for ($i = $start; $picture[$i]; $i++)
-        {
-            if ($i <= $start + 8)
-            {
+            // if ($i <= $start + 8)
+            // {
                 $comment_nb = 0;
                 $likes_nb = 0;
 
@@ -67,38 +68,39 @@
             </div>
 
     <?php
-            }
+            // }
         }
     ?>
             </section>
 
-    <div class="paginator">
-        <?php
-            for ($count = 0; $picture[$count]; $count++)
-            {
-                $nb_of_pages = ceil($count / 9);
-            }
+        <!-- <div class="paginator">
+            <?php
+                for ($count = 0; $picture[$count]; $count++)
+                {
+                    $nb_of_pages = ceil($count / 9);
+                }
 
-            if(($page - 1) > 0)
-            {
-                $previous = $page -1;
-                echo '<a href="index.php?view=gallery&page='.$previous.'"><</a>';
-            }
-            if($nb_of_pages > 0)
-            {
-        ?>
-        <h5>Page <?= $page ?> / <?= $nb_of_pages ?></h5>
-        <?php
-            }
-            if (($page + 1) <= $nb_of_pages)
-            {
-                $next = $page + 1;
-                echo '<a href="index.php?view=gallery&page='.$next.'">></a>';
-            }
-        ?>
-    </div>
+                if(($page - 1) > 0)
+                {
+                    $previous = $page -1;
+                    echo '<a href="index.php?view=gallery&page='.$previous.'"> <h5> < </h5> </a>';
+                }
+                if($nb_of_pages > 0)
+                {
+            ?>
 
-    </div>
+            <h5>Page <?= $page ?> / <?= $nb_of_pages ?></h5>
+            
+            <?php
+                }
+                if (($page + 1) <= $nb_of_pages)
+                {
+                    $next = $page + 1;
+                    echo '<a href="index.php?view=gallery&page='.$next.'"><h5> > </h5> </a>';
+                }
+            ?>
+        </div> -->
+
 
 </div>
     

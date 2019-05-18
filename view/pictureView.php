@@ -59,11 +59,18 @@
                 <p><strong>on </strong><?= date('m/d/Y H:i:s', $date) ?></p>
 
                 <?php
-                    echo '<p> '.$likes_nb.' likes</p>';
                     if($picture_was_taken_by == $loggued_user_id)
                     {
                         echo '<p> <a href="index.php?action=deletePicture&id='.$picture_id.'" onclick="return confirm(\'Do you really want to delete that picture?\')"> (Delete picture) </a> </p>';
                     }
+
+                    if ($likes_nb < 2)
+                    {
+                        echo '<p> '.$likes_nb.' like</p>';
+                    } else {
+                        echo '<p> '.$likes_nb.' likes</p>';
+                    }
+
                     if ($user_has_liked == 1)
                     {
                         echo '<p><a href="index.php?action=unlike&picture_id='.$picture_id.'&user_id='.$loggued_user_id.'">(Unlike)</a></p>';

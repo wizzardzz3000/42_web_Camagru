@@ -280,12 +280,20 @@ h6 {
     width: 100%;
 }
 
+.update_comment_view {
+    width: 295px;
+    height: 500px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /** BOX BIG **/
 .main_box {
     position: relative;
     margin-left: auto;
     margin-right: auto;
-    height: 70vh;
+    height: 66vh;
     background: linear-gradient(180deg, #000000 30%, #050227 90%);
     width: 76.22vw;
     border:1px solid rgba(255, 255, 255, 0.5);
@@ -294,7 +302,7 @@ h6 {
     /* background-color: rgb(250, 176, 176);  */
 }
 .main_box section {
-    height: 75vh;
+    height: 66vh;
     width: 78vw;
     overflow-y: auto;
   }
@@ -313,22 +321,27 @@ h6 {
     width: 380px;
     height: auto;
 }
-#paginator {
-    display: inline-block;
+.paginator {
+    display: block;
     position: relative;
     margin-left: auto;
     margin-right: auto;
-    width: 50vh;
-    height: 20px;
-}
-h5 {
-    float: left;
-    display: block;
     text-align: center;
+    width: 200px;
+    height: 30px;
 }
+
+h5 {
+    /* float: left; */
+    display: inline;
+    text-align: center;
+    color: white;
+    padding-left: 5px;
+}
+
 a {
-    float: left;
-    display: block;
+    /* float: left; */
+    /* display: block; */
 }
 
 @media screen and (max-width: 1200px)
@@ -337,7 +350,7 @@ a {
         position: relative;
         margin-left: auto;
         margin-right: auto;
-        height: 82vh;
+        height: 75vh;
         width: 80vw;
         /* background-color: rgb(250, 176, 176);  */
     }
