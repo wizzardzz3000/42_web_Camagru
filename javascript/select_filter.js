@@ -6,6 +6,7 @@ document.addEventListener("click",function(e)
     }
  });
 
+ //---------------------------------------------------------------------------------------
 var snapButton = document.getElementsByClassName('snap_button')[0];
 
 function selectFilter(filter_name)
@@ -26,12 +27,6 @@ function blur()
         snapButton.disabled = true;
     }
 }
-
-// function getfiltersrc()
-// {
-//     var someimage = document.getElementsByClassName('selected_filter').getElementsByTagName('filter')[0].src;
-//     alert(someimage);
-// }
 
 function show_filter(filter_name)
 {

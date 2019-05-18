@@ -593,6 +593,9 @@ h5 {
     float: left;
     width: 100px;
 }
+.retry_button {
+    float: left;
+}
 .import_button {
     float: right;
     width: 100px;

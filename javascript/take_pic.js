@@ -34,7 +34,8 @@ function checkButtonMode()
       var btn = document.createElement("BUTTON");
       btn.innerHTML = "Retry";
       btn.setAttribute('onclick','retry();');
-      btn.style.width = '100px'
+      btn.setAttribute("class","retry_button");
+      btn.style.width = '100px';
       document.getElementsByClassName("buttons_list")[0].appendChild(btn);
       takePicture();
   }
