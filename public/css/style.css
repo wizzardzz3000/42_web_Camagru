@@ -304,7 +304,7 @@ h6 {
 .main_box section {
     height: 66vh;
     width: 78vw;
-    overflow-y: auto;
+    overflow: auto;
   }
 
 #full_product {
@@ -450,34 +450,48 @@ h5 {
     .right_box {
         position: relative;
         float: left;
-        height: 400px;
-        width: 100vw;
-        margin-right: 10px;
+        height: 350px;
+        width: 80vw;
+        margin-right: auto;
         margin-left: 10px;
     }
 
     .right_box section {
-        height: 400px;
-        width: 100vw;
+        height: 350px;
+        width: 80vw;
         overflow-y: auto;
         margin-right: 0px;
         grid-template-columns: 100px 1fr;
     }
     #user_pictures {
-        height: 400px;
+        height: 350px;
         width: 100vw;
         margin-right: 0px;
     }
     .right_box_top {
         height: 40px;
-        width: 100vw;
+        width: 80vw;
 
     }
     #user_pictures {
-        height: 54vh;
-        width: 100vw;
+        height: 310px;
+        width: 80vw;
         margin-right: 0px;
         }
+    #full_product_small {
+        position: relative;
+        display: block;
+        float: left;
+        margin-left: auto;
+        margin-bottom: 4px;
+        margin-right: 4px;
+        width: 26vw;
+        }
+    .gallery_picture_small {
+        display: block;
+        width: 26vw;
+        height: auto;
+    }
 }
 
 @media screen and (max-width: 500px)
@@ -509,7 +523,7 @@ h5 {
 
     }
     #user_pictures {
-        height: 54vh;
+        height: 20vh;
         width: 100vw;
         margin-right: 0px;
         }
@@ -619,11 +633,7 @@ h5 {
     .left_box {
         position: relative;
         margin-left: 10px;
-        margin-right: auto;
-        margin-top: 100px;
-        float: left;
-        height: 400px;
-        width: 100vw;
+
     }
     .left_elements {
         position: absolute;

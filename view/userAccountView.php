@@ -85,11 +85,8 @@
                     <a href="index.php?view=forgotPassword" >(Forgot your password ?)</a>
                 </div>
                 <br>
-                <div>
-                    <br>
-                    <br>
-                    <input type="submit" id="modify_button" value="Modify" />
-                </div>
+                <input type="submit" id="modify_button" value="Modify" />
+  
                 <?
                     if ($username_error_message)
                     {
