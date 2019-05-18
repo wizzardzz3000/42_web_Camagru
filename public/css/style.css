@@ -383,8 +383,9 @@ h5 {
 .filters_list {
     /* background-color: rgb(200, 200, 252); */
     height: 90px;
-    width: 98vw;
-    margin-left: 5px;
+    width: auto;
+    margin-left: 10px;
+    margin-right: 10px;
     border:1px solid rgba(255, 255, 255, 0.5);
     border-radius: 20px;
     padding: 15px;
@@ -393,7 +394,7 @@ h5 {
 .filters_list_top {
     /* background-color: rgb(200, 200, 252); */
     height: 30px;
-    width: 100vw;
+    width: 98vw;
 }
 .filters_list_top h5 {
     /* background-color: rgb(200, 200, 252); */
