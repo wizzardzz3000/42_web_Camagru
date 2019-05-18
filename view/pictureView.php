@@ -90,6 +90,15 @@
                 <br>
                 <?php
                     }
+                    for ($i = 0; $comment[$i]; $i++)
+                    {
+                        if ($comment[$i]['picture_id'] == $picture_id)
+                        {
+                            $j++;
+                        }
+                    }
+                    if ($j > 0)
+                    {
                 ?>
         
                 <section class="comments_section">
@@ -100,7 +109,7 @@
                             {
                     ?>
                     
-                        <div class='single_comment'>
+                        <div class='single_comment' style="overflow: hidden">
                             <p><strong><?= htmlspecialchars($picture_author) ?></strong> on <?= $comment[$i]['comment_date_fr'] ?>
                             <p><?= nl2br(htmlspecialchars($comment[$i]['comment'])) ?></p>
                             <?php
@@ -121,6 +130,12 @@
                         }
                     ?>
                 </section>
+                <?php
+                    }
+                    else {
+                        echo '<p> No comment yet </p>';
+                    }
+                ?>
             </div>
 
         </div>

@@ -31,6 +31,7 @@ if(isset($_POST['img']))
         $filter = $_POST['filterName'];
     }
 
+    echo("TAKEN");
     saveTmp($image, $filter);
 }
 

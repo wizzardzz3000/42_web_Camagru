@@ -264,9 +264,11 @@ h6 {
 }
 
 .comments_section {
+    background: linear-gradient(180deg, #000000 30%, #050227 90%);
     background-color: rgb(255, 255, 255, 0.1);
-    height: 600px;
     width: 400px;
+    max-height: 800px;
+    overflow: hidden;
     overflow-y: auto;
 }
 
@@ -275,10 +277,8 @@ h6 {
 }
 
 .single_comment {
-    height: 100px;
+    width: 100%;
 }
-
-
 
 /** BOX BIG **/
 .main_box {
@@ -387,7 +387,6 @@ a {
 }
 
 /** RIGHT BOX **/
-
 h5 {
     margin-top: auto;
     margin-bottom: auto;
