@@ -49,9 +49,9 @@
                 </div>
                 <p><strong>Pictures <br></strong></p><?= $user_data['pictures_taken'] ?></p>
         </div>
-        <div class="modify_form">
-            <h2>Modify your informations</h2>
-            <form action="index.php?action=modify" method="post">
+        
+            <form class="modify_form" action="index.php?action=modify" method="post">
+                <h2>Modify your informations</h2>
                 <div>
                     <label for="name">New name</label><br />
                     <input class="input" type="text" id="r_name" name="new_name" onkeyup="checkName()"/>
@@ -107,7 +107,7 @@
                         echo '<p>'.$msg.'</p>';
                 ?>
             </form>
-        </div>
+        
     </div>
 
 <script src="javascript/notifications.js"></script>

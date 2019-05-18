@@ -142,7 +142,7 @@ function register($name, $email, $passwd, $cPassword)
                 echo("Cannot save user");
             }
         } else {
-            $res = 0;
+            $res = 4;
         }
     }
     require('view/userView.php');
@@ -340,10 +340,3 @@ function changeNotificationsPreferences($user_id, $bool)
     }
     return(0);
 }
-
-// function resend($name, $email, $hash)
-// {
-//     echo('RESEND' . $name);
-//     sendEmail($name, $email, $hash);
-//     require('view/userView.php');
-// }

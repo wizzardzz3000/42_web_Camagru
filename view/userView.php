@@ -14,7 +14,6 @@
                     <a href="index.php?view=forgotPassword" >(Forgot your password ?)</a>
                 </div>
                 <br>
-                <br />
                 <div>
                     <input type="submit" value="Login"/>
                 </div>
@@ -31,13 +30,24 @@
             </form>
         </div>
         <?
+        
             if ($verify == 1 || $verify == 2)
             {
-                echo    '<p>'.$verifyMessage.'</p>';
-            } else {
-                echo    '<div class="register_form">
+                ?>
+
+                <div class="registration_message">
+
+                <?
+                    echo    '<p>'.$verifyMessage.'</p>';
+                ?>
+
+                </div>
+
+                <?
+            } else if (!$res) {
+                echo    '
+                        <form class="register_form" action="index.php?action=register" method="POST">
                         <h2>Register</h2>
-                        <form action="index.php?action=register" method="POST">
                             <div>
                                 <label for="name">Name</label><br />
                                 <input class="input" id="r_name" type="text" name="name" value="" onkeyup="checkName()" required/>
@@ -74,31 +84,32 @@
             <?
             if ($res)
             {
-                if ($res == 3)
-                {
-                    echo    '<p>Success!</p>';
-                    echo    '<p>Please check your email to validate your account.</p>';
-                    // echo    '<form action="index.php?action=resend&name='.$name.'&email='.$email.'&hash='.$hash.'" method="POST">
-                    //             <div>
-                    //                 <input type="submit" value="Resend email"/>
-                    //             </div>
-                    //         </form>';
-                }
-                if ($res == 2)
-                {
-                    echo '<p>Sorry!</p>';
-                    echo '<p>This email address is already linked to an account, please login or register with a different email</p>';
-                }
-                if ($res == 1)
-                {
-                    echo '<p>Sorry!</p>';
-                    echo '<p>This user already exists, please login or register with a different name</p>';
-                }
-                if ($res == 0)
-                {
-                    echo '<p>Sorry!</p>';
-                    echo '<p>Passwords don\'t match</p>';
-                }
+                ?>
+
+                <div class="registration_message">
+
+                    <?php
+                    if ($res == 3)
+                    {
+                        echo '<p>Success! <br> <br> Please check your email to validate your account.</p>';
+                    }
+                    if ($res == 2)
+                    {
+                        echo '<p>Sorry! <br> <br> This email address is already linked to an account, please login or register with a different email.</p>';
+                    }
+                    if ($res == 1)
+                    {
+                        echo '<p>Sorry!  <br> <br> This user already exists, please login or register with a different name.</p>';
+                    }
+                    if ($res == 4)
+                    {
+                        echo '<p>Sorry!  <br> <br> Passwords don\'t match.</p>';
+                    }
+                    ?>
+
+                </div>
+
+                <?php
             }
             ?>
         </div>

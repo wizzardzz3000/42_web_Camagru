@@ -1,28 +1,33 @@
 <?php ob_start(); ?>
 
     <div class="forms_account_view">
-        <?
-            if ($username_message)
-            {
-                echo '<p>'.$username_message.'</p>';
-                echo '<br>';
-            }
-            if ($email_message)
-            {
-                echo '<p>'.$email_message.'</p>';
-                echo '<br>';
-            }
-            if ($password_message)
-            {
-                echo '<p>'.$password_message.'</p>';
-                echo '<br>';
-            }
-            if ($relog_message)
-            {
-                echo '<p>'.$relog_message.'</p>';
-                echo '<br>';
-            }
-        ?>
+
+        <div class="account_modified_view">
+
+            <?
+                if ($username_message)
+                {
+                    echo '<p>'.$username_message.'</p>';
+                    echo '<br>';
+                }
+                if ($email_message)
+                {
+                    echo '<p>'.$email_message.'</p>';
+                    echo '<br>';
+                }
+                if ($password_message)
+                {
+                    echo '<p>'.$password_message.'</p>';
+                    echo '<br>';
+                }
+                if ($relog_message)
+                {
+                    echo '<p>'.$relog_message.'</p>';
+                }
+            ?>
+
+        </div>
+
     </div>
 
 <?php $content = ob_get_clean(); ?>

@@ -1,7 +1,7 @@
 <?php ob_start(); ?>
 
     <div class="forms_account_view">
-            <form action="index.php?action=sendPasswordResetEmail" method="post">
+            <form class="reset_password_form" action="index.php?action=sendPasswordResetEmail" method="post">
                 <div>
                     <label for="email">Enter your email address to reset your password</label><br />
                     <br>

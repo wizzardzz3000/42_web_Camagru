@@ -84,7 +84,7 @@ function sendPasswordResetEmail($email)
         
         $msg = "A link to reset your password was sent to your email address!";
     } else {
-        $msg = "Sorry, there is not account for this email address :/";
+        $msg = "Sorry, there is no registered account for this email address :/";
     }
     
     require('view/forgotPasswordView.php');
