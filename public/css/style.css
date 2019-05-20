@@ -351,6 +351,12 @@ h6 {
     width: 875px;
     height: 77vh;
 }
+.picture_special_p {
+    width: 300px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
 .picture_view {
     border-radius: 20px;
     padding: 15px;
@@ -370,7 +376,7 @@ h6 {
     float: left; 
     height: 520px;
     width: 400px;
-    margin-left:10px;
+    margin-left: 10px;
 }
 .add_comment_form {
     width: 200px;
@@ -396,6 +402,7 @@ h6 {
     background-color: rgb(255, 255, 255, 0.1);
     width: 400px;
     max-height: 400px;
+    float: left;
     overflow: hidden;
     overflow-y: auto;
 }
@@ -414,6 +421,19 @@ h6 {
     position: relative;
     margin-left: auto;
     margin-right: auto;
+}
+@media screen and (max-width: 800px)
+{
+    .main_nav {
+        width: 700px;
+    }
+    .picture_view {
+        margin-left: 4vw;
+    }
+    .comment_view {
+        margin-top: 20px;
+        margin-left: 4vw;
+    }
 }
 
 /** BOX BIG **/
@@ -523,6 +543,13 @@ h5 {
     height: 80px;
 }
 
+@media screen and (max-width: 1200px) {
+    .filters_list {
+        margin-left: 2vw;
+        width: 430px;
+    }
+}
+
 /** RIGHT BOX **/
 h5 {
     margin-top: auto;
@@ -571,6 +598,25 @@ h5 {
 }
 @media screen and (max-width: 1200px)
 {
+    .right_box {
+        float: left;
+        margin-left: 2vw;
+        width: 430px;
+    }
+    #full_product_small {
+        position: relative;
+        display: block;
+        float: left;
+        margin-left: auto;
+        margin-bottom: 4px;
+        margin-right: 4px;
+        width: 100px;
+      }
+    .gallery_picture_small {
+        display: block;
+        width: 100px;
+        height: auto;
+    }
 }
 
 /* LEFT BOX */

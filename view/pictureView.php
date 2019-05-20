@@ -81,12 +81,12 @@
                     }
                 ?>
             </div>
-       
+            
+            <div class="comment_view">
             <?php
                 if ($_SESSION['loggued_on_user'] != '')
                 {
             ?>
-            <div class="comment_view">
                 <form class="add_comment_form" action="index.php?action=addComment&picture_id=<?= $picture_id ?>&user_id=<?= $loggued_user_id ?>" method="post">
                     <div class="add_comment">
                         <label for="comment">Add a comment</label><br />
@@ -144,11 +144,12 @@
                 <?php
                     }
                     else {
-                        echo '<p> No comment yet </p>';
+                        echo '  <div class="picture_special_p">
+                                    <p> No comments yet </p>
+                                </div>';
                     }
                 ?>
             </div>
-
         </div>
 
 <script src="javascript/picture_view_ajax.js"></script>
