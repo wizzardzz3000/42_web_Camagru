@@ -388,6 +388,7 @@ h6 {
 .comment_area {
     height: 50px;
     width: 394px;
+    resize: none;
 }
 
 .comments_section {
