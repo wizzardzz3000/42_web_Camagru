@@ -96,7 +96,7 @@
                 </form>
                 <br>
                 <?php
-                    }
+                }
                     for ($i = 0; $comment[$i]; $i++)
                     {
                         if ($comment[$i]['picture_id'] == $picture_id)
@@ -106,9 +106,15 @@
                     }
                     if ($j > 0)
                     {
+                        if ($_SESSION['loggued_on_user'])
+                        {
+                            $section = 'comments_section';
+                        } else {
+                            $section = 'comments_section_full';
+                        }
                 ?>
         
-                <section class="comments_section">
+                <section class="<?= $section ?>">
                     <?php
                         for ($i = 0; $comment[$i]; $i++)
                         {

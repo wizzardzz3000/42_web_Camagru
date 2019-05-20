@@ -21,7 +21,7 @@
                     <?php
                     if (!$_SESSION['loggued_on_user'])
                     {
-                        echo '<a class="right" onclick=location.href="index.php?view=user" style="cursor:pointer;">Login/Register</a>';
+                        echo '<a class="right" onclick=location.href="index.php?view=user" style="cursor:pointer;">Login / Register</a>';
                         echo '<a class="right" onclick=location.href="index.php?view=gallery&page=1" style="cursor:pointer;">Gallery</a>';
                     } else {
                         echo '<a class="right" onclick=location.href="index.php?action=logout" style="cursor:pointer;">Logout</a>';
@@ -44,7 +44,7 @@
       
         <section id="footer">
             <footer>
-                <p>© Martini Scaglioni 2019</p>
+                <p>© Martini Scaglioni 2019 🌚</p>
             </footer>
         </section>
     </section>

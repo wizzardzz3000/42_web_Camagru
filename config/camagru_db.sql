@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le :  lun. 20 mai 2019 à 09:44
+-- Généré le :  lun. 20 mai 2019 à 14:23
 -- Version du serveur :  5.6.43
 -- Version de PHP :  5.6.40
 
@@ -54,9 +54,11 @@ INSERT INTO `comments` (`id`, `picture_id`, `user_id`, `comment`, `comment_date`
 (14, 35, 1, 'yo', '2019-05-20 16:23:12'),
 (15, 35, 1, ':)', '2019-05-20 16:23:34'),
 (16, 38, 1, 'hey', '2019-05-20 16:42:04'),
-(17, 38, 1, 'g\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nff', '2019-05-20 16:42:10'),
+(17, 38, 1, 'ok', '2019-05-20 23:04:09'),
 (18, 43, 7, 'hey', '2019-05-20 17:34:48'),
-(21, 46, 7, 'hey', '2019-05-20 18:35:00');
+(21, 46, 7, 'hey', '2019-05-20 18:35:00'),
+(22, 37, 1, 'hello', '2019-05-20 22:52:35'),
+(23, 47, 1, 'ohohoh', '2019-05-20 23:00:22');
 
 -- --------------------------------------------------------
 
@@ -77,7 +79,7 @@ CREATE TABLE `likes` (
 INSERT INTO `likes` (`id`, `picture_id`, `user_id`) VALUES
 (2, 35, 1),
 (3, 32, 1),
-(4, 43, 7);
+(31, 43, 7);
 
 -- --------------------------------------------------------
 
@@ -113,7 +115,8 @@ INSERT INTO `pictures` (`picture_id`, `user_id`, `content`) VALUES
 (42, 7, '0.75796100:1558363908.png'),
 (43, 7, '0.27997800:1558364163.png'),
 (45, 7, '0.00401400:1558366406.png'),
-(46, 7, '0.92314800:1558369840.png');
+(46, 7, '0.92314800:1558369840.png'),
+(47, 1, '0.33828000:1558382894.png');
 
 -- --------------------------------------------------------
 
@@ -180,19 +183,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT pour la table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT pour la table `pictures`
 --
 ALTER TABLE `pictures`
-  MODIFY `picture_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `picture_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT pour la table `users`

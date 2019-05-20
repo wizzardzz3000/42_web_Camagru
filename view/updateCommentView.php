@@ -19,13 +19,16 @@
         <p><a href="index.php?view=picture&id=<?= $picture_id ?>">Back to picture</a></p><br/>
 
         <h2>Modifiez le commentaire :</h2>
-        <p><strong><?= htmlspecialchars($author) ?></strong> le <?= $comment[0]['comment_date_fr']?></p>
-        <p><?= nl2br(htmlspecialchars($comment[0]['comment'])) ?></p>
-    
-        <form action="index.php?action=modifyComment&comment_id=<?= $comment[0]['id'] ?>&picture_id=<?= $picture_id ?>" method="post">
+
+        <section class="edit_comment_section">
+            <p><strong><?= htmlspecialchars($author) ?></strong> le <?= $comment[0]['comment_date_fr']?></p>
+            <p><?= nl2br(htmlspecialchars($comment[0]['comment'])) ?></p>
+        </section>
+        <br>
+        <form class="edit_comment_form" action="index.php?action=modifyComment&comment_id=<?= $comment[0]['id'] ?>&picture_id=<?= $picture_id ?>" method="post">
             <div>
                 <label for="comment">Nouveau commentaire :</label><br />
-                <textarea class="comment_area" name="comment"></textarea>
+                <textarea class="edit_comment_area" name="comment" required></textarea>
             </div>
             <div>
                 <input type="submit" />

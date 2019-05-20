@@ -37,7 +37,8 @@ footer {
 
 }
 footer p {
-    font-size: 14px;
+    font-size: 13px;
+    color: rgb(255, 255, 255);
     margin-top: 6px;
     margin-bottom: auto;
 
@@ -226,7 +227,7 @@ h6 {
 .forms {
     display: flex;
     flex-direction: row;
-    padding-top: 30px;
+    padding-top: 20px;
     width: 440px;
     position: relative;
     margin-left: auto;
@@ -396,6 +397,11 @@ h6 {
     width: 394px;
     resize: none;
 }
+.edit_comment_area {
+    height: 50px;
+    width: 290px;
+    resize: none;
+}
 
 .comments_section {
     background: linear-gradient(180deg, #000000 30%, #050227 90%);
@@ -403,6 +409,23 @@ h6 {
     width: 400px;
     max-height: 400px;
     float: left;
+    overflow: hidden;
+    overflow-y: auto;
+}
+.comments_section_full {
+    background: linear-gradient(180deg, #000000 30%, #050227 90%);
+    background-color: rgb(255, 255, 255, 0.1);
+    width: 400px;
+    max-height: 520px;
+    float: left;
+    overflow: hidden;
+    overflow-y: auto;
+}
+.edit_comment_section {
+    background: linear-gradient(180deg, #000000 30%, #050227 90%);
+    background-color: rgb(255, 255, 255, 0.1);
+    width: 300px;
+    max-height: 300px;
     overflow: hidden;
     overflow-y: auto;
 }
@@ -416,11 +439,19 @@ h6 {
 }
 
 .update_comment_view {
+    border-radius: 20px;
+    padding: 15px;
+    border:1px solid rgba(255, 255, 255, 0.5);
+    background: linear-gradient(180deg, #000000 30%, #050227 90%);
     width: 295px;
-    height: 500px;
+    height: 536px;
     position: relative;
+    margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
+}
+.edit_comment_form {
+    margin-bottom: 0px;
 }
 @media screen and (max-width: 800px)
 {
@@ -438,6 +469,7 @@ h6 {
 
 /** BOX BIG **/
 .main_box {
+    margin-top: 5px;
     position: relative;
     margin-left: auto;
     margin-right: auto;
@@ -516,7 +548,7 @@ h5 {
     background: linear-gradient(180deg, #000000 , #04011a 90%);
 }
 .filters_list_top {
-    margin-top: 40px;
+    margin-top: 30px;
     /* background-color: rgb(200, 200, 252); */
     height: 30px;
     width: 98vw;
@@ -550,6 +582,13 @@ h5 {
     }
 }
 
+.mainView {
+    display: inline-block;
+    width: 100vw;
+    height: 75vh;
+    /* background-color: rgb(172, 229, 255); */
+}
+
 /** RIGHT BOX **/
 h5 {
     margin-top: auto;
@@ -566,7 +605,7 @@ h5 {
     position: relative;
     float: right;
     height: 50vh;
-    width: 50vw;
+    width: 48vw;
     margin-top: 30px;
     margin-right: 1vw;
     border:1px solid rgba(255, 255, 255, 0.5);
@@ -589,11 +628,11 @@ h5 {
     margin-left: auto;
     margin-bottom: 4px;
     margin-right: 4px;
-    width: 12vw;
+    width: 15.68vw;
   }
 .gallery_picture_small {
     display: block;
-    width: 12vw;
+    width: 15.68vw;
     height: auto;
 }
 @media screen and (max-width: 1200px)
@@ -620,14 +659,18 @@ h5 {
 }
 
 /* LEFT BOX */
-.left_box {
-    display: inline-block;
+.left_box_container {
+    float: left;    
+    margin-top: 30px;
+    width: 47vw;
+    height: 400px;
 }
 .left_box {
     position: relative;
-    margin-left: 1vw;
-    margin-top: 30px;
-    float: left;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
     height: 346px;
     width: 430px;
     border:1px solid rgba(255, 255, 255, 0.5);
