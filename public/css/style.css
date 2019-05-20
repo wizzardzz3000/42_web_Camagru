@@ -26,7 +26,7 @@ html, body {
     width: 100%;
 }
 footer {
-    background-color: rgba(0, 0, 0, 0.222);
+    background-color: rgba(0, 0, 0, 0.622);
     font-family: "Avenir",Arial,sans-serif;
     text-align: center;
     height: 30px;
@@ -342,24 +342,32 @@ h6 {
 /** SINGLE PICTURE VIEW **/
 .main_nav {
     display: block;
-    margin-top: 80px;
+    margin-top: 30px;
     margin-left: auto;
     margin-right: auto;
-    width: 850px;
+    width: 875px;
     height: 77vh;
 }
 .picture_view {
+    border-radius: 20px;
+    padding: 15px;
+    border:1px solid rgba(255, 255, 255, 0.5);
+    background: linear-gradient(180deg, #000000 30%, #050227 90%);
     float: left; 
     display: inline;
-    width: 430px;
-    height: 450px;
+    width: 400px;
+    height: 520px;
 }
 .comment_view {
+    border-radius: 20px;
+    padding: 15px;
+    border:1px solid rgba(255, 255, 255, 0.5);
+    background: linear-gradient(180deg, #000000 30%, #050227 90%);
     display: inline;
     float: left; 
-    height: 600px;
+    height: 520px;
     width: 400px;
-    margin-left:20px;
+    margin-left:10px;
 }
 .add_comment_form {
     width: 200px;
@@ -371,8 +379,8 @@ h6 {
     padding-bottom: 20px;
 }
 .single-picture {
-    width: 430px;
-    height: 320px;
+    width: 400px;
+    height: 295px;
 }
 .comment_area {
     height: 50px;
@@ -383,7 +391,7 @@ h6 {
     background: linear-gradient(180deg, #000000 30%, #050227 90%);
     background-color: rgb(255, 255, 255, 0.1);
     width: 400px;
-    max-height: 65vh;
+    max-height: 400px;
     overflow: hidden;
     overflow-y: auto;
 }

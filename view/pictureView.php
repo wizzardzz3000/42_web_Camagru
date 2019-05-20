@@ -112,6 +112,10 @@
                     <?php
                         for ($i = 0; $comment[$i]; $i++)
                         {
+                            $i++;
+                        }
+                        while ($i-- > 0)
+                        {
                             if ($comment[$i]['picture_id'] == $picture_id)
                             {
                     ?>
