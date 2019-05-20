@@ -43,7 +43,7 @@
                     ?>
                     <?php
                         $user_id = $user_data['user_id'];
-                        echo '<input type="submit" value="'.$notification_value.'" onclick="refreshPage(\'' . $user_data['user_id'] . '\', \'' . $notification_value . '\')"/>'; 
+                        echo '<input id="notifications_button" type="submit" value="'.$notification_value.'" onclick="refreshPage(\'' . $user_data['user_id'] . '\')"/>'; 
                     ?>
     
                 </div>

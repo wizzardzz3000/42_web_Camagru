@@ -33,15 +33,23 @@
     }
 })();
 
-function refreshPage(user_id, notification_value)
+function refreshPage(user_id)
 {   
-    if (notification_value == "Turn notifications on")
+    var notifications_button = document.getElementById('notifications_button');
+
+    if (notifications_button.value == "Turn notifications on")
     {
         var data = 1;
+        notifications_button.value = "Turn notifications off";
+        notifications_tag.innerHTML = "✓ Notifications turned on";
+        notifications_tag.style.color = "green"; 
     }
-    else if (notification_value == "Turn notifications off")
+    else if (notifications_button.value == "Turn notifications off")
     {
         var data = 0;
+        notifications_button.value = "Turn notifications on";
+        notifications_tag.innerHTML = "✗ Notifications turned off";
+        notifications_tag.style.color = "red"; 
     }
 
     const req = new XMLHttpRequest();
@@ -52,7 +60,7 @@ function refreshPage(user_id, notification_value)
         // XMLHttpRequest.DONE === 4
         if (this.readyState === XMLHttpRequest.DONE) {
             if (this.status === 200) {
-                window.location.reload(); 
+                // window.location.reload(); 
                 console.log("Response: %s", this.responseText);
             } else {
                 console.log("Response status : %d (%s)", this.status, this.statusText);
@@ -60,11 +68,7 @@ function refreshPage(user_id, notification_value)
         }
     };
 
-    if (data == 0)
-    {
-        req.send('user_id=' + user_id + '&bool=' + data);
-    }
-    else if (data == 1)
+    if (data == 0 || data == 1)
     {
         req.send('user_id=' + user_id + '&bool=' + data);
     }

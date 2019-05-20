@@ -26,7 +26,7 @@ html, body {
     width: 100%;
 }
 footer {
-    background-color: rgba(0, 0, 0, 0.622);
+    background-color: rgba(0, 0, 0, 0.522);
     font-family: "Avenir",Arial,sans-serif;
     text-align: center;
     height: 30px;
@@ -45,6 +45,9 @@ footer p {
 
 p {
     font-family: "Avenir",Arial,sans-serif;
+}
+a {
+    cursor: pointer;
 }
 
 #center {

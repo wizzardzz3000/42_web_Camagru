@@ -66,18 +66,18 @@
 
                     if ($likes_nb < 2)
                     {
-                        echo '<p> '.$likes_nb.' like</p>';
+                        echo '<p id="likes"> '.$likes_nb.' like</p>';
                     } else {
-                        echo '<p> '.$likes_nb.' likes</p>';
+                        echo '<p id="likes"> '.$likes_nb.' likes</p>';
                     }
 
                     if ($user_has_liked == 1)
                     {
-                        echo '<p><a href="index.php?action=unlike&picture_id='.$picture_id.'&user_id='.$loggued_user_id.'">(Unlike)</a></p>';
+                        echo '<p><a id="likes_button" onclick="changeNb('.$picture_id.', '.$loggued_user_id.')">(Unlike)</a></p>';
                     }
                     else if ($loggued_user_id)
                     {
-                        echo '<p><a href="index.php?action=like&picture_id='.$picture_id.'&user_id='.$loggued_user_id.'">(Like)</a></p>';
+                        echo '<p><a id="likes_button" onclick="changeNb('.$picture_id.', '.$loggued_user_id.')">(Like)</a></p>';
                     }
                 ?>
             </div>
@@ -150,6 +150,8 @@
             </div>
 
         </div>
+
+<script src="javascript/picture_view_ajax.js"></script>
 
 <?php $content = ob_get_clean(); ?>
 <?php require('view/template.php'); ?>
