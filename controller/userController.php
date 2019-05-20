@@ -126,23 +126,27 @@ function register($name, $email, $passwd, $cPassword)
             // SUCCESS
             if ($userManager->saveUser($name, $email, $passwd, $hash) == 3)
             {
-                $res = 3;
+                $success = 1;
+                $res = 'Please check your email to validate your account.';
                 sendAccountVerificationEmail($name, $email, $hash);
             } 
             // EMAIL ALREADY TAKEN
             else if ($userManager->saveUser($name, $email, $passwd, $hash) == 2)
             {
-                $res = 2;
+                $success = 2;
+                $res = 'This email address is already linked to an account, please login or register with a different email.';
             }
             // USERNAME ALREADY TAKEN
             else if ($userManager->saveUser($name, $email, $passwd, $hash) == 1)
             {
-                $res = 1;
+                $success = 2;
+                $res = 'This user already exists, please login or register with a different name.';
             } else {
                 echo("Cannot save user");
             }
         } else {
-            $res = 4;
+            $success = 2;
+            $res = 'Passwords don\'t match.';
         }
     }
     require('view/userView.php');

@@ -52,6 +52,7 @@ function refreshPage(user_id, notification_value)
         // XMLHttpRequest.DONE === 4
         if (this.readyState === XMLHttpRequest.DONE) {
             if (this.status === 200) {
+                window.location.reload(); 
                 console.log("Response: %s", this.responseText);
             } else {
                 console.log("Response status : %d (%s)", this.status, this.statusText);
@@ -62,11 +63,9 @@ function refreshPage(user_id, notification_value)
     if (data == 0)
     {
         req.send('user_id=' + user_id + '&bool=' + data);
-        document.location.reload(true);
     }
     else if (data == 1)
     {
         req.send('user_id=' + user_id + '&bool=' + data);
-        document.location.reload(true);
     }
 }

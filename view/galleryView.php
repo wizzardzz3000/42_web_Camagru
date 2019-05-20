@@ -1,10 +1,9 @@
 <?php ob_start(); ?>
 
+<div class="mainView">
 <div class="gallery_top">
     <h4>Gallery</h4>
 </div>
-
-<div class="mainView">
     <div class="main_box">
         <section class="gallery_pictures">
     <?php

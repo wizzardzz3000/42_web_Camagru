@@ -7,29 +7,32 @@
     <head>
         <meta charset="utf-8" />
         <title>Fidelio</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="public/css/style.css" rel="stylesheet" /> 
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     </head>
 
     <section id="container">
 
         <section id="header">
             <header>
-                <div class="top_bar">
-                <h6 class="logo" onclick="location.href='index.php';" style="cursor:pointer;">Fidelio</h6>
-                    <ul class="top_bar_elements">
-                        <?php
-                        if (!$_SESSION['loggued_on_user'])
-                        {
-                            echo '<li class="right" onclick=location.href="index.php?view=user" style="cursor:pointer;">Login/Register</li>';
-                            echo '<li class="right" onclick=location.href="index.php?view=gallery&page=1" style="cursor:pointer;">Gallery</li>';
-                        } else {
-                            echo '<li class="right" onclick=location.href="index.php?action=logout" style="cursor:pointer;">Logout</li>';
-                            echo '<li class="right" onclick=location.href="index.php?view=account" style="cursor:pointer;">Hello '.$_SESSION["loggued_on_user"].'</li>';
-                            echo '<li class="right" onclick=location.href="index.php?view=camera" style="cursor:pointer;">Take a picture</li>';
-                            echo '<li class="right" onclick=location.href="index.php?view=gallery&page=1" style="cursor:pointer;">Gallery</li>';
-                        }
-                        ?>
-                    </ul>
+                <div class="nav-menu" id="menu">
+                    <h6 class="logo" onclick="location.href='index.php';" style="cursor:pointer;">Fidelio</h6>
+                    <?php
+                    if (!$_SESSION['loggued_on_user'])
+                    {
+                        echo '<a class="right" onclick=location.href="index.php?view=user" style="cursor:pointer;">Login/Register</a>';
+                        echo '<a class="right" onclick=location.href="index.php?view=gallery&page=1" style="cursor:pointer;">Gallery</a>';
+                    } else {
+                        echo '<a class="right" onclick=location.href="index.php?action=logout" style="cursor:pointer;">Logout</a>';
+                        echo '<a class="right" onclick=location.href="index.php?view=account" style="cursor:pointer;">Hello '.$_SESSION["loggued_on_user"].'</a>';
+                        echo '<a class="right" onclick=location.href="index.php?view=camera" style="cursor:pointer;">Take a picture</a>';
+                        echo '<a class="right" onclick=location.href="index.php?view=gallery&page=1" style="cursor:pointer;">Gallery</a>';
+                    }
+                    ?>
+                    <a href="javascript:void(0);" class="icon" onclick="menu()">
+                        <i class="fa fa-bars"></i>
+                    </a>
                 </div>
             </header>
         </section>
@@ -45,4 +48,5 @@
             </footer>
         </section>
     </section>
+    <script src="javascript/index.js"></script>
 </html>
