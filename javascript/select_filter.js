@@ -9,12 +9,30 @@ document.addEventListener("click",function(e)
  //---------------------------------------------------------------------------------------
 var snapButton = document.getElementsByClassName('snap_button')[0];
 
+function isCanvasBlank(canvas)
+{
+    const context = canvas.getContext('2d');
+    const pixelBuffer = new Uint32Array(
+      context.getImageData(0, 0, canvas.width, canvas.height).data.buffer
+    );
+    return !pixelBuffer.some(color => color !== 0);
+}
+
 function selectFilter(filter_name)
 {
     var filter_name_short = filter_name.substring(0, filter_name.indexOf('.'));
+
+    var video = document.getElementsByClassName('camera_view')[0];
+    var imported = document.getElementsByClassName('imported')[0];
+    const blank = isCanvasBlank(imported);
+
     document.getElementsByClassName("filter_img")[0].src = "/pictures/filters/" + filter_name;
     document.getElementsByClassName("filter_img")[0].id = filter_name_short;
-    snapButton.disabled = false;
+
+    if (!blank || video.readyState === 4)
+    {
+        snapButton.disabled = false;
+    }
 }
 
 function blur()
