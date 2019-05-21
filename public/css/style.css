@@ -349,6 +349,13 @@ h6 {
         margin-left: auto;
         margin-right: auto;
     }
+    .reset_password_form {
+        width: 85vw;
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
 }
 
 
