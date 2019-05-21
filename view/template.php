@@ -41,9 +41,16 @@
         
         <section id="center">
             <?= $content ?>
+            <?php
+                if ($errorMsg != '')
+                {
+            ?>
             <div class="error_message_view">
                 <p><?= $errorMsg ?></p>
             </div>
+            <?php
+                }
+            ?>
         </section>
       
         <section id="footer">

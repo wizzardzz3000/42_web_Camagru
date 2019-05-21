@@ -13,17 +13,17 @@
         $like = $likes->fetchAll();
         $picture = $gallery->fetchAll();
 
-        // if($_GET['page'] > 0)
-        // {
-        //     $page = $_GET['page'];
-        //     $items_per_page = 9;
-        //     $start = ($page - 1) * $items_per_page;
-        // }
-        // for ($i = $start; $picture[$i]; $i++)
-        for ($i = 0; $picture[$i]; $i++)
+        if($_GET['page'] > 0)
         {
-            // if ($i <= $start + 8)
-            // {
+            $page = $_GET['page'];
+            $items_per_page = 9;
+            $start = ($page - 1) * $items_per_page;
+        }
+        for ($i = $start; $picture[$i]; $i++)
+        // for ($i = 0; $picture[$i]; $i++)
+        {
+            if ($i <= $start + 8)
+            {
                 $comment_nb = 0;
                 $likes_nb = 0;
 
@@ -67,12 +67,14 @@
             </div>
 
     <?php
-            // }
+            }
         }
     ?>
             </section>
 
-        <!-- <div class="paginator">
+
+</div>
+<div class="paginator">
             <?php
                 for ($count = 0; $picture[$count]; $count++)
                 {
@@ -98,10 +100,7 @@
                     echo '<a href="index.php?view=gallery&page='.$next.'"><h5> > </h5> </a>';
                 }
             ?>
-        </div> -->
-
-
-</div>
+        </div>
     
 <?php $content = ob_get_clean(); ?>
 <?php require('view/template.php'); ?>
