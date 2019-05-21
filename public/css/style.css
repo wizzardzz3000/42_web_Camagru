@@ -562,6 +562,15 @@ h6 {
     .single_comment {
         width: 280px;
     }
+    .comments_section_full {
+        background: linear-gradient(180deg, #000000 30%, #050227 90%);
+        background-color: rgb(255, 255, 255, 0.1);
+        width: 280px;
+        max-height: 520px;
+        float: left;
+        overflow: hidden;
+        overflow-y: auto;
+    }
     .comments_section {
         width: 280px;
     }
