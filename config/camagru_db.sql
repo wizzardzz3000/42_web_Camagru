@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le :  lun. 20 mai 2019 à 14:23
+-- Généré le :  mar. 21 mai 2019 à 02:07
 -- Version du serveur :  5.6.43
 -- Version de PHP :  5.6.40
 
@@ -19,10 +19,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `camagru`
+-- Base de données :  `camagru_db`
 --
-CREATE DATABASE IF NOT EXISTS `camagru` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `camagru`;
+CREATE DATABASE IF NOT EXISTS `camagru_db` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `camagru_db`;
 
 -- --------------------------------------------------------
 
@@ -58,7 +58,10 @@ INSERT INTO `comments` (`id`, `picture_id`, `user_id`, `comment`, `comment_date`
 (18, 43, 7, 'hey', '2019-05-20 17:34:48'),
 (21, 46, 7, 'hey', '2019-05-20 18:35:00'),
 (22, 37, 1, 'hello', '2019-05-20 22:52:35'),
-(23, 47, 1, 'ohohoh', '2019-05-20 23:00:22');
+(23, 47, 1, 'ohohoh', '2019-05-20 23:00:22'),
+(24, 48, 1, 'yo', '2019-05-21 09:38:51'),
+(25, 46, 1, 'hey', '2019-05-21 09:53:54'),
+(26, 49, 1, 'hey', '2019-05-21 10:17:12');
 
 -- --------------------------------------------------------
 
@@ -77,9 +80,10 @@ CREATE TABLE `likes` (
 --
 
 INSERT INTO `likes` (`id`, `picture_id`, `user_id`) VALUES
-(2, 35, 1),
 (3, 32, 1),
-(31, 43, 7);
+(31, 43, 7),
+(34, 35, 1),
+(35, 48, 1);
 
 -- --------------------------------------------------------
 
@@ -116,7 +120,9 @@ INSERT INTO `pictures` (`picture_id`, `user_id`, `content`) VALUES
 (43, 7, '0.27997800:1558364163.png'),
 (45, 7, '0.00401400:1558366406.png'),
 (46, 7, '0.92314800:1558369840.png'),
-(47, 1, '0.33828000:1558382894.png');
+(47, 1, '0.33828000:1558382894.png'),
+(48, 1, '0.38249600:1558387638.png'),
+(49, 1, '0.10842000:1558426453.png');
 
 -- --------------------------------------------------------
 
@@ -139,7 +145,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `user_name`, `user_email`, `user_password`, `hash`, `account_valid`, `notifications`) VALUES
-(1, 'Jusix75', 'wrsv@ewrdf.fr', '63fdfee16cfe8db69def7ed8c5fffcde313f364e612576710b159553467e835edba57b84ec44d637c24e44e09496beb04b91ec698816980e5b0e89379847009c', 'a0d2792bd2ea2e410e89a27df5d187e06c47204d9fe39bfb5d0b2187c4f26af5ab20e06559cc70111b29524e119bbec7daae6e426d8e8150629c3ec4551f853a', 1, 0),
+(1, 'Papipel75', ' wrsdv@ewrdf.fr ', '63fdfee16cfe8db69def7ed8c5fffcde313f364e612576710b159553467e835edba57b84ec44d637c24e44e09496beb04b91ec698816980e5b0e89379847009c', 'a0d2792bd2ea2e410e89a27df5d187e06c47204d9fe39bfb5d0b2187c4f26af5ab20e06559cc70111b29524e119bbec7daae6e426d8e8150629c3ec4551f853a', 1, 0),
 (2, 'Martin75', 'vuheferi@simpleemail.info', '63fdfee16cfe8db69def7ed8c5fffcde313f364e612576710b159553467e835edba57b84ec44d637c24e44e09496beb04b91ec698816980e5b0e89379847009c', 'e36a51b347f577d4fad9bbf4ff999ba3b82e7bee1755d806c9446ec97096e21b0ddad1736e253af77acd79e88bfd61de4a9c483be9307e6366d374dc85200279', 1, 1),
 (3, 'Papi', 'mrtscg@gmail.com', '63fdfee16cfe8db69def7ed8c5fffcde313f364e612576710b159553467e835edba57b84ec44d637c24e44e09496beb04b91ec698816980e5b0e89379847009c', '4663891216ba642aa950c4b6f502d33ce7d4ed391f8fd483810345d0ab9f6a5838d014700e1968f541452f7e898d1850b56f4de953bcdf36081a1cfc0ad8d47e', 0, 0),
 (4, 'f', 'f', '47c7f9b44e004f44f171e082a69cd1385091ec452c69348477c1719f22c73b46e4afe702b33a77dee4a68ae581dba29c85fc90ce7199d1ff2cf03d5183371a18', 'c3b7ff2bab880ce8ea62c5fda2a8829cd8dbf2eb79a783655430950e8e140586ccfe53dcdf145fa360fe7078e59bf1d3178339c7b88966ed00791ccbec2f8db6', 0, 1),
@@ -183,19 +189,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT pour la table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT pour la table `pictures`
 --
 ALTER TABLE `pictures`
-  MODIFY `picture_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `picture_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT pour la table `users`

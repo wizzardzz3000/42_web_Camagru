@@ -19,11 +19,11 @@ function login($login, $passwd)
             showMainView();
         } else if (authUser($login, $passwd) === 2) {
             $_SESSION['loggued_on_user'] = '';
-            $wrong_password = "Wrong password :(";
+            $wrong_password = "Wrong password";
             require('view/userView.php');
         } else if (authUser($login, $passwd) === 0) {
             $_SESSION['loggued_on_user'] = '';
-            $wrong_username = "Wrong username :(";
+            $wrong_username = "Wrong username";
             require('view/userView.php');
         } else {
             echo("AUTH FAIL");

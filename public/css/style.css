@@ -242,11 +242,26 @@ h6 {
 }
 .login_form {
     width: 210px;
-    height: 209px;
+    height: 214px;
     border:1px solid rgba(255, 255, 255, 0.5);
     background: linear-gradient(180deg, #000000 30%, #050227 90%);
     border-radius: 20px;
     padding: 15px;
+}
+.login_form_long {
+    width: 210px;
+    height: 250px;
+    border:1px solid rgba(255, 255, 255, 0.5);
+    background: linear-gradient(180deg, #000000 30%, #050227 90%);
+    border-radius: 20px;
+    padding: 15px;
+}
+.login_message {
+    width: 140px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: red;
 }
 .register_form {
     border:1px solid rgba(255, 255, 255, 0.5);
@@ -328,6 +343,13 @@ h6 {
         margin-left: auto;
         margin-right: auto;
 
+    }
+    .login_form_long {
+        width: 180px;
+        height: 250px;
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
     }
     .register_form {
         width: 180px;

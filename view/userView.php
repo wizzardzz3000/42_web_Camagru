@@ -1,6 +1,14 @@
-<?php ob_start(); ?>
+<?php 
+    ob_start();
+    if ($wrong_username || $wrong_password) 
+    {
+        $login_form_class = 'login_form_long';
+    } else {
+        $login_form_class = 'login_form'; 
+    }
+?>
     <div class="forms">
-        <div class="login_form">
+        <div class="<?= $login_form_class ?>">
             <h2>Login</h2>
             <form action="index.php?action=login" method="POST">
                 <div>
@@ -20,11 +28,15 @@
                 <?
                     if ($wrong_username)
                     {
-                        echo    '<p>'.$wrong_username.'</p>';
+                        echo    '<div class="login_message">
+                                    <p>'.$wrong_username.'</p>
+                                </div>';
                     }
                     if ($wrong_password)
                     {
-                        echo    '<p>'.$wrong_password.'</p>';
+                        echo    '<div class="login_message">
+                                    <p>'.$wrong_password.'</p>
+                                </div>';
                     }
                 ?>
             </form>
