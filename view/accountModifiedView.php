@@ -8,17 +8,14 @@
                 if ($username_message)
                 {
                     echo '<p>'.$username_message.'</p>';
-                    echo '<br>';
                 }
                 if ($email_message)
                 {
                     echo '<p>'.$email_message.'</p>';
-                    echo '<br>';
                 }
                 if ($password_message)
                 {
                     echo '<p>'.$password_message.'</p>';
-                    echo '<br>';
                 }
                 if ($relog_message)
                 {

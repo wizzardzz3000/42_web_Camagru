@@ -6,9 +6,11 @@ class LikesManager extends Manager
     public function getLikes()
     {
         $db = $this->dbConnect();
-        $likes = $db->query('SELECT picture_id, user_id FROM likes ORDER BY id ASC');
+        $likes = $db->prepare('SELECT picture_id, user_id FROM likes ORDER BY id ASC');
+        $likes->execute();
     
         return $likes;
+        $likes->closeCursor();
     }
 
     public function saveLike($picture_id, $user_id)
@@ -18,6 +20,7 @@ class LikesManager extends Manager
         $affectedLines = $likes->execute(array($picture_id, $user_id));
 
         return $affectedLines;
+        $affectedLines->closeCursor();
     }
 
     public function deleteLike($picture_id, $user_id)
@@ -27,5 +30,6 @@ class LikesManager extends Manager
         $affectedLines = $likes->execute(array($picture_id, $user_id));
 
         return $affectedLines;
+        $affectedLines->closeCursor();
     }
 }

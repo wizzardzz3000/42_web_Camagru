@@ -6,10 +6,11 @@ class CommentManager extends Manager
     public function getComments()
     {
         $db = $this->dbConnect();
-        $comments = $db->query('SELECT id, picture_id, user_id, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y at %H:%i:%s\') AS comment_date_fr FROM comments ORDER BY id ASC');
+        $comments = $db->prepare('SELECT id, picture_id, user_id, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y at %H:%i:%s\') AS comment_date_fr FROM comments ORDER BY id ASC');
+        $comments->execute();
 
         return $comments;
-        $comments->closeCursor(); // add to every other connexion
+        $comments->closeCursor();
     }
 
     public function getSingleComment($comment_id)
@@ -19,6 +20,7 @@ class CommentManager extends Manager
         $comment->execute(array($comment_id));
 
         return $comment;
+        $comment->closeCursor();
     }
 
     public function postComment($picture_id, $user_id, $comment)
@@ -28,6 +30,7 @@ class CommentManager extends Manager
         $affectedLines = $comments->execute(array($picture_id, $user_id, $comment));
 
         return $affectedLines;
+        $affectedLines->closeCursor();
     }
 
     public function updateComment($comment_id, $comment)
@@ -37,6 +40,7 @@ class CommentManager extends Manager
         $affectedLines = $commentos->execute(array($comment, $comment_id));
 
         return $affectedLines;
+        $affectedLines->closeCursor();
     }
 
     public function deleteComment($comment_id)
@@ -46,5 +50,6 @@ class CommentManager extends Manager
         $affectedLines = $commentos->execute();
 
         return $affectedLines;
+        $affectedLines->closeCursor();
     }
 }

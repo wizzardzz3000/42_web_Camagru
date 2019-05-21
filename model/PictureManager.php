@@ -8,14 +8,17 @@ class PictureManager extends Manager
         $db = $this->dbConnect();
         if ($picture_id != '')
         {
-            $pictures = $db->query("SELECT picture_id, user_id, content FROM pictures WHERE picture_id = '$picture_id'");
+            $pictures = $db->prepare("SELECT picture_id, user_id, content FROM pictures WHERE picture_id = '$picture_id'");
+            $pictures->execute();
         }
         else
         {
-            $pictures = $db->query('SELECT picture_id, user_id, content FROM pictures ORDER BY picture_id DESC');
+            $pictures = $db->prepare('SELECT picture_id, user_id, content FROM pictures ORDER BY picture_id DESC');
+            $pictures->execute();
         }
     
         return $pictures;
+        $pictures->closeCursor();
     }
 
     public function savePictures($user_id, $content)
@@ -25,6 +28,7 @@ class PictureManager extends Manager
         $affectedLines = $pictures->execute(array($user_id, $content));
 
         return $affectedLines;
+        $affectedLines->closeCursor();
     }
 
     public function deleteSinglePicture($picture_id, $picture_name)
@@ -45,5 +49,9 @@ class PictureManager extends Manager
             unlink($file_path . $picture_name);
 
         return $affectedLines;
+        
+        $affectedLines->closeCursor();
+        $res1->closeCursor();
+        $res2->closeCursor();
     }
 }

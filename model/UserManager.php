@@ -8,9 +8,11 @@ class UserManager extends Manager
     public function getUsers()
     {
         $db = $this->dbConnect();
-        $req = $db->query("SELECT user_id, user_name, user_email, user_password, hash, account_valid, notifications FROM users ORDER BY user_id");
-        
+        $req = $db->prepare("SELECT user_id, user_name, user_email, user_password, hash, account_valid, notifications FROM users ORDER BY user_id");
+        $req->execute();
+
         return $req;
+        $req->closeCursor();
     }
     // GET USER DATA
     // ---------------------------------------------------------------
@@ -18,12 +20,15 @@ class UserManager extends Manager
     {
         $db = $this->dbConnect();
         if ($login) {
-            $req = $db->query("SELECT user_id, user_name, user_email, user_password, hash, account_valid, notifications FROM users WHERE user_name = '$login'");
+            $req = $db->prepare("SELECT user_id, user_name, user_email, user_password, hash, account_valid, notifications FROM users WHERE user_name = '$login'");
+            $req->execute();
         } else if ($email) {
-            $req = $db->query("SELECT user_id, user_name, user_email, user_password, hash, account_valid, notifications FROM users WHERE user_email = '$email'");
+            $req = $db->prepare("SELECT user_id, user_name, user_email, user_password, hash, account_valid, notifications FROM users WHERE user_email = '$email'");
+            $req->execute();
         }
 
         return $req;
+        $req->closeCursor();
     }
 
     // CHECK IF USER EXISTS
@@ -31,7 +36,8 @@ class UserManager extends Manager
     public function userExists($user_name, $user_email)
     {
         $db = $this->dbConnect();
-        $users_table = $db->query('SELECT user_id, user_name, user_email FROM users ORDER BY user_id');
+        $users_table = $db->prepare('SELECT user_id, user_name, user_email FROM users ORDER BY user_id');
+        $users_table->execute();
 
         if ($users_table)
         {
@@ -50,6 +56,8 @@ class UserManager extends Manager
         } else {
             return (0);
         }
+
+        $users_table->closeCursor();
     }
 
     // SAVE USER DATA
@@ -94,6 +102,7 @@ class UserManager extends Manager
                 return(0);
             }
         }
+        $user->closeCursor();
     }
 
     // ACTIVATE USER ACCOUNT
@@ -101,7 +110,8 @@ class UserManager extends Manager
     public function activateAccount($email)
     {
         $db = $this->dbConnect();
-        $users = $db->query("SELECT user_email, account_valid FROM users WHERE user_email = '$email'");
+        $users = $db->prepare("SELECT user_email, account_valid FROM users WHERE user_email = '$email'");
+        $users->execute();
 
         if($user = $users->fetch())
         {
@@ -122,6 +132,8 @@ class UserManager extends Manager
             } 
             return(1);
         }
+        $users->closeCursor();
+        $user->closeCursor();
     }
 
     // UPDATE USER DATA
@@ -130,12 +142,19 @@ class UserManager extends Manager
     {
         $db = $this->dbConnect();
         if ($email)
-            $users = $db->query("SELECT user_name, user_email, user_password FROM users WHERE user_email = '$email'");
+        {
+            $users = $db->prepare("SELECT user_name, user_email, user_password FROM users WHERE user_email = '$email'");
+            $users->execute();
+        }
         if ($current_user)
-            $users = $db->query("SELECT user_name, user_email, user_password FROM users WHERE user_name = '$current_user'");
-
+        {
+            $users = $db->prepare("SELECT user_name, user_email, user_password FROM users WHERE user_name = '$current_user'");
+            $users->execute();
+        }
+    
         if($user = $users->fetch())
         {
+            // NEW EMAIL
             if ($new_user_email)
             {
                 $query = "UPDATE users SET user_email = ? WHERE user_name = '$current_user'";
@@ -144,8 +163,10 @@ class UserManager extends Manager
                 if (!$affectedLines)
                 {
                     die("ERROR: ". mysqli_error($db));
-                } 
+                }
+                $user->closeCursor();
             }
+            // NEW PASSWORD
             if ($new_user_password)
             {
                 if ($email)
@@ -157,8 +178,10 @@ class UserManager extends Manager
                 if (!$affectedLines)
                 {
                     die("ERROR: ". mysqli_error($db));
-                } 
+                }
+                $user->closeCursor();
             }
+            // NEW NAME
             if ($new_user_name)
             {
                 $query = "UPDATE users SET user_name = ? WHERE user_name = '$current_user'";
@@ -167,11 +190,13 @@ class UserManager extends Manager
                 if (!$affectedLines)
                 {
                     die("ERROR: ". mysqli_error($db));
-                } 
+                }
+                $user->closeCursor(); 
             }
             if ($affectedLines)
                 return(1);
         }
+        $users->closeCursor();
     }
     
     // NOTIFICATIONS
@@ -191,5 +216,6 @@ class UserManager extends Manager
         }
         if ($affectedLines)
             return(1);
+        $user->closeCursor();
     }
 }
