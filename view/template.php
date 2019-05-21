@@ -1,4 +1,5 @@
 <?php
+    error_reporting(0);
     session_start();
 ?>
 
@@ -39,7 +40,9 @@
         
         <section id="center">
             <?= $content ?>
-            <?= $errorMsg ?>
+            <div class="error_message_view">
+                <p><?= $errorMsg ?></p>
+            </div>
         </section>
       
         <section id="footer">

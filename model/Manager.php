@@ -12,7 +12,9 @@ class Manager
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $db;
         } catch (PDOException $e) {
-            echo 'Échec lors de la connexion : ' . $e->getMessage();
+            $errorMessage = 'Database connexion impossible, please come back later.';
+            //echo 'Échec lors de la connexion : ' . $e->getMessage();
+            require('view/errorView.php');
         }
     }
 }

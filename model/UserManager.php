@@ -9,7 +9,7 @@ class UserManager extends Manager
     {
         $db = $this->dbConnect();
         $req = $db->query("SELECT user_id, user_name, user_email, user_password, hash, account_valid, notifications FROM users ORDER BY user_id");
-
+        
         return $req;
     }
     // GET USER DATA
