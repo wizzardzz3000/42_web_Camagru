@@ -128,13 +128,13 @@
                                 {  
                                     if ($user[$j]['user_id'] == $comment[$i]['user_id'])
                                     {
-                                        $commenter = $user[$j]['user_name'];
+                                        $commentor = $user[$j]['user_name'];
                                     }
                                 }
                     ?>
                     
                         <div class='single_comment' style="overflow: hidden">
-                            <p><strong><?= htmlspecialchars($commenter) ?></strong> on <?= $comment[$i]['comment_date_fr'] ?>
+                            <p><strong><?= htmlspecialchars($commentor) ?></strong> on <?= $comment[$i]['comment_date_fr'] ?>
                             <p><?= nl2br(htmlspecialchars($comment[$i]['comment'])) ?></p>
                             <?php
                                 if($comment[$i]['user_id'] == $loggued_user_id)
