@@ -54,7 +54,7 @@ try {
         }
         else if ($_GET['action'] == 'logout')
         {
-            logout($_POST['login'], $_POST['passwd']);
+            logout();
         }
         else if ($_GET['action'] == 'register')
         {
