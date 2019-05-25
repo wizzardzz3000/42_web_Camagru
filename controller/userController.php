@@ -217,20 +217,41 @@ function modify($old_passwd, $name, $email, $new_passwd, $new_passwd_confirmatio
         if ($name || $email || ($new_passwd && $new_passwd_confirmation))
         {
             // Check name
-            if ($name && $userManager->userExists($name, "") == 1)
+            if ($name)
             {
-                $username_error_message = "Sorry, this user name is already taken :/";
-                $problem = 1;
+                if ($userManager->userExists($name, "") == 1)
+                {
+                    $username_error_message = "Sorry, this user name is already taken :/";
+                    $problem = 1;
+                }
+                if (strlen($name) < 5)
+                {
+                    $username_error_message = "Sorry, this user name is too short :/";
+                    $problem = 1;
+                }
             }
             // Check email
-            if ($email && $userManager->userExists("", $email) == 2)
+            if ($email)
             {
-                $email_error_message = "Sorry, this email address is already linked to an existing account :/";
-                $problem = 1;
+                if($userManager->userExists("", $email) == 2)
+                {
+                    $email_error_message = "Sorry, this email address is already linked to an existing account :/";
+                    $problem = 1;
+                }
+                if(!preg_match('/^[a-z0-9\_\.\-]{2,20}\@[a-z0-9\_\-]{2,20}\.[a-z]{2,9}$/', $email))
+                {
+                    $email_error_message = "Sorry, this is not a valid email format :/";
+                    $problem = 1;
+                }
             }
             // Check new password
             if ($new_passwd && $new_passwd_confirmation)
             {
+                if(strlen($new_passwd) < 12)
+                {
+                    $password_error_message = "Sorry, this password is too short :/";
+                    $problem = 1;
+                }
                 if ($new_passwd != $new_passwd_confirmation)
                 {
                     $password_error_message = "Sorry, passwords don't match :/";
