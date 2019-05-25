@@ -50,7 +50,7 @@ try {
         // USER ACTIONS
         if ($_GET['action'] == 'login')
         {
-            login($_POST['login'], $_POST['passwd']);
+            login(htmlentities($_POST['login']), htmlentities($_POST['passwd']));
         }
         else if ($_GET['action'] == 'logout')
         {
@@ -58,7 +58,7 @@ try {
         }
         else if ($_GET['action'] == 'register')
         {
-            register($_POST['name'], $_POST['email'], $_POST['passwd'], $_POST['c_passwd']);
+            register(htmlentities($_POST['name']), htmlentities($_POST['email']), htmlentities($_POST['passwd']), htmlentities($_POST['c_passwd']));
         }
         else if ($_GET['action'] == 'verify')
         {
@@ -71,7 +71,7 @@ try {
         {
             if ($_POST['old_passwd'] )
             {
-                modify($_POST['old_passwd'], $_POST['new_name'], $_POST['new_email'], $_POST['new_passwd'], $_POST['c_passwd']);
+                modify(htmlentities($_POST['old_passwd']), htmlentities($_POST['new_name']), htmlentities($_POST['new_email']), htmlentities($_POST['new_passwd']), htmlentities($_POST['c_passwd']));
             } else {
                 echo("Please enter your current password to make changes");
             }
@@ -90,7 +90,7 @@ try {
         else if ($_GET['action'] == 'addComment') {
             if (isset($_GET['picture_id']) && isset($_GET['user_id'])) {
                 if (session_start() && !empty($_POST['comment'])) {
-                    addComment($_GET['picture_id'], $_GET['user_id'], $_POST['comment']);
+                    addComment($_GET['picture_id'], $_GET['user_id'], htmlentities($_POST['comment']));
                 }
                 else {
                     throw new Exception('Tous les champs ne sont pas remplis !');
@@ -103,7 +103,7 @@ try {
         else if ($_GET['action'] == 'modifyComment') {
             if (isset($_GET['comment_id']) && isset($_GET['picture_id'])) {
                 if (!empty($_POST['comment'])) {
-                    modifyComment($_GET['comment_id'], $_GET['picture_id'], $_POST['comment']);
+                    modifyComment($_GET['comment_id'], $_GET['picture_id'], htmlentities($_POST['comment']));
                 }
                 else {
                     throw new Exception('Tous les champs ne sont pas remplis !');
@@ -147,9 +147,9 @@ try {
         // RESET PASSWORD ACTIONS
         else if ($_GET['action'] == 'sendPasswordResetEmail')
         {
-            if (!empty($_POST['email']))
+            if (!empty(htmlentities($_POST['email'])))
             {
-                sendPasswordResetEmail($_POST['email']);
+                sendPasswordResetEmail(htmlentities($_POST['email']));
             }
         }
         else if ($_GET['action'] == 'verifyAccountForReset')
@@ -164,9 +164,9 @@ try {
         }
         else if ($_GET['action'] == 'resetPassword')
         {
-            if (isset($_GET['email']) && isset($_GET['hash']) && !empty($_POST['r_password']) && !empty($_POST['c_password']))
+            if (isset($_GET['email']) && isset($_GET['hash']) && !empty(htmlentities($_POST['r_password'])) && !empty(htmlentities($_POST['c_password'])))
             {
-                resetPassword($_GET['email'], $_GET['hash'], $_POST['r_password'], $_POST['c_password']);
+                resetPassword($_GET['email'], $_GET['hash'], htmlentities($_POST['r_password']), htmlentities($_POST['c_password']));
             }
         }
     }
