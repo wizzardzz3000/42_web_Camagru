@@ -125,7 +125,7 @@ function register($name, $email, $passwd, $cPassword)
         {
             if(preg_match('/^[a-z0-9\_\.\-]{2,20}\@[a-z0-9\_\-]{2,20}\.[a-z]{2,9}$/', $email))
             {
-                if(strlen($passwd) >= 22)
+                if(strlen($passwd) >= 12)
                 {
                     if ($passwd == $cPassword)
                     {
