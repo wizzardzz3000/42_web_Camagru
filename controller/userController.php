@@ -125,7 +125,7 @@ function register($name, $email, $passwd, $cPassword)
         {
             if(preg_match('/^[a-z0-9\_\.\-]{2,20}\@[a-z0-9\_\-]{2,20}\.[a-z]{2,9}$/', $email))
             {
-                if(strlen($passwd) >= 12)
+                if(strlen($passwd) >= 22)
                 {
                     if ($passwd == $cPassword)
                     {
@@ -152,11 +152,19 @@ function register($name, $email, $passwd, $cPassword)
                         }
                     } else {
                         $success = 2;
-                        $res = 'Passwords don\'t match.';
+                        $res = 'We don\'t know how you went this far, but passwords don\'t match..';
                     }
+                } else {
+                    $success = 2;
+                    $res = 'We don\'t know how you went this far, but this password is too short..';
                 }
+            } else {
+                $success = 2;
+                $res = 'We don\'t know how you went this far, but this is not a valid email format..';
             }
-            echo('This email address is shit');
+        } else {
+            $success = 2;
+            $res = 'We don\'t know how you went this far, but this is username is too short..';
         }
     }
     require('view/userView.php');

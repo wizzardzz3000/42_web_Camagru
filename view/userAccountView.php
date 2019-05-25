@@ -47,7 +47,7 @@
                     ?>
     
                 </div>
-                <p><strong>Pictures <br></strong></p><?= $user_data['pictures_taken'] ?></p>
+                <p><strong>Pictures</strong><br /><?= $user_data['pictures_taken'] ?></p>
         </div>
         
             <form class="modify_form" action="index.php?action=modify" method="post">
