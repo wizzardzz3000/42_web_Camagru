@@ -24,7 +24,7 @@ An Instagram-like web version of Snapchat with filters and picture gallery, from
 
 ## Intro
 
-Objective of this project is to create a complete website that allows users to make picture montages with filters, from camera upload or file upload.
+The goal of the project is to create a complete website that allows users to make picture montages with filters, from camera upload or file upload.
 
 ### Stack
 
